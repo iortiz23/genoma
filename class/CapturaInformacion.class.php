@@ -173,43 +173,19 @@ class CapturaInformacion {
         return $data;
     }
 
-    public function getDatosCliente($_id_base) {
-        $sql = " SELECT TOP 1 [cb_IdCargueBase],[cb_NumeroTel]
-        ,[cb_NombresApellidos]
-        ,[cb_Correo]
-         ,[cb_NumeroDoc]
-         ,[cb_IdBase]
-         ,[cb_FechaGestion]
-         ,[cb_Estado]
-         FROM [EgresadosPopular].[dbo].[CargueBase]
-        WHERE cb_Estado = 'A' 
-        AND cb_IdBase = '" . $_id_base . "'";
-        $data = $this->database->query(utf8_decode($sql));
-        if (count($data) > 0) {
+    public function getUsuarios() {
+        $sql = " SELECT * FROM tb_person ";
+        $data = $this->database->queryArray(utf8_decode($sql));
+        
+        if (sizeof($data) > 0) {
+          
             $return = $data;
         } else {
-            $sql1 = "  SELECT TOP 1 CB.[cb_IdCargueBase]
-                        ,G.[G_ResultadoGestion]
-                        ,[cb_NumeroTel]
-                        ,[cb_NombresApellidos]
-                        ,[cb_Correo]
-                        ,[cb_NumeroDoc]
-                        ,[cb_IdBase]
-                        ,[cb_FechaGestion]
-                        ,[cb_Estado],*
-                FROM [EgresadosPopular].[dbo].[CargueBase] CB
-                INNER JOIN [EgresadosPopular].[dbo].[Gestion] G  ON CB.cb_NumeroTel = G.G_Telefono  
-                WHERE G_ResultadoGestion NOT IN (4,5,6,13)
-                    AND CB.cb_IdBase = '" . $_id_base . "'"
-                    . "   ORDER BY CB.[cb_IdCargueBase] ";
-            $data1 = $this->database->query(utf8_decode($sql1));
-            if (count($data1) > 0) {
-                $return = $data1;
-            } else {
-                $return = null;
-            }
+            
+           $return = null;
+            
         }
-//        print_r($return);
+       // print_r($return);
         return $return;
     }
 

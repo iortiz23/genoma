@@ -26,8 +26,8 @@ switch ($_REQUEST['metodo']) {
     case 'getSiguienteNivel':
         XML::xmlResponse(getSiguienteNivel($_POST['codPadre']));
         break;
-    case 'getDatosCliente':
-        XML::xmlResponse(getDatosCliente($_POST['id_base']));
+    case 'getUser':
+        XML::xmlResponse(getUser());
         break;
     case 'ConsultaDatosCliente':
         XML::xmlResponse(ConsultaDatosCliente($_POST['txtNumCedula'], $_POST['txtIdBase'], $_POST['Asesor']));
@@ -115,18 +115,26 @@ function getSiguienteNivel($_CodPadre) {
     return $xml;
 }
 
-function getDatosCliente($_id_base) {
+function getUser() {
+    $xml="";
     $captura = new CapturaInformacion();
-    $data = $captura->getDatosCliente($_id_base);
-    if (sizeof($data) > 0) {
-        $xml .= "<registro                    
-                    IdCargueBase='" . utf8_encode(trim($data[0]['cb_IdCargueBase'])) . "'                    
-                    TelEgre='" . utf8_encode(trim($data[0]['cb_NumeroTel'])) . "'                    
-                    CorreoEgre='" . utf8_encode(trim($data[0]['cb_Correo'])) . "'                                          
-                    NumDocEgre='" . utf8_encode(trim($data[0]['cb_NumeroDoc'])) . "'                                          
-                    ><![CDATA[" . trim($data[0]['cb_NombresApellidos']) . "]]></registro>";
-    } else {
-        $xml = "<registro>NOEXITOSO</registro>";
+    $data = $captura->getUsuarios();
+    if(count($data)> 0){
+    for ($i = 0; $i < count($data); $i++){
+        if (sizeof($data) > 0) {
+            $xml .= "<registro                    
+                        Id='" . utf8_encode(trim($data[$i]['IdPerson'])) . "'                    
+                        Name='" . utf8_encode(trim($data[$i]['Name'])) . "'                    
+                        Document='" . utf8_encode(trim($data[$i]['Document'])) . "'                                          
+                        State='" . utf8_encode(trim($data[$i]['State'])) . "'                                          
+                        ></registro>";
+        } else {
+            $xml = "<registro>NOEXITOSO</registro>";
+        }    
+        }
+    
+    }else{
+       $xml = "<registro>NOEXITOSO</registro>"; 
     }
     return $xml;
 }
