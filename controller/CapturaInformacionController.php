@@ -2,10 +2,9 @@
 
 require_once('../class/CapturaInformacion.class.php');
 require_once('../class/XML.class.php');
-
 switch ($_REQUEST['metodo']) {
-    case 'guardaGestion':
-        XML::xmlResponse(guardaGestion($_REQUEST['InteractionId'], $_REQUEST['NumDocAsesor'], $_REQUEST['tel_Contact'], $_REQUEST['ContEgre'], $_REQUEST['ResulEgre'], $_REQUEST['txtObservacion'], $_REQUEST['NumDocEgre'], $_REQUEST['idGestion']));
+    case 'setPassword':
+        XML::xmlResponse(setPassword($_REQUEST['email'], $_REQUEST['password_old'], $_REQUEST['password_new']));
         break;
     //LOGIN
     case 'validaLogin':
@@ -21,7 +20,7 @@ switch ($_REQUEST['metodo']) {
         XML::xmlResponse(getValidaTel($_REQUEST['InteractionID'], $_REQUEST['NumTel'], $_REQUEST['Asesor']));
         break;
     case 'getControl':
-        XML::xmlResponse(getControl($_REQUEST['IdCargueBase'],$_REQUEST['IdBase']));
+        XML::xmlResponse(getControl($_REQUEST['IdCargueBase'], $_REQUEST['IdBase']));
         break;
     case 'getSiguienteNivel':
         XML::xmlResponse(getSiguienteNivel($_POST['codPadre']));
@@ -37,20 +36,16 @@ switch ($_REQUEST['metodo']) {
         break;
 }
 
-function getControl($_IdCargueBase,$_IdBase) {
+function setPassword($_email, $_password_old, $_password_new) {
     $captura = new CapturaInformacion();
-    $data = $captura->getControl($_IdCargueBase,$_IdBase);
-    if ($data != 0) {
-        $xml = "<registro>EXITOSO</registro>";
-    } else {
-        $xml = "<registro>NOEXITOSO</registro>";
-    }
+    $data = $captura->setPassword($_email, $_password_old, $_password_new);
+    $xml = "<registro>" . $data . "</registro>";
     return $xml;
 }
 
-function guardaGestion($InteractionId, $NumDocAsesor, $tel_Contact, $ContEgre, $ResulEgre, $txtObservacion, $NumDocEgre,$idGestion) {
+function getControl($_IdCargueBase, $_IdBase) {
     $captura = new CapturaInformacion();
-    $data = $captura->guardaGestion($InteractionId, $NumDocAsesor, $tel_Contact, $ContEgre, $ResulEgre, $txtObservacion, $NumDocEgre,$idGestion);
+    $data = $captura->getControl($_IdCargueBase, $_IdBase);
     if ($data != 0) {
         $xml = "<registro>EXITOSO</registro>";
     } else {

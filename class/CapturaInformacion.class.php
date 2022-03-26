@@ -2,6 +2,7 @@
 
 date_default_timezone_set('America/Bogota');
 require_once('DataBase.class.php');
+require_once('EnvioCorreo.class.php');
 
 /**
  * Description of CapturaInformacion
@@ -18,7 +19,7 @@ class CapturaInformacion {
     }
 
     public function getDatosUsuario($_usuario, $_password) {
-        $sql = " SELECT IdPerson, Name, Email, Passw, IdProfile "
+        $sql = " SELECT IdPerson, Name, Email, Passw, PasswUpdate, IdProfile  "
                 . "FROM tb_person "
                 . "WHERE State = 1 AND Email = '" . trim($_usuario) . "'";
         $data = $this->database->query(utf8_decode($sql));
@@ -26,17 +27,77 @@ class CapturaInformacion {
         if ($exists > 0) {
             $row = $data->fetch_assoc();
             if (sha1($_password) === $row['Passw']) {
-                $_SESSION['IdPerson'] = $row['IdPerson'];
-                $_SESSION['Name'] = $row['Name'];
-                $_SESSION['IdProfile'] = $row['IdProfile'];
-                header("Location: ..\index.php");
+                if ($row['PasswUpdate'] === '1') {
+                    $_SESSION['Email'] = trim($row['Email']);
+                    $_SESSION['Passw'] = trim($row['Passw']);
+                    header("Location: ../login/recover-password.php");
+                } else {
+                    $_SESSION['IdPerson'] = $row['IdPerson'];
+                    $_SESSION['Name'] = $row['Name'];
+                    $_SESSION['IdProfile'] = $row['IdProfile'];
+                    header("Location: ..\index.php");
+                }
             } else {
-                $data = 'Contraseña Incorrecta';
+                $data = 'Contraseña incorrecta';
             }
         } else {
             $data = 'Credenciales incorrectas';
         }
         return $data;
+    }
+
+    public function setNewPassword($_email) {
+        $sql = " SELECT IdPerson, Name, Email, Passw, IdProfile "
+                . "FROM tb_person "
+                . "WHERE State = 1 AND Email = '" . trim($_email) . "'";
+        $data = $this->database->query(utf8_decode($sql));
+        $exists = $data->num_rows;
+        if ($exists > 0) {
+            $row = $data->fetch_assoc();
+            if ($_email === $row['Email']) {
+
+                $newPasword = $this->getNewPassword();
+                $envioCorreo = new EnvioCorreo();
+                $resulEnvio = $envioCorreo->enviaCorreoDuponte($_email, $newPasword);
+                $queryUpdate = "UPDATE tb_person SET Passw = SHA1('" . $newPasword . "'), PasswUpdate = 1 WHERE IdPerson = " . $row['IdPerson'];
+                $data = $this->database->query($queryUpdate);
+                $resulEnvio = 'Tu nueva contraseña fue enviada exitosamente al correo: ' . $_email;
+            } else {
+                $resulEnvio = 'No existe el Correo: ' . $_email;
+            }
+        } else {
+            $resulEnvio = 'No existe el Correo: ' . $_email;
+        }
+        return $resulEnvio;
+    }
+
+    public function getNewPassword() {
+        $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+        $pass = array(); //remember to declare $pass as an array
+        $alphaLength = strlen($alphabet) - 1; //put the length -1 in cache
+        for ($i = 0; $i < 8; $i++) {
+            $n = rand(0, $alphaLength);
+            $pass[] = $alphabet[$n];
+        }
+        return implode($pass); //turn the array into a string
+    }
+
+    public function setPassword($_email, $_password_old, $_password_new) {
+        $sql = " SELECT IdPerson, Name, Email, Passw, IdProfile "
+                . "FROM tb_person "
+                . "WHERE State = 1 AND Email = '" . $_email . "' AND Passw = SHA1('" . $_password_old . "')";
+
+        $data = $this->database->query(utf8_decode($sql));
+        $exists = $data->num_rows;
+        if ($exists > 0) {
+            $row = $data->fetch_assoc();
+            $queryUpdate = "UPDATE tb_person SET Passw = SHA1('" . $_password_new . "'), PasswUpdate = 0 WHERE IdPerson = " . $row['IdPerson'];
+            $data = $this->database->query($queryUpdate);
+            $resulEnvio = 'EXITOSO';
+        } else {
+            $resulEnvio = 'NOEXITOSO';
+        }
+        return $resulEnvio;
     }
 
     public function getParametros($tipoParametro) {

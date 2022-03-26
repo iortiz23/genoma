@@ -1,14 +1,14 @@
 <?php
 include '../class/CapturaInformacion.class.php';
+
 session_start();
 $result = '';
 if ($_POST) {
     $usu = $_POST['usu'];
     $pass = $_POST['pass'];
-
     $modulo = new CapturaInformacion();
     $result = $modulo->getDatosUsuario($usu, $pass);
-}
+} 
 ?>
 
 <!DOCTYPE html>
@@ -17,7 +17,7 @@ if ($_POST) {
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Duponte</title>
-
+        <link rel="icon" href="../dist/img/duponte-icono.png">
         <!-- Google Font: Source Sans Pro -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
         <!-- Font Awesome -->
@@ -27,11 +27,11 @@ if ($_POST) {
         <!-- Theme style -->
         <link rel="stylesheet" href="../dist/css/adminlte.min.css">
     </head>
-    <body class="hold-transition login-page">
+    <body class="hold-transition login-page" style="color: #C3E4E5">
         <div class="login-box">
             <div class="login-logo">
-                <a href="login.php"><b>Admin</b>LTE</a>
-            </div>
+                <img src="../dist/img/duponte-icono.png" class="w-75 h-75"/>
+            </div>    
             <!-- /.login-logo -->
             <div class="card">
                 <div class="card-body login-card-body">
@@ -64,6 +64,9 @@ if ($_POST) {
                         </div>
                     </form>
                     <p class="login-box-msg"><?php echo $result; ?></p>
+                    <p class="mb-1">
+                        <a href="forgot-password.php">Olvidé mi contraseña</a>
+                    </p>
                 </div>
                 <!-- /.login-card-body -->
             </div>

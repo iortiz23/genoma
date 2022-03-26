@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['IdPerson'])) {
+if (!isset($_SESSION['IdPerson']) || !isset($_SESSION['Name']) || !isset($_SESSION['IdProfile'])) {
     header("Location: login\login.php");
 }
 
@@ -192,7 +192,7 @@ $IdProfile = $_SESSION['IdProfile'];
                                             <p>Cargar Relación</p>
                                         </a>
                                     </li>
-                                    
+
                                 </ul>
                             </li>
                             <li class="nav-item">
@@ -258,18 +258,18 @@ $IdProfile = $_SESSION['IdProfile'];
                             <div class="col-12">
                                 <div class="callout callout-info">
                                     <h5><i class="fas fa-info"></i> Hola!!!</h5>
-                                        Bienvenido a su sistema de Cargue de datos
+                                    Bienvenido a su sistema de Cargue de datos
                                 </div>
                             </div>
                         </div>
-                       
+
                         <!-- /.row -->
-                       
+
                     </div><!-- /.container-fluid -->
                 </section>
                 <!-- /.content -->
             </div>
-           
+
             <!-- Control Sidebar -->
             <aside class="control-sidebar control-sidebar-dark">
                 <!-- Control sidebar content goes here -->
