@@ -29,10 +29,8 @@ class EnvioCorreo {
             $mail->isSMTP();
             $mail->Host = 'smtp.gmail.com';
             $mail->SMTPAuth = true;
-//            $mail->Username = 'soporte@ciclibi.com.co';
-            $mail->Username = 'neider.1991@gmail.com';
-            $mail->Password = 'Kartal1*';
-//            $mail->Password = 'Ciclibi2020.';
+            $mail->Username = '***';
+            $mail->Password = '**';
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $mail->Port = 587;
 
