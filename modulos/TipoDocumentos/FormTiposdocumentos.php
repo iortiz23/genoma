@@ -32,20 +32,19 @@
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
-                   <!-- <form>-->
+                    <form>
                         <div class="row">
                             <div class="col-sm-6">
                                 <!-- text input -->
                                 <div class="form-group">
                                     <label>Nombre</label>
-                                    <input type="hidden" name="id" id="id"/>
-                                    <input type="text" id="name" name="name"  maxlength="64" class="form-control" data-req="requerido" placeholder="Ej. Pedro">
+                                    <input type="text" id="name" name="name" class="form-control" data-req="requerido" placeholder="Ej. Pedro">
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label>Documento</label>
-                                    <input type="text" id="document" name="document"  class="form-control" max-length="12" data-req="requerido" placeholder="Ej. 10542462" >
+                                    <input type="text" id="document" class="form-control" data-req="requerido" placeholder="Ej. 10542462" >
                                 </div>
                             </div>
                         </div>
@@ -54,13 +53,13 @@
                                 <!-- textarea -->
                                 <div class="form-group">
                                     <label>Telefono</label>                        
-                                    <input name="phone" type="numeric" id="phone" name="phone" max-length="15" class="form-control" data-req="requerido" placeholder="Ej. 2725814">
+                                    <input name="phone" type="text" id="phone" class="form-control" data-req="requerido" placeholder="Ej. 2725814">
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label>Correo</label>
-                                    <input name="email" type="email" id="email" max-length="24" class="form-control" data-req="requerido" placeholder="Ej. pruebas@pruebas.com">
+                                    <input name="email" type="email" id="email" class="form-control" data-req="requerido" placeholder="Ej. pruebas@pruebas.com">
                                 </div>
                             </div>
                         </div>
@@ -69,13 +68,13 @@
                                 <!-- textarea -->
                                 <div class="form-group">
                                     <label>Contraseña</label>
-                                    <input name="pass" type="password" id="pass" min-length="8" max-length="8"data-req="requerido" class="form-control"  >
+                                    <input name="pass" type="password" id="pass" data-req="requerido" class="form-control"  >
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label>Confirma Contraseña</label>
-                                    <input name="pass2" type="password_2" id="pass2" min-length="8"  max-length="8" data-req="requerido" class="form-control"  >
+                                    <input name="pass2" type="password_2" id="pass2" data-req="requerido" class="form-control"  >
                                 </div>
                             </div>
                         </div>
@@ -84,26 +83,24 @@
                                 <!-- textarea -->
                                 <div class="form-group">
                                     <label>Tipo de documento</label>
-                                    <select id="idtypedocument" name="idtypedocument" class="custom-select" data-req="requerido">
+                                    <select id="idtypedocument"  class="custom-select" data-req="requerido">
+                                        <option>option 1</option>
+                                        <option>option 2</option>
+                                        <option>option 3</option>
+                                        <option>option 4</option>
+                                        <option>option 5</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label>Perfil</label>
-                                    <select id="idprofile" name="idprofile" class="custom-select" data-req="requerido">
+                                    <select id="idprofile"  class="custom-select" data-req="requerido">
                                     </select>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label>Tipo de cliente</label>
-                                    <select id="idclient" name="idclient"  class="custom-select" data-req="requerido">
-                                    </select>
-                                </div>
-                            </div>
                             <div class="col-sm-6">
                                 <!-- checkbox -->
                                 <div class="form-group">
@@ -125,7 +122,7 @@
                         </div>
 
 
-                   <!-- </form>-->
+                    </form>
                 </div>
                 <!-- /.card-body -->
             </div>
@@ -159,4 +156,4 @@
     </script>
 </body>
 </html>
-<?php ?>
+

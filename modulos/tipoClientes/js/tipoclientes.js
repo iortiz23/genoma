@@ -6,13 +6,13 @@
 var data;
 
 $(document).ready(function (){
-    $('#tbUsuarios').dataTable({
+    $('#tbTypeClients').dataTable({
      "aaSorting":[]   
     });
     $.ajax({
         url:"../../controller/CapturaInformacionController.php",
         data:({
-            'metodo':'getUser'
+            'metodo':'getTypeClients'
         }),
         type:"post",
         dataType:"xml",
@@ -27,17 +27,16 @@ $(document).ready(function (){
             $(xml).find("response").each(function(){
                 $(this).find("registro").each(function(){
                  if($(this).text() != 'NOEXITOSO'){
-                     $('#tbUsuarios').dataTable().fnAddData([
+                     $('#tbTypeClients').dataTable().fnAddData([
                          $(this).attr('Id'),
-                         $(this).attr('Name'),
-                         $(this).attr('Document'),
+                         $(this).attr('Description'),
                          $(this).attr('State'),
-                         '<a type="button" class="btn bg-gradient-warning btn-sm-1" href="./FormUsuarios.php/'+$(this).attr('Id')+'/" ><i class="nav-icon fas fa-edit"></i></a>\n\
-                          <button type="button" class="btn  bg-gradient-danger btn-sm-1" onclick="deleteUser('+$(this).attr('Id')+')"><i class="nav-icon fas fa-trash" ></i></button>',
+                         '<a type="button" class="btn bg-gradient-warning btn-sm-1" href="./FormTipoClientes.php/'+$(this).attr('Id')+'/" ><i class="nav-icon fas fa-edit"></i></a>\n\
+                          <button type="button" class="btn  bg-gradient-danger btn-sm-1" onclick="deleteClient('+$(this).attr('Id')+')"><i class="nav-icon fas fa-trash" ></i></button>',
                      ]);
                  }else{
                      bootbox.alert({
-                         message:'',
+                         message:'No se encuentran registros',
                          title:"Alerta"
                      });
                      return false;
@@ -48,7 +47,7 @@ $(document).ready(function (){
     });
 });
 
-function deleteUser(id){
+function deleteClient(id){
     $.ajax({
         url:"../../controller/CapturaInformacionController.php",
         data:({
@@ -69,12 +68,12 @@ function deleteUser(id){
                 $(this).find("registro").each(function(){
                  if($(this).text() != 'NOEXITOSO'){
                      bootbox.alert({
-                         message:'Usuario Eliminado Correctamente',
+                         message:'Tipo de cliente Eliminado Correctamente',
                          title:"Alerta"
                      });
                  }else{
                      bootbox.alert({
-                         message:'Usuario no eliminado',
+                         message:'Tipo de cliente no eliminado',
                          title:"Alerta"
                      });
                      return false;
@@ -86,7 +85,7 @@ function deleteUser(id){
     $.ajax({
         url:"../../controller/CapturaInformacionController.php",
         data:({
-            'metodo':'getUser'
+            'metodo':'getTypeClients'
         }),
         type:"post",
         dataType:"xml",
@@ -101,17 +100,16 @@ function deleteUser(id){
             $(xml).find("response").each(function(){
                 $(this).find("registro").each(function(){
                  if($(this).text() != 'NOEXITOSO'){
-                     $('#tbUsuarios').dataTable().fnAddData([
+                     $('#tbTypeClients').dataTable().fnAddData([
                          $(this).attr('Id'),
-                         $(this).attr('Name'),
-                         $(this).attr('Document'),
+                         $(this).attr('Description'),
                          $(this).attr('State'),
-                         '<a type="button" class="btn bg-gradient-warning btn-sm-1" href="FormUsuarios.php/'+$(this).attr('Id')+'" ><i class="nav-icon fas fa-edit"></i></a>\n\
-                          <button type="button" class="btn  bg-gradient-danger btn-sm-1"><i class="nav-icon fas fa-trash" onclick="deleteUser('+$(this).attr('Id')+')"></i></button>',
+                         '<a type="button" class="btn bg-gradient-warning btn-sm-1" href="./FormTipoClientes.php/'+$(this).attr('Id')+'" ><i class="nav-icon fas fa-edit"></i></a>\n\
+                          <button type="button" class="btn  bg-gradient-danger btn-sm-1"><i class="nav-icon fas fa-trash" onclick="deleteClient('+$(this).attr('Id')+')"></i></button>',
                      ]);
                  }else{
                      bootbox.alert({
-                         message:'',
+                         message:'registros no encontrados',
                          title:"Alerta"
                      });
                      return false;

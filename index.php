@@ -162,6 +162,12 @@ $IdProfile = $_SESSION['IdProfile'];
                                             <p>Tipos de Cliente</p>
                                         </a>
                                     </li>
+                                    <li class="nav-item">
+                                        <a href="modulos/tipoDocumentos/tipodocumentos.php" target="centerframe" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Tipos de Documentos</p>
+                                        </a>
+                                    </li>
                                     
                                 </ul>
                             </li>

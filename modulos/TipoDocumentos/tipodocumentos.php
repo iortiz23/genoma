@@ -44,7 +44,7 @@
                                         <div class="row">
                                             <div class="col-md-10"><h3 class="card-title">Usuarios</h3></div>
                                             <div class="col-md-2">
-                                                <a href="./FormUsuarios.php" class="btn bg-gradient-success btn-sm-1"><i class="nav-icon fas fa-plus"></i> Nuevo</a>
+                                                <a href="FormUsuarios.php" class="btn bg-gradient-success btn-sm-1"><i class="nav-icon fas fa-plus"></i> Nuevo</a>
                                             </div>
                                             <!-- comment -->
                                         </div>

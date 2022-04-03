@@ -21,13 +21,35 @@ switch ($_REQUEST['metodo']) {
         XML::xmlResponse(getValidaTel($_REQUEST['InteractionID'], $_REQUEST['NumTel'], $_REQUEST['Asesor']));
         break;
     case 'getControl':
-        XML::xmlResponse(getControl($_REQUEST['IdCargueBase'],$_REQUEST['IdBase']));
+        XML::xmlResponse(getControl($_REQUEST['IdCargueBase'], $_REQUEST['IdBase']));
         break;
     case 'getSiguienteNivel':
         XML::xmlResponse(getSiguienteNivel($_POST['codPadre']));
         break;
     case 'getUser':
         XML::xmlResponse(getUser());
+        break;
+     case 'getTypeClients':
+        XML::xmlResponse(getTypeClients());
+        break;
+    
+    case 'deleteUser':
+        XML::xmlResponse(deleteUsers($_REQUEST['Id']));
+        break;
+    case 'getUsers':
+        XML::xmlResponse(getUsers($_REQUEST['Id']));
+        break;
+    case 'getProfile':
+        XML::xmlResponse(getProfile());
+        break;
+    case 'getTypeDocument':
+        XML::xmlResponse(getTypeDocument());
+        break;
+    case 'getTypeClient':
+        XML::xmlResponse(getTypeClient());
+        break;
+    case 'setUser':
+        XML::xmlResponse(setUser($_POST['Nombre'], $_POST['Documento'], $_POST['Telefono'], $_POST['Email'], $_POST['Contraseña'], $_POST['Status'], $_POST['idTypeDocument'], $_POST['idProfile'], $_POST['idClient']));
         break;
     case 'ConsultaDatosCliente':
         XML::xmlResponse(ConsultaDatosCliente($_POST['txtNumCedula'], $_POST['txtIdBase'], $_POST['Asesor']));
@@ -37,9 +59,9 @@ switch ($_REQUEST['metodo']) {
         break;
 }
 
-function getControl($_IdCargueBase,$_IdBase) {
+function getControl($_IdCargueBase, $_IdBase) {
     $captura = new CapturaInformacion();
-    $data = $captura->getControl($_IdCargueBase,$_IdBase);
+    $data = $captura->getControl($_IdCargueBase, $_IdBase);
     if ($data != 0) {
         $xml = "<registro>EXITOSO</registro>";
     } else {
@@ -48,9 +70,20 @@ function getControl($_IdCargueBase,$_IdBase) {
     return $xml;
 }
 
-function guardaGestion($InteractionId, $NumDocAsesor, $tel_Contact, $ContEgre, $ResulEgre, $txtObservacion, $NumDocEgre,$idGestion) {
+function guardaGestion($InteractionId, $NumDocAsesor, $tel_Contact, $ContEgre, $ResulEgre, $txtObservacion, $NumDocEgre, $idGestion) {
     $captura = new CapturaInformacion();
-    $data = $captura->guardaGestion($InteractionId, $NumDocAsesor, $tel_Contact, $ContEgre, $ResulEgre, $txtObservacion, $NumDocEgre,$idGestion);
+    $data = $captura->guardaGestion($InteractionId, $NumDocAsesor, $tel_Contact, $ContEgre, $ResulEgre, $txtObservacion, $NumDocEgre, $idGestion);
+    if ($data != 0) {
+        $xml = "<registro>EXITOSO</registro>";
+    } else {
+        $xml = "<registro>NOEXITOSO</registro>";
+    }
+    return $xml;
+}
+
+function setUser($Nombre, $Documento, $Telefono, $Email, $Contraseña, $Status, $idTypeDocument, $idProfile, $idClient) {
+    $captura = new CapturaInformacion();
+    $data = $captura->setUsuarios($Nombre, $Documento, $Telefono, $Email, $Contraseña, $Status, $idTypeDocument, $idProfile, $idClient);
     if ($data != 0) {
         $xml = "<registro>EXITOSO</registro>";
     } else {
@@ -116,25 +149,138 @@ function getSiguienteNivel($_CodPadre) {
 }
 
 function getUser() {
-    $xml="";
+    $xml = "";
     $captura = new CapturaInformacion();
     $data = $captura->getUsuarios();
-    if(count($data)> 0){
-    for ($i = 0; $i < count($data); $i++){
-        if (sizeof($data) > 0) {
-            $xml .= "<registro                    
+    if (count($data) > 0) {
+        for ($i = 0; $i < count($data); $i++) {
+            if (sizeof($data) > 0) {
+                $xml .= "<registro                    
                         Id='" . utf8_encode(trim($data[$i]['IdPerson'])) . "'                    
                         Name='" . utf8_encode(trim($data[$i]['Name'])) . "'                    
                         Document='" . utf8_encode(trim($data[$i]['Document'])) . "'                                          
                         State='" . utf8_encode(trim($data[$i]['State'])) . "'                                          
                         ></registro>";
-        } else {
-            $xml = "<registro>NOEXITOSO</registro>";
-        }    
+            } else {
+                $xml = "<registro>NOEXITOSO</registro>";
+            }
         }
-    
-    }else{
-       $xml = "<registro>NOEXITOSO</registro>"; 
+    } else {
+        $xml = "<registro>NOEXITOSO</registro>";
+    }
+    return $xml;
+}
+
+function getTypeClients() {
+    $xml = "";
+    $captura = new CapturaInformacion();
+    $data = $captura->getTiposClientes();
+    if (count($data) > 0) {
+        for ($i = 0; $i < count($data); $i++) {
+            if (sizeof($data) > 0) {
+                $xml .= "<registro                    
+                        Id='" . utf8_encode(trim($data[$i]['IdTypeClient'])) . "'                    
+                        Description='" . utf8_encode(trim($data[$i]['Description'])) . "'                                        
+                        State='" . utf8_encode(trim($data[$i]['State'])) . "'                                          
+                        ></registro>";
+            } else {
+                $xml = "<registro>NOEXITOSO</registro>";
+            }
+        }
+    } else {
+        $xml = "<registro>NOEXITOSO</registro>";
+    }
+    return $xml;
+}
+
+function getUsers($id) {
+    $xml = "";
+    $captura = new CapturaInformacion();
+    $data = $captura->getUsuarios1($id);
+    if (sizeof($data) > 0) {
+        $xml .= "<registro                    
+                    IdPerson='" . utf8_encode(trim($data[0]['IdPerson'])) . "'                    
+                    Name='" . utf8_encode(trim($data[0]['Name'])) . "'                    
+                    Document='" . utf8_encode(trim($data[0]['Document'])) . "'                                          
+                    Phone='" . utf8_encode(trim($data[0]['Phone'])) . "'  
+                    Email='" . utf8_encode(trim($data[0]['Email'])) . "'
+                    Passw='" . utf8_encode(trim($data[0]['Passw'])) . "' 
+                    idTypeDocument='" . utf8_encode(trim($data[0]['idTypeDocument'])) . "'
+                    idProfile='" . utf8_encode(trim($data[0]['idProfile'])) . "'
+                    idTypeClient='" . utf8_encode(trim($data[0]['idTypeClient'])) . "'
+                    Status='" . utf8_encode(trim($data[0]['State'])) . "'
+                    ></registro>";
+    } else {
+        $xml = "<registro>NOEXITOSO</registro>";
+    }
+    return $xml;
+}
+
+function deleteUsers($id) {
+    $xml = "";
+    $captura = new CapturaInformacion();
+    $data = $captura->eliminarUsuarios($id);
+    if (sizeof($data) > 0) {
+        $xml = "<registro>EXITOSO</registro>";
+    } else {
+        $xml = "<registro>NOEXITOSO</registro>";
+    }
+    return $xml;
+}
+
+function getProfile() {
+    $xml = "";
+    $captura = new CapturaInformacion();
+    $data = $captura->getPerfilesActivos();
+    $htmlOption = "";
+    if (count($data) > 0) {
+        $htmlOption = "<option value='-1'>--Seleccione</option>";
+        for ($i = 0; $i < count($data); $i++) {
+            if (sizeof($data) > 0) {
+                $htmlOption .= "<option value=" . $data[$i]['IdProfile'] . ">" . $data[$i]['Description'] . "</option>";
+            }
+        }
+        $xml = "<registro><![CDATA[' . $htmlOption . ']]></registro>";
+    } else {
+        $xml = "<registro>NOEXITOSO</registro>";
+    }
+    return $xml;
+}
+
+function getTypeDocument() {
+    $xml = "";
+    $captura = new CapturaInformacion();
+    $data = $captura->getTiposDocumentos();
+    $htmlOption = "";
+    if (count($data) > 0) {
+        $htmlOption = "<option value='-1'>--Seleccione</option>";
+        for ($i = 0; $i < count($data); $i++) {
+            if (sizeof($data) > 0) {
+                $htmlOption .= "<option value=" . $data[$i]['IdTypeDocument'] . ">" . $data[$i]['Description'] . "</option>";
+            }
+        }
+        $xml = "<registro><![CDATA[' . $htmlOption . ']]></registro>";
+    } else {
+        $xml = "<registro>NOEXITOSO</registro>";
+    }
+    return $xml;
+}
+
+function getTypeClient() {
+    $xml = "";
+    $captura = new CapturaInformacion();
+    $data = $captura->getTiposCliente();
+    $htmlOption = "";
+    if (count($data) > 0) {
+        $htmlOption = "<option value='-1'>--Seleccione</option>";
+        for ($i = 0; $i < count($data); $i++) {
+            if (sizeof($data) > 0) {
+                $htmlOption .= "<option value=" . $data[$i]['idTypeClient'] . ">" . $data[$i]['Description'] . "</option>";
+            }
+        }
+        $xml = "<registro><![CDATA[' . $htmlOption . ']]></registro>";
+    } else {
+        $xml = "<registro>NOEXITOSO</registro>";
     }
     return $xml;
 }
