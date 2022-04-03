@@ -25,20 +25,23 @@ class EnvioCorreo {
         $mail = new PHPMailer(true);
         try {
 
-            $mail->SMTPDebug = SMTP::DEBUG_SERVER;
+            //$mail->SMTPDebug = SMTP::DEBUG_SERVER;
             $mail->isSMTP();
             $mail->Host = 'smtp.gmail.com';
             $mail->SMTPAuth = true;
-            $mail->Username = 'soporte@ciclibi.com.co';
-            $mail->Password = 'Ciclibi2020.';
+//            $mail->Username = 'soporte@ciclibi.com.co';
+            $mail->Username = 'neider.1991@gmail.com';
+            $mail->Password = 'Kartal1*';
+//            $mail->Password = 'Ciclibi2020.';
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $mail->Port = 587;
 
-            $mail->setFrom('soporte@ciclibi.com.co', 'Tubids.com.co');
+            $mail->setFrom('neider.1991@gmail.com', 'Esneider');
+//            $mail->setFrom('soporte@ciclibi.com.co', 'Tubids.com.co');
             $mail->addAddress($_email);
-            $mail->addAttachment('../dist/img/duponte-icono.png', 'duponte-icono.png');
+            $mail->addEmbeddedImage('../dist/img/duponte-icono.png', 'duponte-icono.png');
             $mail->IsHTML(true);
-            $mail->Subject = 'Tu nueva contraseña está lista!!!';
+            $mail->Subject = utf8_decode('Tu nueva contraseña esta lista!!!');
 
             $htmlBodyEmail = "<html>
                             <head>
@@ -89,6 +92,7 @@ class EnvioCorreo {
                             </body>
                         </html>";
             $mail->Body = $htmlBodyEmail;
+            $mail->send();
             return $exito = 'Correo enviado!';
         } catch (Exception $e) {
             return $exito = "Error al enviar: " . $mail->ErrorInfo;

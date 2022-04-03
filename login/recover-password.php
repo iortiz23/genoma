@@ -39,7 +39,7 @@ if (!isset($_SESSION['Email'])) {
             <!-- /.login-logo -->
             <div class="card">
                 <div class="card-body login-card-body">
-                    <p class="login-box-msg">Estás a un paso de tu nueva contraseña.</p>
+                    <p class="login-box-msg">Est&aacute;s a un paso de tu nueva contrase&ntilde;a.</p>
 
                     <form>
                         <div class="input-group mb-3">
