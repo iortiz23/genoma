@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['IdPerson'])) {
+if (!isset($_SESSION['IdPerson']) || !isset($_SESSION['Name']) || !isset($_SESSION['IdProfile'])) {
     header("Location: login\login.php");
 }
 
@@ -157,7 +157,7 @@ $IdProfile = $_SESSION['IdProfile'];
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="modulos/tipoClientes/tipoclientes.php" target="centerframe" class="nav-link">
+                                        <a href="pages/forms/editors.html" class="nav-link" target="centerframe">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Tipos de Cliente</p>
                                         </a>
@@ -182,18 +182,18 @@ $IdProfile = $_SESSION['IdProfile'];
                                 </a>
                                 <ul class="nav nav-treeview">
                                     <li class="nav-item">
-                                        <a href="pages/load/load.php" class="nav-link">
+                                        <a href="pages/load/load.php" class="nav-link" target="centerframe">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Cargar Variantes</p>
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="pages/forms/advanced.html" class="nav-link">
+                                        <a href="pages/forms/advanced.html" class="nav-link" target="centerframe">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Cargar Relación</p>
                                         </a>
                                     </li>
-                                    
+
                                 </ul>
                             </li>
                             <li class="nav-item">
@@ -245,7 +245,7 @@ $IdProfile = $_SESSION['IdProfile'];
                     <div class="container-fluid">
                         <div class="row mb-2">
                             <div class="col-sm-6">
-                                <h1 class="m-0">Bienvenido</h1>
+                                <img src="dist/img/duponte-icono.png" width="25%"/>
                             </div><!-- /.col -->                           
                         </div><!-- /.row -->
                     </div><!-- /.container-fluid -->
@@ -255,26 +255,16 @@ $IdProfile = $_SESSION['IdProfile'];
                 <!-- Main content -->
                 <section class="content">
                     <div class="container-fluid">
-                        <!--<div class="row">
-                            <div class="col-12">
-                                <div class="callout callout-info">
-                                    <h5><i class="fas fa-info"></i> Hola!!!</h5>
-                                        Bienvenido a su sistema de Cargue de datos
-                                </div>
-                            </div>
-                        </div>-->
-                        <aside class="row">
-                            <iframe src="pages/blanco.php" name="centerframe" frameBorder="0" width="84%" style="height:90%;position:absolute" frameSpacing="">
-                             </iframe>   
-                        </aside>  
-                       
-                        <!-- /.row -->
-                       
-                    </div><!-- /.container-fluid -->
+
+                        <iframe src="blanco.php" name="centerframe" align="center" frameBorder=0 width="100%" style="align-content: center; height: 100%; position: absolute" frameSpacing=0>
+                        </iframe> 
+                    </div>
+                  
+
                 </section>
                 <!-- /.content -->
             </div>
-           
+
             <!-- Control Sidebar -->
             <aside class="control-sidebar control-sidebar-dark">
                 <!-- Control sidebar content goes here -->

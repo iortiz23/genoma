@@ -69,13 +69,13 @@
                                 <!-- textarea -->
                                 <div class="form-group">
                                     <label>Contraseña</label>
-                                    <input name="pass" type="password" id="pass" min-length="8" max-length="8"data-req="requerido" class="form-control"  >
+                                    <input name="pass" type="password" id="pass" min-length="8" max-length="16"data-req="requerido" class="form-control"  >
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label>Confirma Contraseña</label>
-                                    <input name="pass2" type="password_2" id="pass2" min-length="8"  max-length="8" data-req="requerido" class="form-control"  >
+                                    <input name="pass2" type="password_2" id="pass2" min-length="8"  max-length="16" data-req="requerido" class="form-control"  >
                                 </div>
                             </div>
                         </div>
