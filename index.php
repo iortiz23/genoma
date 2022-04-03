@@ -145,29 +145,30 @@ $IdProfile = $_SESSION['IdProfile'];
                                 </a>
                                 <ul class="nav nav-treeview">
                                     <li class="nav-item">
-                                        <a href="pages/forms/general.html" class="nav-link" target="centerframe">
+                                        <a href="modulos/usuarios/usuario.php"  target="centerframe" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
-                                            <p>Crear usuarios</p>
+                                            <p>Usuarios</p>
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="pages/forms/advanced.html" class="nav-link" target="centerframe">
+                                        <a href="modulos/perfiles/perfil.php" target="centerframe" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
-                                            <p>Advanced Elements</p>
+                                            <p>Perfiles</p>
                                         </a>
                                     </li>
                                     <li class="nav-item">
                                         <a href="pages/forms/editors.html" class="nav-link" target="centerframe">
                                             <i class="far fa-circle nav-icon"></i>
-                                            <p>Editors</p>
+                                            <p>Tipos de Cliente</p>
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="pages/forms/validation.html" class="nav-link" target="centerframe">
+                                        <a href="modulos/tipoDocumentos/tipodocumentos.php" target="centerframe" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
-                                            <p>Validation</p>
+                                            <p>Tipos de Documentos</p>
                                         </a>
                                     </li>
+                                    
                                 </ul>
                             </li>
 
@@ -254,23 +255,12 @@ $IdProfile = $_SESSION['IdProfile'];
                 <!-- Main content -->
                 <section class="content">
                     <div class="container-fluid">
+
                         <iframe src="blanco.php" name="centerframe" align="center" frameBorder=0 width="100%" style="align-content: center; height: 100%; position: absolute" frameSpacing=0>
                         </iframe> 
                     </div>
-                    <!--                    <div class="container-fluid">
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <div class="callout callout-info">
-                                                        <h5><i class="fas fa-info"></i> Hola!!!</h5>
-                                                        Bienvenido a su sistema de Cargue de datos
-                                                    </div>
-                                                </div>
-                                            </div>
-                    
-                                             /.row 
-                    
-                                        </div>-->
-                    <!-- /.container-fluid -->
+                  
+
                 </section>
                 <!-- /.content -->
             </div>
