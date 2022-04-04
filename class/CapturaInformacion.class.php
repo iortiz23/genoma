@@ -171,6 +171,48 @@ class CapturaInformacion {
         // print_r($return);
         return $return;
     }
+    public function validarPerfil($id) {
+        $sql = " SELECT  count(*) as conteo FROM tb_person WHERE IdProfile=" . $id . " ";
+        $data = $this->database->queryArray(utf8_decode($sql));
+
+        if (sizeof($data) > 0) {
+
+            $return = $data;
+        } else {
+
+            $return = null;
+        }
+        // print_r($return);
+        return $return;
+    }
+    public function validarTipoCliente($id) {
+        $sql = " SELECT  count(*) as conteo FROM tb_person WHERE IdTypeClient=" . $id . " ";
+        $data = $this->database->queryArray(utf8_decode($sql));
+
+        if (sizeof($data) > 0) {
+
+            $return = $data;
+        } else {
+
+            $return = null;
+        }
+        // print_r($return);
+        return $return;
+    }
+    public function validarTipoDocumento($id) {
+        $sql = " SELECT  count(*) as conteo FROM tb_person WHERE IdTypeDocument=" . $id . " ";
+        $data = $this->database->queryArray(utf8_decode($sql));
+
+        if (sizeof($data) > 0) {
+
+            $return = $data;
+        } else {
+
+            $return = null;
+        }
+        // print_r($return);
+        return $return;
+    }
 
     public function getPerfiles() {
         $sql = " SELECT * FROM tb_profile";

@@ -48,6 +48,15 @@ switch ($_REQUEST['metodo']) {
     case 'deleteTypeDocument':
         XML::xmlResponse(deleteTypeDocument($_REQUEST['id']));
         break;
+   case 'validateTypeDocument':
+        XML::xmlResponse(validateTypeDocument($_REQUEST['id']));
+        break;
+   case 'validateTypeClient':
+        XML::xmlResponse(validateTypeClient($_REQUEST['id']));
+        break;
+   case 'validatePerfil':
+        XML::xmlResponse(validatePerfil($_REQUEST['id']));
+        break;
     case 'getUsers':
         XML::xmlResponse(getUsers($_REQUEST['Id']));
         break;
@@ -360,6 +369,51 @@ function deletePerfiles($id) {
     $data = $captura->eliminarPerfiles($id);
     if (sizeof($data) > 0) {
         $xml = "<registro>EXITOSO</registro>";
+    } else {
+        $xml = "<registro>NOEXITOSO</registro>";
+    }
+    return $xml;
+}
+function validateTypeDocument($id) {
+    $xml = "";
+    $captura = new CapturaInformacion();
+    $data = $captura->validarTipoDocumento($id);
+    if (sizeof($data) > 0) {
+        if($data[0]['conteo']>=1){
+           $xml = "<registro Flag='1'>EXITOSO</registro>"; 
+        }else{
+            $xml = "<registro Flag='0'>EXITOSO</registro>"; 
+        }        
+    } else {
+        $xml = "<registro>NOEXITOSO</registro>";
+    }
+    return $xml;
+}
+function validateTypeClient($id) {
+    $xml = "";
+    $captura = new CapturaInformacion();
+    $data = $captura->validarTipoCliente($id);
+    if (sizeof($data) > 0) {
+        if($data[0]['conteo']>=1){
+           $xml = "<registro Flag='1'>EXITOSO</registro>"; 
+        }else{
+            $xml = "<registro Flag='0'>EXITOSO</registro>"; 
+        }        
+    } else {
+        $xml = "<registro>NOEXITOSO</registro>";
+    }
+    return $xml;
+}
+function validatePerfil($id) {
+    $xml = "";
+    $captura = new CapturaInformacion();
+    $data = $captura->validarPerfil($id);
+    if (sizeof($data) > 0) {
+        if($data[0]['conteo']>=1){
+           $xml = "<registro Flag='1'>EXITOSO</registro>"; 
+        }else{
+            $xml = "<registro Flag='0'>EXITOSO</registro>"; 
+        }        
     } else {
         $xml = "<registro>NOEXITOSO</registro>";
     }

@@ -36,7 +36,10 @@ $(document).ready(function () {
                     } else {
                         bootbox.alert({
                             message: 'No se encuentran registros',
-                            title: "Alerta"
+                            title: "Alerta",
+                            callback: function () {
+                                window.location = './tipoclientes.php';
+                            }
                         });
                         return false;
                     }
@@ -47,10 +50,11 @@ $(document).ready(function () {
 });
 
 function deleteTypeClient(id) {
+    var valor = 0;
     $.ajax({
         url: "../../controller/CapturaInformacionController.php",
         data: ({
-            'metodo': 'deleteTypeClient',
+            'metodo': 'validateTypeClient',
             'id': id
         }),
         type: "post",
@@ -66,14 +70,24 @@ function deleteTypeClient(id) {
             $(xml).find("response").each(function () {
                 $(this).find("registro").each(function () {
                     if ($(this).text() != 'NOEXITOSO') {
-                        bootbox.alert({
-                            message: 'Tipo de cliente Eliminado Correctamente',
-                            title: "Alerta"
-                        });
+                        if ($(this).attr('Flag') == '1') {
+                            bootbox.alert({
+                                message: 'Uno o mas usuario(s) tiene el tipo de cliente a eliminar ',
+                                title: "Alerta",
+                            callback: function () {
+                                window.location = './tipoclientes.php';
+                            }
+                            });
+                            valor = 1;
+                        }
+
                     } else {
                         bootbox.alert({
                             message: 'Tipo de cliente no eliminado',
-                            title: "Alerta"
+                            title: "Alerta",
+                            callback: function () {
+                                window.location = './tipoclientes.php';
+                            }
                         });
                         return false;
                     }
@@ -81,50 +95,95 @@ function deleteTypeClient(id) {
             });
         }
     });
-    $('#tbTypeClients').dataTable({
-        "aaSorting": []
-    });
-    var table = $('#tbTypeClients').DataTable();
+    if (valor != 1) {
+        $.ajax({
+            url: "../../controller/CapturaInformacionController.php",
+            data: ({
+                'metodo': 'deleteTypeClient',
+                'id': id
+            }),
+            type: "post",
+            dataType: "xml",
+            beforeSend: function () {
+                bootbox.alert({
+                    message: 'Cargando ....',
+                    title: "Cargando"
+                });
+            },
+            success: function (xml) {
+                bootbox.hideAll();
+                $(xml).find("response").each(function () {
+                    $(this).find("registro").each(function () {
+                        if ($(this).text() != 'NOEXITOSO') {
+                            bootbox.alert({
+                                message: 'Tipo de cliente Eliminado Correctamente',
+                                title: "Alerta",
+                            callback: function () {
+                                window.location = './tipoclientes.php';
+                            }
+                            });
+                        } else {
+                            bootbox.alert({
+                                message: 'Tipo de cliente no eliminado',
+                                title: "Alerta",
+                            callback: function () {
+                                window.location = './tipoclientes.php';
+                            }
+                            });
+                            return false;
+                        }
+                    });
+                });
+            }
+        });
+        $('#tbTypeClients').dataTable({
+            "aaSorting": []
+        });
+        var table = $('#tbTypeClients').DataTable();
 
-    table
-            .clear()
-            .draw();
-    $.ajax({
-        url: "../../controller/CapturaInformacionController.php",
-        data: ({
-            'metodo': 'getTypeClients'
-        }),
-        type: "post",
-        dataType: "xml",
-        beforeSend: function () {
-            bootbox.alert({
-                message: 'Cargando ....',
-                title: "Cargando"
-            });
-        },
-        success: function (xml) {
-            bootbox.hideAll();
-            $(xml).find("response").each(function () {
-                $(this).find("registro").each(function () {
-                    if ($(this).text() != 'NOEXITOSO') {
-                        $('#tbTypeClients').dataTable().fnAddData([
-                            $(this).attr('Id'),
-                            $(this).attr('Description'),
-                            ($(this).attr('State') == 1) ? 'Activo' : 'Inactivo',
-                            '<a type="button" class="btn bg-gradient-warning btn-sm-1" href="./FormTipoClientes.php?id=' + $(this).attr('Id') + '" ><i class="nav-icon fas fa-edit"></i></a>\n\
-                          <button type="button" class="btn  bg-gradient-danger btn-sm-1" onclick="deleteTypeClient(' + $(this).attr('Id') + ')"><i class="nav-icon fas fa-trash" ></i></button>',
-                        ]);
-                    } else {
-                        bootbox.alert({
-                            message: 'No se encuentran registros',
-                            title: "Alerta"
-                        });
-                        return false;
-                    }
+        table
+                .clear()
+                .draw();
+        $.ajax({
+            url: "../../controller/CapturaInformacionController.php",
+            data: ({
+                'metodo': 'getTypeClients'
+            }),
+            type: "post",
+            dataType: "xml",
+            beforeSend: function () {
+                bootbox.alert({
+                    message: 'Cargando ....',
+                    title: "Cargando"
                 });
-            });
-        }
-    });
+            },
+            success: function (xml) {
+                bootbox.hideAll();
+                $(xml).find("response").each(function () {
+                    $(this).find("registro").each(function () {
+                        if ($(this).text() != 'NOEXITOSO') {
+                            $('#tbTypeClients').dataTable().fnAddData([
+                                $(this).attr('Id'),
+                                $(this).attr('Description'),
+                                ($(this).attr('State') == 1) ? 'Activo' : 'Inactivo',
+                                '<a type="button" class="btn bg-gradient-warning btn-sm-1" href="./FormTipoClientes.php?id=' + $(this).attr('Id') + '" ><i class="nav-icon fas fa-edit"></i></a>\n\
+                          <button type="button" class="btn  bg-gradient-danger btn-sm-1" onclick="deleteTypeClient(' + $(this).attr('Id') + ')"><i class="nav-icon fas fa-trash" ></i></button>',
+                            ]);
+                        } else {
+                            bootbox.alert({
+                                message: 'No se encuentran registros',
+                                title: "Alerta",
+                            callback: function () {
+                                window.location = './tipoclientes.php';
+                            }
+                            });
+                            return false;
+                        }
+                    });
+                });
+            }
+        });
+    }
 }
 
 

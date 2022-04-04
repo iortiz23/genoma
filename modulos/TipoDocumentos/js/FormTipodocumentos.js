@@ -44,13 +44,19 @@ $(document).ready(function () {
                             if ($(this).text() != 'NOEXITOSO') {
                                 bootbox.alert({
                                     message: 'Proceso de guardado  exitoso',
-                                    title: "Correcto"
+                                    title: "Correcto",
+                            callback: function () {
+                                window.location = './tipodocumentos.php';
+                            }
                                 });
                                 return true;
                             } else {
                                 bootbox.alert({
                                     message: 'No se  genero envio de forma correcta',
-                                    title: "Alerta"
+                                    title: "Alerta",
+                            callback: function () {
+                                window.location = './tipodocumentos.php';
+                            }
                                 });
                                 return false;
                             }
