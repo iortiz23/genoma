@@ -4,6 +4,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+include '../../class/CapturaInformacion.class.php';
+session_start();
+$result = null;
+$modulo = new CapturaInformacion();
+if (isset($_REQUEST['id'])) {
+    $result = $modulo->getTypeClientById($_REQUEST['id']);
+} else {
+    $result = null;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,7 +30,7 @@
         <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.min.js" integrity="sha512-RdSPYh1WA6BF0RhpisYJVYkOyTzK4HwofJ3Q7ivt/jkpW6Vc8AurL1R+4AUcvn9IwEKAPm/fk7qFZW3OuiUDeg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-        <script src="./js/FormUsuarios.js"></script>
+        <script src="./js/FormTipoClientes.js"></script>
     </head>
     <body class="container" style="background-color: #f4f6f9;">
         <div class="col-md-12"> 
@@ -39,16 +48,16 @@
                                 <!-- text input -->
                                 <div class="form-group">
                                     <label>Nombre</label>
-                                    <input type="hidden" name="id" id="id"/>
-                                    <input type="text" id="name" name="name"  maxlength="64" class="form-control" data-req="requerido" placeholder="Ej. Pedro">
+                                     <input type="hidden" name="id" id="id" value="<?php echo isset($result[0]['idTypeClient'])?$result[0]['idTypeClient']:''; ?>"/>
+                                    <input type="text" id="description" name="description"  maxlength="64" class="form-control" data-req="requerido" placeholder="Ej. Pedro" value="<?php echo isset($result[0]['Description']) ? $result[0]['Description'] : ''; ?>">
                                 </div>
-                            </div>}
+                            </div>
                             <div class="col-sm-6">
                                 <!-- checkbox -->
                                 <div class="form-group">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" data-req="requerido">
-                                        <label  name="status" id="status" class="form-check-label" >Status</label>
+                                        <input name="status" id="status" class="form-check-input" type="checkbox" data-req="requerido" <?php echo isset($result[0]['State']) ? 'Checked' : ''; ?>>
+                                        <label   class="form-check-label" >Status</label>
                                     </div>
 
                                 </div>

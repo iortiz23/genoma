@@ -5,13 +5,13 @@
  */
 
 $(document).ready(function (){
-    $('#tbUsuarios').dataTable({
+    $('#tbPerfil').dataTable({
      "aaSorting":[]   
     });
     $.ajax({
         url:"../../controller/CapturaInformacionController.php",
         data:({
-            'metodo':'getUser'
+            'metodo':'getPerfil'
         }),
         type:"post",
         dataType:"xml",
@@ -26,13 +26,12 @@ $(document).ready(function (){
             $(xml).find("response").each(function(){
                 $(this).find("registro").each(function(){
                  if($(this).text() != 'NOEXITOSO'){
-                     $('#tbUsuarios').dataTable().fnAddData([
+                     $('#tbPerfil').dataTable().fnAddData([
                          $(this).attr('Id'),
-                         $(this).attr('Name'),
-                         $(this).attr('Document'),
-                         $(this).attr('State'),
-                         '<a type="button" class="btn bg-gradient-warning btn-sm-1" href="./FormUsuarios.php?id='+$(this).attr('Id')+'" ><i class="nav-icon fas fa-edit"></i></a>\n\
-                          <button type="button" class="btn  bg-gradient-danger btn-sm-1" onclick="deleteUser('+$(this).attr('Id')+')"><i class="nav-icon fas fa-trash" ></i></button>',
+                         $(this).attr('Description'),
+                         ($(this).attr('State')==1)?'Activo':'Inactivo',
+                         '<a type="button" class="btn bg-gradient-warning btn-sm-1" href="./FormPerfil.php?id='+$(this).attr('Id')+'" ><i class="nav-icon fas fa-edit"></i></a>\n\
+                          <button type="button" class="btn  bg-gradient-danger btn-sm-1" onclick="deletePerfil('+$(this).attr('Id')+')"><i class="nav-icon fas fa-trash" ></i></button>',
                      ]);
                  }else{
                      bootbox.alert({
@@ -47,11 +46,11 @@ $(document).ready(function (){
     });
 });
 
-function deleteUser(id){
+function deletePerfil(id){
     $.ajax({
         url:"../../controller/CapturaInformacionController.php",
         data:({
-            'metodo':'deleteUser',
+            'metodo':'deletePerfil',
             'id':id
         }),
         type:"post",
@@ -68,12 +67,12 @@ function deleteUser(id){
                 $(this).find("registro").each(function(){
                  if($(this).text() != 'NOEXITOSO'){
                      bootbox.alert({
-                         message:'Usuario Eliminado Correctamente',
+                         message:'Perfil Eliminado Correctamente',
                          title:"Alerta"
                      });
                  }else{
                      bootbox.alert({
-                         message:'Usuario no eliminado',
+                         message:'Perfil no eliminado',
                          title:"Alerta"
                      });
                      return false;
@@ -82,10 +81,10 @@ function deleteUser(id){
             });
         }
     });
-    $('#tbUsuarios').dataTable({
+    $('#tbPerfil').dataTable({
      "aaSorting":[]   
     });
-    var table = $('#tbUsuarios').DataTable();
+    var table = $('#tbPerfil').DataTable();
  
 table
     .clear()
@@ -93,7 +92,7 @@ table
     $.ajax({
         url:"../../controller/CapturaInformacionController.php",
         data:({
-            'metodo':'getUser'
+            'metodo':'getPerfil'
         }),
         type:"post",
         dataType:"xml",
@@ -108,10 +107,9 @@ table
             $(xml).find("response").each(function(){
                 $(this).find("registro").each(function(){
                  if($(this).text() != 'NOEXITOSO'){
-                     $('#tbUsuarios').dataTable().fnAddData([
+                     $('#tbPerfil').dataTable().fnAddData([
                          $(this).attr('Id'),
-                         $(this).attr('Name'),
-                         $(this).attr('Document'),
+                         $(this).attr('Description'),
                          $(this).attr('State'),
                          '<a type="button" class="btn bg-gradient-warning btn-sm-1" href="./FormUsuarios.php/'+$(this).attr('Id')+'" ><i class="nav-icon fas fa-edit"></i></a>\n\
                           <button type="button" class="btn  bg-gradient-danger btn-sm-1"><i class="nav-icon fas fa-trash" onclick="deleteUser('+$(this).attr('Id')+')"></i></button>',

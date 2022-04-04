@@ -93,100 +93,86 @@ $(document).ready(function () {
         }
     });
 
-   /* var url = window.location.pathname;
-    var id = url.substring(url.lastIndexOf('/') + 1);
-    console.log(id);
-    if (id != "") {
-        $.ajax({
-            url: "../../controller/CapturaInformacionController.php",
-            data: ({
-                'metodo': 'getUsers',
-                'Id': id,
-            }),
-            type: "post",
-            dataType: "xml",
-            beforeSend: function () {
-                bootbox.alert({
-                    message: 'Cargando ....',
-                    title: "Cargando"
-                });
-            },
-            success: function (xml) {
-                bootbox.hideAll();
-                $(xml).find("response").each(function () {
-                    $(this).find("registro").each(function () {
-                        if ($(this).text() != 'NOEXITOSO') {
-                            $('#id').val($(this).attr('Id'));
-                            $('#name').val($(this).attr('Name'));
-                            $('#document').val($(this).attr('Document'));
-                            $('#phone').val($(this).attr('Phone'));
-                            $('#email').val($(this).attr('Email'));
-                            $('#pass').val($(this).attr('Passw'));
-                            $('#pass2').val($(this).attr('Passw'));
-                            $('#idtypedocument').val($(this).attr('idTypeDocument'));
-                            $('#idprofile').val($(this).attr('idProfile'));
-                            $('#idclient').val($(this).attr('idTypeClient'));
-                            $('#status').val($(this).attr('Status'));
-                        } else {
-                            $('#id').val('');
-                            $('#name').val('');
-                            $('#document').val('');
-                            $('#phone').val('');
-                            $('#email').val('');
-                            $('#pass').val('');
-                            $('#pass2').val('');
-                            $('#idtypedocument').val('-1');
-                            $('#idprofile').val('-1');
-                            $('#idclient').val('-1');
-                            $('#status').val(1);
-                        }
-                    });
-                });
 
-            }
-        });
-
-    }*/
     // metodo para guardar los  datos 
     $("#guardar").click(function () {
+        if ($("#message1") || $("#message2") || $("#message3") || $("#message4") || $("#message5") || $("#message6") || $("#message7") || $("#message8") || $("#message9") || $("#message10") || $("#message11")) {
+            if($("#message1")){
+               $("#message1").remove(); 
+            }
+             if($("#message2")){
+               $("#message2").remove(); 
+            }
+             if($("#message3")){
+               $("#message3").remove(); 
+            }
+             if($("#message4")){
+               $("#message4").remove(); 
+            }
+             if($("#message5")){
+               $("#message5").remove(); 
+            }
+             if($("#message6")){
+               $("#message6").remove(); 
+            }
+             if($("#message7")){
+               $("#message7").remove(); 
+            }
+             if($("#message8")){
+               $("#message8").remove(); 
+            }
+             if($("#message9")){
+               $("#message9").remove(); 
+            }
+            if($("#message10")){
+               $("#message10").remove(); 
+            }
+            
+            if($("#message11")){
+               $("#message11").remove(); 
+            }
+            
+            
+            
+        }
         if ($("#name").val() == "" || $("#document").val() == "" || $("#phone").val() == "" || $("#email").val() == "" || $("#pass").val() == "" || $("#pass2").val() == "" ||
                 $("#idtypedocument").val() == "-1" || $("#idprofile").val() == "-1" || $("#idclient").val() == "-1") {
             if ($("#name").val() == "") {
                 $("#name").attr('class', 'form-control is-invalid');
-                $('input[name=name]').after('<div id="message"><p>El campo Nombre es obligatorio</p></div>');
+                $('input[name=name]').after('<div id="message1"><p>El campo Nombre es obligatorio</p></div>');
             }
             if ($("#document").val() == "") {
                 $("#document").attr('class', 'form-control is-invalid');
-                $('input[name=document]').after('<div id="message"><p>El campo Documento nombre es obligatorio</p></div>');
+                $('input[name=document]').after('<div id="message2"><p>El campo Documento nombre es obligatorio</p></div>');
             }
             if ($("#phone").val() == "") {
                 $("#phone").attr('class', 'form-control is-invalid');
-                $('input[name=phone]').after('<div id="message"><p>El campo Telefono es obligatorio</p></div>');
+                $('input[name=phone]').after('<div id="message3"><p>El campo Telefono es obligatorio</p></div>');
             }
 
             if ($("#email").val() == "") {
                 $("#email").attr('class', 'form-control is-invalid');
-                $('input[name=email]').after('<div id="message"><p>El campo Correo es obligatorio</p></div>');
+                $('input[name=email]').after('<div id="message4"><p>El campo Correo es obligatorio</p></div>');
             }
             if ($("#pass").val() == "") {
                 $("#pass").attr('class', 'form-control is-invalid');
-                $('input[name=pass]').after('<div id="message"><p>El campo contraseña es obligatorio</p></div>');
+                $('input[name=pass]').after('<div id="message5"><p>El campo contraseña es obligatorio</p></div>');
             }
             if ($("#pass2").val() == "") {
                 $("#pass2").attr('class', 'form-control is-invalid');
-                $('input[name=pass2]').after('<div id="message"><p>El campo validacion de contraseña es obligatorio</p></div>');
+                $('input[name=pass2]').after('<div id="message6"><p>El campo validacion de contraseña es obligatorio</p></div>');
             }
             if ($("#idtypedocument").val() == "-1") {
                 $("#idtypedocument").attr('class', 'form-control is-invalid');
-                $('input[name=idtypedocument]').after('<div id="message"><p>El campo validacion de contraseña es obligatorio</p></div>');
+                $('input[name=idtypedocument]').after('<div id="message7"><p>El campo validacion de contraseña es obligatorio</p></div>');
             }
             if ($("#idprofile").val() == "-1") {
                 $("#idprofile").attr('class', 'form-control is-invalid');
-                $('input[name=idprofile]').after('<div id="message"><p>El campo validacion de contraseña es obligatorio</p></div>');
+                $('input[name=idprofile]').after('<div id="message8"><p>El campo validacion de contraseña es obligatorio</p></div>');
             }
             if ($("#idclient").val() == "-1") {
                 $("#idclient").attr('class', 'form-control is-invalid');
-                $('input[name=idclient]').after('<div id="message"><p>El campo validacion de contraseña es obligatorio</p></div>');
+                $('input[name=idclient]').after('<div id="message9"><p>El campo validacion de contraseña es obligatorio</p></div>');
             }
 
 
@@ -194,51 +180,57 @@ $(document).ready(function () {
             if (isEmail($("#email").val())) {
                 if ($("#pass").val() != $("#pass2").val()) {
                     $("#pass2").attr('class', 'form-control is-invalid');
-                    $('input[name=pass2]').after('<div id="message"><p>Las claves no coinciden </p></div>');
+                    $('input[name=pass2]').after('<div id="message10"><p>Las claves no coinciden </p></div>');
                 } else {
-                    $.ajax({
-                        url: "../../controller/CapturaInformacionController.php",
-                        data: ({
-                            'metodo': 'setUser',
-                            'Nombre': $("#name").val(),
-                            'Documento': $("#document").val(),
-                            'Telefono': $("#phone").val(),
-                            'Email': $("#email").val(),
-                            'Contraseña': $("#pass").val(),
-                            'Status': $("#status").val(),
-                            'idTypeDocument': $("#idtypedocument").val(),
-                            'idProfile': $("#idprofile").val(),
-                            'idClient': $("#idclient").val(),
-                        }),
-                        type: "post",
-                        dataType: "xml",
-                        beforeSend: function () {
-                            bootbox.alert({
-                                message: 'Cargando ....',
-                                title: "Cargando"
-                            });
-                        },
-                        success: function (xml) {
-                            bootbox.hideAll();
-                            $(xml).find("response").each(function () {
-                                $(this).find("registro").each(function () {
-                                    if ($(this).text() != 'NOEXITOSO') {
-                                        bootbox.alert({
-                                            message: 'Proceso de guardado  exitoso',
-                                            title: "Correcto"
-                                        });
-                                        return true;
-                                    } else {
-                                        bootbox.alert({
-                                            message: 'No se  genero envio de forma correcta',
-                                            title: "Alerta"
-                                        });
-                                        return false;
-                                    }
+                    if (isPass($("#pass").val())) {
+                        $("#pass").attr('class', 'form-control is-invalid');
+                        $('input[name=pass2]').after('<div id="message11"><p>La clave debe ser de minimo 8 caracteres con letras y numeros </p></div>');
+                    } else {
+                        $.ajax({
+                            url: "../../controller/CapturaInformacionController.php",
+                            data: ({
+                                'metodo': 'setUser',
+                                'Nombre': $("#name").val(),
+                                'Documento': $("#document").val(),
+                                'Telefono': $("#phone").val(),
+                                'Email': $("#email").val(),
+                                'Contraseña': $("#pass").val(),
+                                'Status': ($('#status').prop('checked'))?1:0,
+                                'idTypeDocument': $("#idtypedocument").val(),
+                                'idProfile': $("#idprofile").val(),
+                                'idClient': $("#idclient").val(),
+                            }),
+                            type: "post",
+                            dataType: "xml",
+                            beforeSend: function () {
+                                bootbox.alert({
+                                    message: 'Cargando ....',
+                                    title: "Cargando"
                                 });
-                            });
-                        }
-                    });
+                            },
+                            success: function (xml) {
+                                bootbox.hideAll();
+                                $(xml).find("response").each(function () {
+                                    $(this).find("registro").each(function () {
+                                        if ($(this).text() != 'NOEXITOSO') {
+                                            bootbox.alert({
+                                                message: 'Proceso de guardado  exitoso',
+                                                title: "Correcto"
+                                            });
+                                            return true;
+                                        } else {
+                                            bootbox.alert({
+                                                message: 'No se  genero envio de forma correcta',
+                                                title: "Alerta"
+                                            });
+                                            return false;
+                                        }
+                                    });
+                                });
+                            }
+                        });
+                    }
+
                 }
             } else {
                 $("#email").attr('class', 'form-control is-invalid');
@@ -249,8 +241,13 @@ $(document).ready(function () {
     });
 });
 function isEmail(email) {
-    var regex = '/^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/';
+    var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
     return regex.test(email);
+}
+
+function isPass(pass) {
+    var reg = /^(?=\w*\d)(?=\w*[a-zA-Z])\S{8,16}$/;
+    return reg.test(pass);
 }
 
 

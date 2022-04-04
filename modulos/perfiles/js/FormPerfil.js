@@ -7,7 +7,9 @@
 $(document).ready(function () {
 
 
-     // metodo para guardar los  datos 
+
+
+    // metodo para guardar los  datos 
     $("#guardar").click(function () {
         if ($("#message1")) {
             if ($("#message1")) {
@@ -24,7 +26,7 @@ $(document).ready(function () {
             $.ajax({
                 url: "../../controller/CapturaInformacionController.php",
                 data: ({
-                    'metodo': 'setTipoDocumento',
+                    'metodo': 'setPerfil',
                     'Description': $("#description").val(),
                     'Status': ($('#status').prop('checked'))?1:0,
                     'Id':$("#id").val(),
@@ -62,3 +64,6 @@ $(document).ready(function () {
 
     });
 });
+
+
+

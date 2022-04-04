@@ -157,7 +157,7 @@ $IdProfile = $_SESSION['IdProfile'];
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="pages/forms/editors.html" class="nav-link" target="centerframe">
+                                        <a href="modulos/tipoClientes/tipoclientes.php" class="nav-link" target="centerframe">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Tipos de Cliente</p>
                                         </a>
