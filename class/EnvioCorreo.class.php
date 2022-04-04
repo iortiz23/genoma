@@ -31,7 +31,7 @@ class EnvioCorreo {
             $mail->SMTPAuth = true;
             $mail->Username = '***';
             $mail->Password = '**';
-            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
             $mail->Port = 587;
 
             $mail->setFrom('neider.1991@gmail.com', 'Esneider');

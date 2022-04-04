@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-var data;
 
 $(document).ready(function (){
     $('#tbUsuarios').dataTable({
@@ -32,13 +31,16 @@ $(document).ready(function (){
                          $(this).attr('Name'),
                          $(this).attr('Document'),
                          $(this).attr('State'),
-                         '<a type="button" class="btn bg-gradient-warning btn-sm-1" href="./FormUsuarios.php/'+$(this).attr('Id')+'/" ><i class="nav-icon fas fa-edit"></i></a>\n\
+                         '<a type="button" class="btn bg-gradient-warning btn-sm-1" href="./FormUsuarios.php?id='+$(this).attr('Id')+'" ><i class="nav-icon fas fa-edit"></i></a>\n\
                           <button type="button" class="btn  bg-gradient-danger btn-sm-1" onclick="deleteUser('+$(this).attr('Id')+')"><i class="nav-icon fas fa-trash" ></i></button>',
                      ]);
                  }else{
                      bootbox.alert({
                          message:'',
-                         title:"Alerta"
+                         title:"Alerta",
+                            callback: function () {
+                                window.location = './usuario.php';
+                            }
                      });
                      return false;
                  }   
@@ -70,12 +72,18 @@ function deleteUser(id){
                  if($(this).text() != 'NOEXITOSO'){
                      bootbox.alert({
                          message:'Usuario Eliminado Correctamente',
-                         title:"Alerta"
+                         title:"Alerta",
+                            callback: function () {
+                                window.location = './usuario.php';
+                            }
                      });
                  }else{
                      bootbox.alert({
                          message:'Usuario no eliminado',
-                         title:"Alerta"
+                         title:"Alerta",
+                            callback: function () {
+                                window.location = './usuario.php';
+                            }
                      });
                      return false;
                  }   
@@ -83,6 +91,14 @@ function deleteUser(id){
             });
         }
     });
+    $('#tbUsuarios').dataTable({
+     "aaSorting":[]   
+    });
+    var table = $('#tbUsuarios').DataTable();
+ 
+table
+    .clear()
+    .draw();
     $.ajax({
         url:"../../controller/CapturaInformacionController.php",
         data:({
@@ -106,13 +122,16 @@ function deleteUser(id){
                          $(this).attr('Name'),
                          $(this).attr('Document'),
                          $(this).attr('State'),
-                         '<a type="button" class="btn bg-gradient-warning btn-sm-1" href="FormUsuarios.php/'+$(this).attr('Id')+'" ><i class="nav-icon fas fa-edit"></i></a>\n\
+                         '<a type="button" class="btn bg-gradient-warning btn-sm-1" href="./FormUsuarios.php/'+$(this).attr('Id')+'" ><i class="nav-icon fas fa-edit"></i></a>\n\
                           <button type="button" class="btn  bg-gradient-danger btn-sm-1"><i class="nav-icon fas fa-trash" onclick="deleteUser('+$(this).attr('Id')+')"></i></button>',
                      ]);
                  }else{
                      bootbox.alert({
                          message:'',
-                         title:"Alerta"
+                         title:"Alerta",
+                            callback: function () {
+                                window.location = './usuario.php';
+                            }
                      });
                      return false;
                  }   

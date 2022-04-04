@@ -10,7 +10,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Usuarios</title>
+        <title>Tipos de documento</title>
 
         <!-- Google Font: Source Sans Pro -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -25,7 +25,7 @@
         <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.min.js" integrity="sha512-RdSPYh1WA6BF0RhpisYJVYkOyTzK4HwofJ3Q7ivt/jkpW6Vc8AurL1R+4AUcvn9IwEKAPm/fk7qFZW3OuiUDeg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-        <script src="./js/usuario.js"></script>
+        <script src="./js/tipodocumentos.js"></script>
     </head>
     <body class="container" style="background-color: #f4f6f9;">
         <div class="row">
@@ -42,22 +42,21 @@
 
 
                                         <div class="row">
-                                            <div class="col-md-10"><h3 class="card-title">Usuarios</h3></div>
+                                            <div class="col-md-10"><h3 class="card-title">Tipos de documento</h3></div>
                                             <div class="col-md-2">
-                                                <a href="FormUsuarios.php" class="btn bg-gradient-success btn-sm-1"><i class="nav-icon fas fa-plus"></i> Nuevo</a>
+                                                <a href="./FormTiposdocumentos.php" class="btn bg-gradient-success btn-sm-1"><i class="nav-icon fas fa-plus"></i> Nuevo</a>
                                             </div>
                                             <!-- comment -->
                                         </div>
                                     </div>
                                     <!-- /.card-header -->
                                     <div class="card-body">
-                                        <table id="tbUsuarios" class="table table-bordered table-striped">
+                                        <table id="tbTypeDocument" class="table table-bordered table-striped">
                                             <thead>
                                                 <tr>
                                                     <th>#</th>
                                                     <th>Nombre</th>
-                                                    <th>Documento</th>
-                                                    <th>Tipo de cliente</th>
+                                                    <th>Estado</th>
                                                     <th>Accion</th>
                                                 </tr>
                                             </thead>
