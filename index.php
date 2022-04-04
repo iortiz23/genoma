@@ -163,7 +163,7 @@ $IdProfile = $_SESSION['IdProfile'];
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="modulos/tipoDocumentos/tipodocumentos.php" target="centerframe" class="nav-link">
+                                        <a href="modulos/TipoDocumentos/tipodocumentos.php" target="centerframe" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Tipos de Documentos</p>
                                         </a>
@@ -197,13 +197,22 @@ $IdProfile = $_SESSION['IdProfile'];
                                 </ul>
                             </li>
                             <li class="nav-item">
-                                <a href="modulos/Busqueda/busqueda.php" class="nav-link">
+                                <a href="#" class="nav-link">
                                     <i class="nav-icon fas fa-search"></i>
                                     <p>
-                                        Consulta
+                                        Busqueda
                                         <i class="fas fa-angle-left right"></i>
                                     </p>
                                 </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="modulos/Busqueda/busqueda.php" class="nav-link" target="centerframe">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Consulta Informes</p>
+                                        </a>
+                                    </li>
+
+                                </ul>
                                 
                             </li>
                         </ul>
