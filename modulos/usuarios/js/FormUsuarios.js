@@ -97,43 +97,43 @@ $(document).ready(function () {
     // metodo para guardar los  datos 
     $("#guardar").click(function () {
         if ($("#message1") || $("#message2") || $("#message3") || $("#message4") || $("#message5") || $("#message6") || $("#message7") || $("#message8") || $("#message9") || $("#message10") || $("#message11")) {
-            if($("#message1")){
-               $("#message1").remove(); 
+            if ($("#message1")) {
+                $("#message1").remove();
             }
-             if($("#message2")){
-               $("#message2").remove(); 
+            if ($("#message2")) {
+                $("#message2").remove();
             }
-             if($("#message3")){
-               $("#message3").remove(); 
+            if ($("#message3")) {
+                $("#message3").remove();
             }
-             if($("#message4")){
-               $("#message4").remove(); 
+            if ($("#message4")) {
+                $("#message4").remove();
             }
-             if($("#message5")){
-               $("#message5").remove(); 
+            if ($("#message5")) {
+                $("#message5").remove();
             }
-             if($("#message6")){
-               $("#message6").remove(); 
+            if ($("#message6")) {
+                $("#message6").remove();
             }
-             if($("#message7")){
-               $("#message7").remove(); 
+            if ($("#message7")) {
+                $("#message7").remove();
             }
-             if($("#message8")){
-               $("#message8").remove(); 
+            if ($("#message8")) {
+                $("#message8").remove();
             }
-             if($("#message9")){
-               $("#message9").remove(); 
+            if ($("#message9")) {
+                $("#message9").remove();
             }
-            if($("#message10")){
-               $("#message10").remove(); 
+            if ($("#message10")) {
+                $("#message10").remove();
             }
-            
-            if($("#message11")){
-               $("#message11").remove(); 
+
+            if ($("#message11")) {
+                $("#message11").remove();
             }
-            
-            
-            
+
+
+
         }
         if ($("#name").val() == "" || $("#document").val() == "" || $("#phone").val() == "" || $("#email").val() == "" || $("#pass").val() == "" || $("#pass2").val() == "" ||
                 $("#idtypedocument").val() == "-1" || $("#idprofile").val() == "-1" || $("#idclient").val() == "-1") {
@@ -195,7 +195,7 @@ $(document).ready(function () {
                                 'Telefono': $("#phone").val(),
                                 'Email': $("#email").val(),
                                 'Contraseña': $("#pass").val(),
-                                'Status': ($('#status').prop('checked'))?1:0,
+                                'Status': ($('#status').prop('checked')) ? 1 : 0,
                                 'idTypeDocument': $("#idtypedocument").val(),
                                 'idProfile': $("#idprofile").val(),
                                 'idClient': $("#idclient").val(),
@@ -215,13 +215,19 @@ $(document).ready(function () {
                                         if ($(this).text() != 'NOEXITOSO') {
                                             bootbox.alert({
                                                 message: 'Proceso de guardado  exitoso',
-                                                title: "Correcto"
+                                                title: "Correcto",
+                                                callback: function () {
+                                                    window.location = './usuario.php';
+                                                }
                                             });
                                             return true;
                                         } else {
                                             bootbox.alert({
                                                 message: 'No se  genero envio de forma correcta',
-                                                title: "Alerta"
+                                                title: "Alerta",
+                                                callback: function () {
+                                                    window.location = './usuario.php';
+                                                }
                                             });
                                             return false;
                                         }

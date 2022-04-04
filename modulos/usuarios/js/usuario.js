@@ -37,7 +37,10 @@ $(document).ready(function (){
                  }else{
                      bootbox.alert({
                          message:'',
-                         title:"Alerta"
+                         title:"Alerta",
+                            callback: function () {
+                                window.location = './usuario.php';
+                            }
                      });
                      return false;
                  }   
@@ -69,12 +72,18 @@ function deleteUser(id){
                  if($(this).text() != 'NOEXITOSO'){
                      bootbox.alert({
                          message:'Usuario Eliminado Correctamente',
-                         title:"Alerta"
+                         title:"Alerta",
+                            callback: function () {
+                                window.location = './usuario.php';
+                            }
                      });
                  }else{
                      bootbox.alert({
                          message:'Usuario no eliminado',
-                         title:"Alerta"
+                         title:"Alerta",
+                            callback: function () {
+                                window.location = './usuario.php';
+                            }
                      });
                      return false;
                  }   
@@ -119,7 +128,10 @@ table
                  }else{
                      bootbox.alert({
                          message:'',
-                         title:"Alerta"
+                         title:"Alerta",
+                            callback: function () {
+                                window.location = './usuario.php';
+                            }
                      });
                      return false;
                  }   
