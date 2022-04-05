@@ -7,7 +7,9 @@
 $(document).ready(function () {
 
 
-     // metodo para guardar los  datos 
+
+
+    // metodo para guardar los  datos 
     $("#guardar").click(function () {
         if ($("#message1")) {
             if ($("#message1")) {
@@ -24,7 +26,7 @@ $(document).ready(function () {
             $.ajax({
                 url: "../../controller/CapturaInformacionController.php",
                 data: ({
-                    'metodo': 'setTipoCliente',
+                    'metodo': 'setPerfil',
                     'Description': $("#description").val(),
                     'Status': ($('#status').prop('checked'))?1:0,
                     'Id':$("#id").val(),
@@ -46,7 +48,7 @@ $(document).ready(function () {
                                     message: 'Proceso de guardado  exitoso',
                                     title: "Correcto",
                             callback: function () {
-                                window.location = './tipoclientes.php';
+                                window.location = './perfil.php';
                             }
                                 });
                                 return true;
@@ -55,7 +57,7 @@ $(document).ready(function () {
                                     message: 'No se  genero envio de forma correcta',
                                     title: "Alerta",
                             callback: function () {
-                                window.location = './tipoclientes.php';
+                                window.location = './perfil.php';
                             }
                                 });
                                 return false;
@@ -68,5 +70,6 @@ $(document).ready(function () {
 
     });
 });
+
 
 

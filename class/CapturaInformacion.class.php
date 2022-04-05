@@ -12,9 +12,6 @@ require_once ('loadFiles/loadFiles.class.php');
  */
 class CapturaInformacion {
 
-    var $codigo_campana = '00250';
-    var $baseUsuarios = '[Usuarios].[dbo].';
-
     public function __construct() {
         $this->database = DataBase::getDatabaseObject(DataBase::MYSQL);
     }
@@ -273,6 +270,123 @@ class CapturaInformacion {
         return $return;
     }
 
+    public function getUserById($id) {
+        $sql = " SELECT  * FROM tb_person WHERE IdPerson=" . $id . " and  State=1 LIMIT 1";
+        $data = $this->database->queryArray(utf8_decode($sql));
+
+        if (sizeof($data) > 0) {
+
+            $return = $data;
+        } else {
+
+            $return = null;
+        }
+        // print_r($return);
+        return $return;
+    }
+
+    public function getTypeClientById($id) {
+        $sql = " SELECT  * FROM tb_typeclient WHERE idTypeClient=" . $id . " and  State=1 LIMIT 1";
+        $data = $this->database->queryArray(utf8_decode($sql));
+
+        if (sizeof($data) > 0) {
+
+            $return = $data;
+        } else {
+
+            $return = null;
+        }
+        // print_r($return);
+        return $return;
+    }
+    
+    public function getTypeDocumentById($id) {
+        $sql = " SELECT  * FROM tb_typedocument WHERE IdTypeDocument=" . $id . " and  State=1 LIMIT 1";
+        $data = $this->database->queryArray(utf8_decode($sql));
+
+        if (sizeof($data) > 0) {
+
+            $return = $data;
+        } else {
+
+            $return = null;
+        }
+        // print_r($return);
+        return $return;
+    }
+    
+    public function getProfileById($id) {
+        $sql = " SELECT  * FROM tb_profile WHERE IdProfile=" . $id . " and  State=1 LIMIT 1";
+        $data = $this->database->queryArray(utf8_decode($sql));
+
+        if (sizeof($data) > 0) {
+
+            $return = $data;
+        } else {
+
+            $return = null;
+        }
+        // print_r($return);
+        return $return;
+    }
+    public function validarPerfil($id) {
+        $sql = " SELECT  count(*) as conteo FROM tb_person WHERE IdProfile=" . $id . " ";
+        $data = $this->database->queryArray(utf8_decode($sql));
+
+        if (sizeof($data) > 0) {
+
+            $return = $data;
+        } else {
+
+            $return = null;
+        }
+        // print_r($return);
+        return $return;
+    }
+    public function validarTipoCliente($id) {
+        $sql = " SELECT  count(*) as conteo FROM tb_person WHERE IdTypeClient=" . $id . " ";
+        $data = $this->database->queryArray(utf8_decode($sql));
+
+        if (sizeof($data) > 0) {
+
+            $return = $data;
+        } else {
+
+            $return = null;
+        }
+        // print_r($return);
+        return $return;
+    }
+    public function validarTipoDocumento($id) {
+        $sql = " SELECT  count(*) as conteo FROM tb_person WHERE IdTypeDocument=" . $id . " ";
+        $data = $this->database->queryArray(utf8_decode($sql));
+
+        if (sizeof($data) > 0) {
+
+            $return = $data;
+        } else {
+
+            $return = null;
+        }
+        // print_r($return);
+        return $return;
+    }
+
+    public function getPerfiles() {
+        $sql = " SELECT * FROM tb_profile";
+        $data = $this->database->queryArray(utf8_decode($sql));
+
+        if (sizeof($data) > 0) {
+
+            $return = $data;
+        } else {
+
+            $return = null;
+        }
+        // print_r($return);
+        return $return;
+    }
+
     public function getTiposClientes() {
         $sql = " SELECT * FROM tb_typeclient";
         $data = $this->database->queryArray(utf8_decode($sql));
@@ -287,9 +401,9 @@ class CapturaInformacion {
         // print_r($return);
         return $return;
     }
-
-    public function getUsuarios1($id) {
-        $sql = " SELECT TOP 1 * FROM tb_person WHERE IdPerson=" . $id . " State=1";
+    
+    public function getTiposDocumento() {
+        $sql = " SELECT * FROM tb_typedocument";
         $data = $this->database->queryArray(utf8_decode($sql));
 
         if (sizeof($data) > 0) {
@@ -301,6 +415,45 @@ class CapturaInformacion {
         }
         // print_r($return);
         return $return;
+    }
+
+    public function getUsuarios1($id) {
+        $sql = " SELECT  * FROM tb_person WHERE IdPerson=" . $id . " and  State=1 LIMIT 1";
+        $data = $this->database->queryArray(utf8_decode($sql));
+
+        if (sizeof($data) > 0) {
+
+            $return = $data;
+        } else {
+
+            $return = null;
+        }
+        // print_r($return);
+        return $return;
+    }
+
+    public function eliminarPerfiles($id) {
+        $sql = " DELETE FROM tb_profile WHERE IdProfile=" . $id . "  and State=1";
+        $data = $this->database->nonReturnQuery(utf8_decode($sql));
+
+        // print_r($return);
+        return 1;
+    }
+    
+    public function eliminarTiposCliente($id) {
+        $sql = " DELETE FROM tb_typeclient WHERE idTypeClient=" . $id . "  and State=1";
+        $data = $this->database->nonReturnQuery(utf8_decode($sql));
+
+        // print_r($return);
+        return 1;
+    }
+    
+    public function eliminarTiposDocumento($id) {
+        $sql = " DELETE FROM tb_typedocument WHERE IdTypeDocument=" . $id . "  and State=1";
+        $data = $this->database->nonReturnQuery(utf8_decode($sql));
+
+        // print_r($return);
+        return 1;
     }
 
     public function eliminarUsuarios($id) {
@@ -357,25 +510,52 @@ class CapturaInformacion {
     }
 
     public function setUsuarios($Nombre, $Documento, $Telefono, $Email, $Contraseña, $Status, $idTypeDocument, $idProfile, $idClient) {
-
-        $select = "SELECT TOP 1 * FROM tb_person  WHERE Name like '%" . $Nombre . "%' ";
-        $dataselect = $this->database->QueryArray($select);
-        if (sizeof($data) > 0) {
-            $UPDATE = "UPDATE tb_person
+        if ($Email != "") {
+            $select = "SELECT  * FROM tb_person  WHERE Email like '%" . $Email . "%' LIMIT 1 ";
+            $data = $this->database->QueryArray($select);
+            if (sizeof($data) > 0) {
+                $valor = "";
+                if ($Contraseña != "" && $Contraseña != $data[0]["Passw"]) {
+                    $valor = "',Passw = '" . sha1($Contraseña) . "'";
+                }
+                $UPDATE = "UPDATE tb_person
                         SET Name = '" . $Nombre . "'      
                            ,Document = '" . $Documento . "'
                            ,Phone = " . $Telefono . "
                            ,Email = '" . $Email . "'
-                           ,Passw = '" . sha1($Contraseña) . "'
+                           " . $valor . "
                            ,State = " . $Status . "
-                           ,DateCreate=now(),
+                           ,DateCreate=now()
                            ,IdTypeDocument=" . $idTypeDocument . ",
                            ,IdProfile=" . $idProfile . ",
                            ,IdTypeClient=" . $idClient . ",
-                      WHERE IdPerson = '" . $data[0]["IdPerson"] . "'";
-            $dataupdate = $this->database->nonReturnQuery($UPDATE);
-        } ELSE {
+                      WHERE IdPerson = " . $data[0]["IdPerson"] . "";
+                $dataupdate = $this->database->nonReturnQuery($UPDATE);
+            } ELSE {
 
+                $sql = "INSERT INTO tb_person
+           (Name
+           ,Document
+           ,Phone
+           ,Email
+           ,Passw           
+           ,State
+           ,DateCreate
+           ,IdTypeDocument
+           ,IdProfile)
+     VALUES
+           ('" . $Nombre . "'
+           ,'" . $Documento . "'
+           ,'" . $Telefono . "'
+           ,'" . $Email . "'
+           ,'" . sha1($Contraseña) . "'           
+           ,'" . $Status . "'
+           ,now()
+           ," . $idTypeDocument . ""
+                        . "," . $idProfile . ")";
+                $data = $this->database->nonReturnQuery($sql);
+            }
+        } else {
             $sql = "INSERT INTO tb_person
            (Name
            ,Document
@@ -398,25 +578,122 @@ class CapturaInformacion {
                     . "," . $idProfile . ")";
             $data = $this->database->nonReturnQuery($sql);
         }
+
         return 1;
     }
 
-    public function getControl($_IdCargueBase, $_IdBase) {
-        $sql = "  UPDATE [EgresadosPopular].[dbo].[CargueBase] 
-                  SET [cb_FechaGestion] = GETDATE(),[cb_Estado]='I'
-                  WHERE [cb_IdCargueBase] = " . $_IdCargueBase . " AND cb_IdBase=" . $_IdBase;
-        $this->database->nonReturnQuery($sql);
+    public function setPerfiles($Descripcion, $Status, $Id) {
+        if ($Id != "") {
+            $select = "SELECT  * FROM tb_profile  WHERE IdProfile=" . $Id . " LIMIT 1";
+            $data = $this->database->QueryArray($select);
+            if (sizeof($data) > 0) {
+                $UPDATE = "UPDATE tb_profile
+                        SET Description = '" . $Descripcion . "'
+                           ,State = " . $Status . "
+                           ,DateCreate=now()
+                      WHERE IdProfile=" . $data[0]['IdProfile'] . "";
+                $dataupdate = $this->database->nonReturnQuery($UPDATE);
+            } else {
+
+                $sql = "INSERT INTO tb_profile
+           (Description           
+           ,State
+           ,DateCreate)
+     VALUES
+           ('" . $Descripcion . "'           
+           ,'" . $Status . "'
+           ,now())";
+                $data = $this->database->nonReturnQuery($sql);
+            }
+        } else {
+            $sql = "INSERT INTO tb_profile
+           (Description           
+           ,State
+           ,DateCreate)
+     VALUES
+           ('" . $Descripcion . "'           
+           ,'" . $Status . "'
+           ,now())";
+            $data = $this->database->nonReturnQuery($sql);
+        }
+
         return 1;
     }
+    
+    public function setTiposCliente($Descripcion, $Status, $Id) {
+        if ($Id != "") {
+            $select = "SELECT  * FROM tb_typeclient  WHERE idTypeClient=" . $Id . " LIMIT 1";
+            $data = $this->database->QueryArray($select);
+            if (sizeof($data) > 0) {
+                $UPDATE = "UPDATE tb_typeclient
+                        SET Description = '" . $Descripcion . "'
+                           ,State = " . $Status . "
+                           ,DateCreate=now()
+                      WHERE idTypeClient=" . $data[0]['idTypeClient'] . "";
+                $dataupdate = $this->database->nonReturnQuery($UPDATE);
+            } else {
 
-    public function getSiguienteNivel($_CogPadre) {
-        $data = $this->database->query(utf8_encode("SELECT pa_NombreParametro,
-                                                           pa_IdParametro_pk 
-                                                    FROM Parametros 
-                                                    WHERE pa_Estado = 1 
-                                                      AND pa_Padre = " . $_CogPadre));
+                $sql = "INSERT INTO tb_typeclient
+           (Description           
+           ,State
+           ,DateCreate)
+     VALUES
+           ('" . $Descripcion . "'           
+           ,'" . $Status . "'
+           ,now())";
+                $data = $this->database->nonReturnQuery($sql);
+            }
+        } else {
+            $sql = "INSERT INTO tb_typeclient
+           (Description           
+           ,State
+           ,DateCreate)
+     VALUES
+           ('" . $Descripcion . "'           
+           ,'" . $Status . "'
+           ,now())";
+            $data = $this->database->nonReturnQuery($sql);
+        }
 
-        return $data;
+        return 1;
+    }
+    
+    public function setTiposDocumento($Descripcion, $Status, $Id) {
+        if ($Id != "") {
+            $select = "SELECT  * FROM tb_typedocument  WHERE IdTypeDocument=" . $Id . " LIMIT 1";
+            $data = $this->database->QueryArray($select);
+            if (sizeof($data) > 0) {
+                $UPDATE = "UPDATE tb_typedocument
+                        SET Description = '" . $Descripcion . "'
+                           ,State = " . $Status . "
+                           ,DateCreate=now()
+                      WHERE IdTypeDocument=" . $data[0]['IdTypeDocument'] . "";
+                $dataupdate = $this->database->nonReturnQuery($UPDATE);
+            } else {
+
+                $sql = "INSERT INTO tb_typedocument
+           (Description           
+           ,State
+           ,DateCreate)
+     VALUES
+           ('" . $Descripcion . "'           
+           ,'" . $Status . "'
+           ,now())";
+                $data = $this->database->nonReturnQuery($sql);
+            }
+        } else {
+            $sql = "INSERT INTO tb_typedocument
+           (Description           
+           ,State
+           ,DateCreate)
+     VALUES
+           ('" . $Descripcion . "'           
+           ,'" . $Status . "'
+           ,now())";
+            $data = $this->database->nonReturnQuery($sql);
+        }
+
+        return 1;
     }
 
 }

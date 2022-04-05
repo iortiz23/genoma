@@ -3,14 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 $(document).ready(function () {
-    $('#tbTypeDocument').dataTable({
+    $('#tbPerfil').dataTable({
         "aaSorting": []
     });
     $.ajax({
         url: "../../controller/CapturaInformacionController.php",
         data: ({
-            'metodo': 'getTypeDocuments'
+            'metodo': 'getPerfil'
         }),
         type: "post",
         dataType: "xml",
@@ -25,19 +26,19 @@ $(document).ready(function () {
             $(xml).find("response").each(function () {
                 $(this).find("registro").each(function () {
                     if ($(this).text() != 'NOEXITOSO') {
-                        $('#tbTypeDocument').dataTable().fnAddData([
+                        $('#tbPerfil').dataTable().fnAddData([
                             $(this).attr('Id'),
                             $(this).attr('Description'),
                             ($(this).attr('State') == 1) ? 'Activo' : 'Inactivo',
-                            '<a type="button" class="btn bg-gradient-warning btn-sm-1" href="./FormTiposdocumentos.php?id=' + $(this).attr('Id') + '" ><i class="nav-icon fas fa-edit"></i></a>\n\
-                          <button type="button" class="btn  bg-gradient-danger btn-sm-1" onclick="deleteTypeDocument(' + $(this).attr('Id') + ')"><i class="nav-icon fas fa-trash" ></i></button>',
+                            '<a type="button" class="btn bg-gradient-warning btn-sm-1" href="./FormPerfil.php?id=' + $(this).attr('Id') + '" ><i class="nav-icon fas fa-edit"></i></a>\n\
+                          <button type="button" class="btn  bg-gradient-danger btn-sm-1" onclick="deletePerfil(' + $(this).attr('Id') + ')"><i class="nav-icon fas fa-trash" ></i></button>',
                         ]);
                     } else {
                         bootbox.alert({
-                            message: 'No se encuentran registros',
+                            message: '',
                             title: "Alerta",
                             callback: function () {
-                                window.location = './tipodocumentos.php';
+                                window.location = './perfil.php';
                             }
                         });
                         return false;
@@ -48,12 +49,12 @@ $(document).ready(function () {
     });
 });
 
-function deleteTypeDocument(id) {
+function deletePerfil(id) {
     var valor = 0;
     $.ajax({
         url: "../../controller/CapturaInformacionController.php",
         data: ({
-            'metodo': 'validateTypeDocument',
+            'metodo': 'validatePerfil',
             'id': id
         }),
         type: "post",
@@ -71,10 +72,10 @@ function deleteTypeDocument(id) {
                     if ($(this).text() != 'NOEXITOSO') {
                         if ($(this).attr('Flag') == '1') {
                             bootbox.alert({
-                                message: 'Uno o mas usuario(s) tiene el tipo de documento a eliminar ',
+                                message: 'Uno o mas usuario(s) tiene el perfil a eliminar ',
                                 title: "Alerta",
                             callback: function () {
-                                window.location = './tipodocumentos.php';
+                                window.location = './perfil.php';
                             }
                             });
                             valor = 1;
@@ -82,10 +83,10 @@ function deleteTypeDocument(id) {
 
                     } else {
                         bootbox.alert({
-                            message: 'Tipo de documento no eliminado',
+                            message: 'Perfil no eliminado',
                             title: "Alerta",
                             callback: function () {
-                                window.location = './tipodocumentos.php';
+                                window.location = './perfil.php';
                             }
                         });
                         return false;
@@ -98,7 +99,7 @@ function deleteTypeDocument(id) {
         $.ajax({
             url: "../../controller/CapturaInformacionController.php",
             data: ({
-                'metodo': 'deleteTypeDocument',
+                'metodo': 'deletePerfil',
                 'id': id
             }),
             type: "post",
@@ -115,18 +116,18 @@ function deleteTypeDocument(id) {
                     $(this).find("registro").each(function () {
                         if ($(this).text() != 'NOEXITOSO') {
                             bootbox.alert({
-                                message: 'Tipo de documento Eliminado Correctamente',
+                                message: 'Perfil Eliminado Correctamente',
                                 title: "Alerta",
                             callback: function () {
-                                window.location = './tipodocumentos.php';
+                                window.location = './perfil.php';
                             }
                             });
                         } else {
                             bootbox.alert({
-                                message: 'Tipo de documento no eliminado',
+                                message: 'Perfil no eliminado',
                                 title: "Alerta",
                             callback: function () {
-                                window.location = './tipodocumentos.php';
+                                window.location = './perfil.php';
                             }
                             });
                             return false;
@@ -135,10 +136,10 @@ function deleteTypeDocument(id) {
                 });
             }
         });
-        $('#tbTypeDocument').dataTable({
+        $('#tbPerfil').dataTable({
             "aaSorting": []
         });
-        var table = $('#tbTypeDocument').DataTable();
+        var table = $('#tbPerfil').DataTable();
 
         table
                 .clear()
@@ -146,7 +147,7 @@ function deleteTypeDocument(id) {
         $.ajax({
             url: "../../controller/CapturaInformacionController.php",
             data: ({
-                'metodo': 'getTypeDocuments'
+                'metodo': 'getPerfil'
             }),
             type: "post",
             dataType: "xml",
@@ -161,19 +162,19 @@ function deleteTypeDocument(id) {
                 $(xml).find("response").each(function () {
                     $(this).find("registro").each(function () {
                         if ($(this).text() != 'NOEXITOSO') {
-                            $('#tbTypeDocument').dataTable().fnAddData([
+                            $('#tbPerfil').dataTable().fnAddData([
                                 $(this).attr('Id'),
                                 $(this).attr('Description'),
-                                ($(this).attr('State') == 1) ? 'Activo' : 'Inactivo',
-                                '<a type="button" class="btn bg-gradient-warning btn-sm-1" href="./FormTiposdocumentos.php?id=' + $(this).attr('Id') + '" ><i class="nav-icon fas fa-edit"></i></a>\n\
-                          <button type="button" class="btn  bg-gradient-danger btn-sm-1" onclick="deleteTypeDocument(' + $(this).attr('Id') + ')"><i class="nav-icon fas fa-trash" ></i></button>',
+                                $(this).attr('State'),
+                                '<a type="button" class="btn bg-gradient-warning btn-sm-1" href="./FormUsuarios.php/' + $(this).attr('Id') + '" ><i class="nav-icon fas fa-edit"></i></a>\n\
+                          <button type="button" class="btn  bg-gradient-danger btn-sm-1"><i class="nav-icon fas fa-trash" onclick="deleteUser(' + $(this).attr('Id') + ')"></i></button>',
                             ]);
                         } else {
                             bootbox.alert({
-                                message: 'No se encuentran registros',
+                                message: '',
                                 title: "Alerta",
                             callback: function () {
-                                window.location = './tipodocumentos.php';
+                                window.location = './perfil.php';
                             }
                             });
                             return false;
@@ -183,6 +184,6 @@ function deleteTypeDocument(id) {
             }
         });
     }
-
 }
+
 

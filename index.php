@@ -157,13 +157,13 @@ $IdProfile = $_SESSION['IdProfile'];
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="pages/forms/editors.html" class="nav-link" target="centerframe">
+                                        <a href="modulos/tipoClientes/tipoclientes.php" class="nav-link" target="centerframe">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Tipos de Cliente</p>
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="modulos/tipoDocumentos/tipodocumentos.php" target="centerframe" class="nav-link">
+                                        <a href="modulos/TipoDocumentos/tipodocumentos.php" target="centerframe" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Tipos de Documentos</p>
                                         </a>
@@ -200,36 +200,20 @@ $IdProfile = $_SESSION['IdProfile'];
                                 <a href="#" class="nav-link">
                                     <i class="nav-icon fas fa-search"></i>
                                     <p>
-                                        Consulta
+                                        Busqueda
                                         <i class="fas fa-angle-left right"></i>
                                     </p>
                                 </a>
                                 <ul class="nav nav-treeview">
                                     <li class="nav-item">
-                                        <a href="pages/forms/general.html" class="nav-link">
+                                        <a href="modulos/Busqueda/busqueda.php" class="nav-link" target="centerframe">
                                             <i class="far fa-circle nav-icon"></i>
-                                            <p>General Elements</p>
+                                            <p>Consulta Informes</p>
                                         </a>
                                     </li>
-                                    <li class="nav-item">
-                                        <a href="pages/forms/advanced.html" class="nav-link">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>Advanced Elements</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="pages/forms/editors.html" class="nav-link">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>Editors</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="pages/forms/validation.html" class="nav-link">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>Validation</p>
-                                        </a>
-                                    </li>
+
                                 </ul>
+                                
                             </li>
                         </ul>
                     </nav>

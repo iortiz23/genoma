@@ -4,6 +4,8 @@
 
 # Archives
 *.zip
+/class/EnvioCorreo.class.php
+/class/MYSQLServerDatabase.class.php
 
 # Sass Cache
 .sass-cache
