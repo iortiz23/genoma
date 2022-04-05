@@ -40,7 +40,7 @@ $IdProfile = $_SESSION['IdProfile'];
         <!-- AdminLTE App -->
         <script src="../../dist/js/adminlte.js"></script>
         <!-- Theme javascript -->
-        <script src="js/load.js" type="text/javascript"></script>
+        <script src="js/load1.js" type="text/javascript"></script>
     </head>
     <body class="hold-transition sidebar-mini layout-fixed">
         <div class="container mt-5">

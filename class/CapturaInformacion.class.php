@@ -3,6 +3,7 @@
 date_default_timezone_set('America/Bogota');
 require_once('DataBase.class.php');
 require_once('EnvioCorreo.class.php');
+require_once ('loadFiles/loadFiles.class.php');
 
 /**
  * Description of CapturaInformacion
@@ -98,6 +99,29 @@ class CapturaInformacion {
             $resulEnvio = 'NOEXITOSO';
         }
         return $resulEnvio;
+    }
+
+    public function loadFile($_inputName, $_inputObservation, $_inputFile) {
+        $sql = " SELECT IdLoad, NameDocument, Description, State, DateCreate, IdTypeLoad, IdPerson"
+                . " FROM tb_load"
+                . " WHERE NameDocument = '" . $_inputName . "'";
+        $data = $this->database->query(utf8_decode($sql));
+        $exists = $data->num_rows;
+        if ($exists <= 0) {
+            $loadFile = new loadFiles();
+            $resultCreateFile = $loadFile->createFileVarient($_inputFile);
+            if ($resultCreateFile['result_move_uploaded_file']) {
+
+//                $queryUpdate = "UPDATE tb_person SET Passw = SHA1('" . $_password_new . "'), PasswUpdate = 0 WHERE IdPerson = " . $row['IdPerson'];
+//                $data = $this->database->query($queryUpdate);
+                $resul = 'EXITOSO';
+            } else {
+                $resul = 'NOCREATEFILE';
+            }
+        } else {
+            $resul = 'YAEXISTE';
+        }
+        return $resul;
     }
 
     public function getParametros($tipoParametro) {
@@ -233,124 +257,116 @@ class CapturaInformacion {
         $data = $this->database->query($sql);
         return $data;
     }
-    
-    
 
     public function getUsuarios() {
         $sql = " SELECT * FROM tb_person";
         $data = $this->database->queryArray(utf8_decode($sql));
-        
+
         if (sizeof($data) > 0) {
-          
+
             $return = $data;
         } else {
-            
-           $return = null;
-            
+
+            $return = null;
         }
-       // print_r($return);
+        // print_r($return);
         return $return;
     }
-    
+
     public function getTiposClientes() {
         $sql = " SELECT * FROM tb_typeclient";
         $data = $this->database->queryArray(utf8_decode($sql));
-        
+
         if (sizeof($data) > 0) {
-          
+
             $return = $data;
         } else {
-            
-           $return = null;
-            
+
+            $return = null;
         }
-       // print_r($return);
+        // print_r($return);
         return $return;
     }
-    
+
     public function getUsuarios1($id) {
-        $sql = " SELECT TOP 1 * FROM tb_person WHERE IdPerson=". $id ." State=1";
+        $sql = " SELECT TOP 1 * FROM tb_person WHERE IdPerson=" . $id . " State=1";
         $data = $this->database->queryArray(utf8_decode($sql));
-        
+
         if (sizeof($data) > 0) {
-          
+
             $return = $data;
         } else {
-            
-           $return = null;
-            
+
+            $return = null;
         }
-       // print_r($return);
+        // print_r($return);
         return $return;
     }
-    
+
     public function eliminarUsuarios($id) {
-        $sql = " DELETE FROM tb_person WHERE IdPerson=". $id ."  and State=1";
+        $sql = " DELETE FROM tb_person WHERE IdPerson=" . $id . "  and State=1";
         $data = $this->database->nonReturnQuery(utf8_decode($sql));
-        
-        
-       // print_r($return);
+
+        // print_r($return);
         return 1;
     }
+
     public function getPerfilesActivos() {
         $sql = " SELECT * FROM tb_profile WHERE  State=1 ";
         $data = $this->database->queryArray(utf8_decode($sql));
-        
+
         if (sizeof($data) > 0) {
-          
+
             $return = $data;
         } else {
-            
-           $return = null;
-            
+
+            $return = null;
         }
-       // print_r($return);
+        // print_r($return);
         return $return;
     }
-    
+
     public function getTiposDocumentos() {
         $sql = " SELECT * FROM tb_typedocument WHERE  State=1 ";
         $data = $this->database->queryArray(utf8_decode($sql));
-        
+
         if (sizeof($data) > 0) {
-          
+
             $return = $data;
         } else {
-            
-           $return = null;
-            
+
+            $return = null;
         }
-       // print_r($return);
+        // print_r($return);
         return $return;
     }
-    
+
     public function getTiposCliente() {
         $sql = " SELECT * FROM tb_typeclient WHERE  State=1 ";
         $data = $this->database->queryArray(utf8_decode($sql));
-        
+
         if (sizeof($data) > 0) {
-          
+
             $return = $data;
         } else {
-            
-           $return = null;
-            
+
+            $return = null;
         }
-       // print_r($return);
+        // print_r($return);
         return $return;
     }
-    
-     public function setUsuarios($Nombre,$Documento,$Telefono,$Email,$Contraseña,$Status,$idTypeDocument,$idProfile,$idClient) {
+
+    public function setUsuarios($Nombre, $Documento, $Telefono, $Email, $Contraseña, $Status, $idTypeDocument, $idProfile, $idClient) {
 
         $select = "SELECT TOP 1 * FROM tb_person  WHERE Name like '%" . $Nombre . "%' ";
         $dataselect = $this->database->QueryArray($select);
         if (sizeof($data) > 0) {
             $UPDATE = "UPDATE tb_person
-                        SET Name = '".$Nombre."'      
+                        SET Name = '" . $Nombre . "'      
                            ,Document = '" . $Documento . "'
                            ,Phone = " . $Telefono . "
                            ,Email = '" . $Email . "'
-                           ,Passw = '".sha1($Contraseña)."'
+                           ,Passw = '" . sha1($Contraseña) . "'
                            ,State = " . $Status . "
                            ,DateCreate=now(),
                            ,IdTypeDocument=" . $idTypeDocument . ",
@@ -379,7 +395,7 @@ class CapturaInformacion {
            ,'" . $Status . "'
            ,now()
            ," . $idTypeDocument . ""
-            . "," . $idProfile . ")";
+                    . "," . $idProfile . ")";
             $data = $this->database->nonReturnQuery($sql);
         }
         return 1;

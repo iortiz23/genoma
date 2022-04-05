@@ -1,6 +1,9 @@
 <?php
+var_dump($_REQUEST);
 $archivo = $_FILES['inputFile'];
-$resultado = move_uploaded_file($archivo["tmp_name"], $archivo["name"]);
+$newName = pathinfo($archivo["name"], PATHINFO_FILENAME) .'-'. uniqid() . '.' . pathinfo($archivo["name"], PATHINFO_EXTENSION);
+echo $newName;
+$resultado = move_uploaded_file($archivo["tmp_name"], $newName);
 if ($resultado) {
     echo "Subido con éxito";
 } else {

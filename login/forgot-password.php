@@ -2,7 +2,7 @@
 include '../class/CapturaInformacion.class.php';
 session_start();
 $result = '';
-if (!isset($_SESSION['Email'])) {
+if (isset($_SESSION['Email'])) {
     header("Location: login.php");
 }
 if ($_POST) {

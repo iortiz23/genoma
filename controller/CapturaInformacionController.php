@@ -2,9 +2,13 @@
 
 require_once('../class/CapturaInformacion.class.php');
 require_once('../class/XML.class.php');
+//echo $_REQUEST['metodo'];
 switch ($_REQUEST['metodo']) {
     case 'setPassword':
         XML::xmlResponse(setPassword($_REQUEST['email'], $_REQUEST['password_old'], $_REQUEST['password_new']));
+        break;
+    case 'loadFile':
+        XML::xmlResponse(loadFile($_REQUEST['inputName'], $_REQUEST['inputObservation'], $_FILES['inputFile']));
         break;
     //LOGIN
     case 'validaLogin':
@@ -28,10 +32,10 @@ switch ($_REQUEST['metodo']) {
     case 'getUser':
         XML::xmlResponse(getUser());
         break;
-     case 'getTypeClients':
+    case 'getTypeClients':
         XML::xmlResponse(getTypeClients());
         break;
-    
+
     case 'deleteUser':
         XML::xmlResponse(deleteUsers($_REQUEST['Id']));
         break;
@@ -72,10 +76,24 @@ function guardaGestion($InteractionId, $NumDocAsesor, $tel_Contact, $ContEgre, $
 function setUser($Nombre, $Documento, $Telefono, $Email, $Contraseña, $Status, $idTypeDocument, $idProfile, $idClient) {
     $captura = new CapturaInformacion();
     $data = $captura->setUsuarios($Nombre, $Documento, $Telefono, $Email, $Contraseña, $Status, $idTypeDocument, $idProfile, $idClient);
+    if ($data != 0) {
+        $xml = "<registro>EXITOSO</registro>";
+    } else {
+        $xml = "<registro>NOEXITOSO</registro>";
+    }
+    return $xml;
+}
 
 function setPassword($_email, $_password_old, $_password_new) {
     $captura = new CapturaInformacion();
     $data = $captura->setPassword($_email, $_password_old, $_password_new);
+    $xml = "<registro>" . $data . "</registro>";
+    return $xml;
+}
+
+function loadFile($_inputName, $_inputObservation, $_inputFile) {
+    $captura = new CapturaInformacion();
+    $data = $captura->loadFile($_inputName, $_inputObservation, $_inputFile);
     $xml = "<registro>" . $data . "</registro>";
     return $xml;
 }
