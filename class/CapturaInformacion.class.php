@@ -3,23 +3,26 @@
 date_default_timezone_set('America/Bogota');
 require_once('DataBase.class.php');
 require_once('EnvioCorreo.class.php');
-require_once ('loadFiles/loadFiles.class.php');
+require_once('loadFiles/loadFiles.class.php');
 
 /**
  * Description of CapturaInformacion
  *
  * @author Sneider Rocha
  */
-class CapturaInformacion {
+class CapturaInformacion
+{
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->database = DataBase::getDatabaseObject(DataBase::MYSQL);
     }
 
-    public function getDatosUsuario($_usuario, $_password) {
+    public function getDatosUsuario($_usuario, $_password)
+    {
         $sql = " SELECT IdPerson, Name, Email, Passw, PasswUpdate, IdProfile  "
-                . "FROM tb_person "
-                . "WHERE State = 1 AND Email = '" . trim($_usuario) . "'";
+            . "FROM tb_person "
+            . "WHERE State = 1 AND Email = '" . trim($_usuario) . "'";
         $data = $this->database->query(utf8_decode($sql));
         $exists = $data->num_rows;
         if ($exists > 0) {
@@ -44,10 +47,11 @@ class CapturaInformacion {
         return $data;
     }
 
-    public function setNewPassword($_email) {
+    public function setNewPassword($_email)
+    {
         $sql = " SELECT IdPerson, Name, Email, Passw, IdProfile "
-                . "FROM tb_person "
-                . "WHERE State = 1 AND Email = '" . trim($_email) . "'";
+            . "FROM tb_person "
+            . "WHERE State = 1 AND Email = '" . trim($_email) . "'";
         $data = $this->database->query(utf8_decode($sql));
         $exists = $data->num_rows;
         if ($exists > 0) {
@@ -69,7 +73,8 @@ class CapturaInformacion {
         return $resulEnvio;
     }
 
-    public function getNewPassword() {
+    public function getNewPassword()
+    {
         $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
         $pass = array(); //remember to declare $pass as an array
         $alphaLength = strlen($alphabet) - 1; //put the length -1 in cache
@@ -80,10 +85,11 @@ class CapturaInformacion {
         return implode($pass); //turn the array into a string
     }
 
-    public function setPassword($_email, $_password_old, $_password_new) {
+    public function setPassword($_email, $_password_old, $_password_new)
+    {
         $sql = " SELECT IdPerson, Name, Email, Passw, IdProfile "
-                . "FROM tb_person "
-                . "WHERE State = 1 AND Email = '" . $_email . "' AND Passw = SHA1('" . $_password_old . "')";
+            . "FROM tb_person "
+            . "WHERE State = 1 AND Email = '" . $_email . "' AND Passw = SHA1('" . $_password_old . "')";
 
         $data = $this->database->query(utf8_decode($sql));
         $exists = $data->num_rows;
@@ -98,164 +104,55 @@ class CapturaInformacion {
         return $resulEnvio;
     }
 
-    public function loadFile($_inputName, $_inputObservation, $_inputFile) {
+    public function loadFile($_idPerson, $_inputName, $_inputObservation, $_inputFile)
+    {
         $sql = " SELECT IdLoad, NameDocument, Description, State, DateCreate, IdTypeLoad, IdPerson"
-                . " FROM tb_load"
-                . " WHERE NameDocument = '" . $_inputName . "'";
+            . " FROM tb_load"
+            . " WHERE NameDocument = '" . $_inputName . "'";
         $data = $this->database->query(utf8_decode($sql));
         $exists = $data->num_rows;
         if ($exists <= 0) {
             $loadFile = new loadFiles();
             $resultCreateFile = $loadFile->createFileVarient($_inputFile);
             if ($resultCreateFile['result_move_uploaded_file']) {
-
-//                $queryUpdate = "UPDATE tb_person SET Passw = SHA1('" . $_password_new . "'), PasswUpdate = 0 WHERE IdPerson = " . $row['IdPerson'];
-//                $data = $this->database->query($queryUpdate);
-                $resul = 'EXITOSO';
-            } else {
-                $resul = 'NOCREATEFILE';
-            }
-        } else {
-            $resul = 'YAEXISTE';
-        }
-        return $resul;
-    }
-
-    public function getParametros($tipoParametro) {
-        $sql = "select pa_IdParametro_pk,pa_NombreParametro,pa_Estado from Parametros
-                WHERE pa_Padre='$tipoParametro'";
-        $data = $this->database->query(utf8_decode($sql));
-        $htmlObject = "";
-        $htmlObject .= "<option value='-1'>Seleccione...</option>";
-        for ($i = 0; $i < count($data); $i++) {
-            if ($data[$i]['pa_Estado'] == 1) {
-                $htmlObject .= "<option value='" . $data[$i]['pa_IdParametro_pk'] . "'>" . utf8_encode($data[$i]['pa_NombreParametro']) . "</option>";
-            }
-        }
-        return $htmlObject;
-    }
-
-    public function getBases() {
-        $sql = "SELECT [Id_Base],[B_NombreBase]
-                FROM [EgresadosPopular].[dbo].[NombreBase]
-                WHERE [B_Estado] = '1'";
-
-        $data = $this->database->query(utf8_decode($sql));
-        $htmlObject = "<option value='-1'>Seleccione...</option>";
-
-        if (count($data) > 0) {
-            for ($i = 0; $i < count($data); $i++) {
-                $htmlObject .= "<option value='" . utf8_encode($data[$i]['Id_Base']) . "'>" . utf8_encode($data[$i]['B_NombreBase']) . "</option>";
-            }
-        }
-        return $htmlObject;
-    }
-
-    public function guardaGestion($_InteractionId, $_NumDocAsesor, $_tel_Contact, $_ContEgre, $_ResulEgre, $_txtObservacion, $_NumDocEgre, $idGestion) {
-        $update1 = "UPDATE [EgresadosPopular].[dbo].[CargueBase] 
-                    SET  [cb_NumeroDoc] = '" . $_NumDocEgre . "'
-                    WHERE cb_IdCargueBase = '" . $idGestion . "'";
-        $this->database->nonReturnQuery($update1);
-
-        $select = "SELECT * FROM [EgresadosPopular].[dbo].[Gestion] WHERE [G_IdCargueBase] = '" . $idGestion . "' ";
-        $dataselect = $this->database->Query($select);
-        if (count($dataselect) > 0) {
-            $UPDATE = "UPDATE [EgresadosPopular].[dbo].[Gestion]
-                        SET [G_InteractionId] = ''      
-                           ,[G_Observaciones] = '" . $_txtObservacion . "'
-                           ,[G_ResultadoGestion] = '" . $_ResulEgre . "'
-                           ,[G_Contacto] = '" . $_ContEgre . "'
-                           ,[G_FechaGestion] = GETDATE()
-                           ,[G_DocAsesor] = '" . $_NumDocAsesor . "'
-                      WHERE [G_IdCargueBase] = '" . $idGestion . "'";
-            $dataupdate = $this->database->nonReturnQuery($UPDATE);
-        } ELSE {
-
-            $sql = "INSERT INTO [EgresadosPopular].[dbo].[Gestion]
-           ([G_InteractionId]
-           ,[G_Telefono]
-           ,[G_Observaciones]
-           ,[G_ResultadoGestion]
-           ,[G_Contacto]           
-           ,[G_DocAsesor]
-           ,[G_IdCargueBase])
-     VALUES
-           ('" . $_InteractionId . "'
-           ,'" . $_tel_Contact . "'
-           ,'" . $_txtObservacion . "'
-           ,'" . $_ResulEgre . "'
-           ,'" . $_ContEgre . "'           
-           ,'" . $_NumDocAsesor . "'
-           ,'" . $idGestion . "')";
-            $data = $this->database->nonReturnQuery($sql);
-        }
-        return 1;
-    }
-
-    //LOGIN
-
-    /**
-     * Funcion Login
-     * Retorna retirn en posicion 0 1 efectivo, 2 Error de contraseña,3 inactivo
-     * 4 actualizar contraseña
-     * 
-     * si es efectivo retorna return en la posicion 1 la cedula del asesor 
-     * y en la posicion 0 1 de efectivo
-     */
-    public function validaLogin($usuario, $clave) {
-
-        $sql = "Select * ,datediff(month,us_FechaActualizacion,getdate()) 'Datediff'
-                from Usuarios
-                where us_Usuario=$usuario 
-                and us_Clave=(SELECT dbo.EncriptaVYS('" . base64_decode($clave) . "'))";
-        $data = $this->database->query($sql);
-
-        if (sizeof($data) > 0) {
-            if ($data[0]['us_Estado'] == 0) {
-                $return[0] = 3;
-            } else {
-                if ($data[0]['Datediff'] > 3) {
-                    $return[0] = 4;
+                $resultCreateFile += ['idPerson' => $_idPerson];
+                $resultCreateFile += ['nameLoad' => $_inputName];
+                $resultCreateFile += ['descriptionLoad' => $_inputObservation];
+                $resultCreateFile += ['typeLoad' => '1'];
+                $resultCreateLoad = $this->createLoad($resultCreateFile);
+                if ($resultCreateLoad > 0) {
+                    $resultCreateFile += ['idLoad' => $resultCreateLoad];
+                    $resultLoadFile = $loadFile->readDataFileVarient($resultCreateFile);
+                    $result = $resultLoadFile;
                 } else {
-                    $return[0] = 1;
-                    $return[1] = $data[0]['us_Usuario'];
+                    $result = array(
+                        'idLoad' => 0,
+                        'columna' => 0,
+                        'fila' => 0,
+                        'result' => 'CARGUE_NO_CREADO',
+                    );
                 }
+            } else {
+                $result = array(
+                    'idLoad' => 0,
+                    'columna' => 0,
+                    'fila' => 0,
+                    'result' => 'ARCHIVO_NO_CARGADO',
+                );
             }
         } else {
-            $return[0] = 2;
+            $result = array(
+                'idLoad' => 0,
+                'columna' => 0,
+                'fila' => 0,
+                'result' => 'NOMBRE_YA_EXISTE',
+            );
         }
-        return $return;
+        return $result;
     }
 
-    public function validaClave($usuario, $clave, $claveN) {
-        $sql = "Select * 
-                from Usuarios
-                where us_Usuario=$usuario 
-                and us_Clave=(SELECT dbo.EncriptaVYS('" . base64_decode($clave) . "'))";
-        $data = $this->database->query($sql);
-        if (sizeof($data) > 0) {
-            $Update = "Update Usuarios 
-                         set us_FechaActualizacion=getdate(), us_Clave=dbo.EncriptaVYS('" . base64_decode($claveN) . "')
-                     where  us_Usuario=$usuario";
-            $this->database->nonReturnQuery($Update);
-            $return[0] = 1;
-            $return[1] = $data[0]['us_Usuario'];
-        } else {
-            $return[0] = 2;
-        }
-        return $return;
-    }
-
-    public function ConsultaDatosCliente($_NumCedula, $_txtIdBase, $_Asesor) {
-        $sql = " SELECT TOP 1 *
-                 FROM [EgresadosPopular].[dbo].[CargueBase]
-                 WHERE cb_NumeroDoc = '" . $_NumCedula . "'
-                 AND cb_IdBase = '" . $_txtIdBase . "'";
-        $data = $this->database->query($sql);
-        return $data;
-    }
-
-    public function getUsuarios() {
+    public function getUsuarios()
+    {
         $sql = " SELECT * FROM tb_person";
         $data = $this->database->queryArray(utf8_decode($sql));
 
@@ -270,7 +167,8 @@ class CapturaInformacion {
         return $return;
     }
 
-    public function getUserById($id) {
+    public function getUserById($id)
+    {
         $sql = " SELECT  * FROM tb_person WHERE IdPerson=" . $id . " and  State=1 LIMIT 1";
         $data = $this->database->queryArray(utf8_decode($sql));
 
@@ -285,7 +183,8 @@ class CapturaInformacion {
         return $return;
     }
 
-    public function getTypeClientById($id) {
+    public function getTypeClientById($id)
+    {
         $sql = " SELECT  * FROM tb_typeclient WHERE idTypeClient=" . $id . " and  State=1 LIMIT 1";
         $data = $this->database->queryArray(utf8_decode($sql));
 
@@ -299,8 +198,9 @@ class CapturaInformacion {
         // print_r($return);
         return $return;
     }
-    
-    public function getTypeDocumentById($id) {
+
+    public function getTypeDocumentById($id)
+    {
         $sql = " SELECT  * FROM tb_typedocument WHERE IdTypeDocument=" . $id . " and  State=1 LIMIT 1";
         $data = $this->database->queryArray(utf8_decode($sql));
 
@@ -314,8 +214,9 @@ class CapturaInformacion {
         // print_r($return);
         return $return;
     }
-    
-    public function getProfileById($id) {
+
+    public function getProfileById($id)
+    {
         $sql = " SELECT  * FROM tb_profile WHERE IdProfile=" . $id . " and  State=1 LIMIT 1";
         $data = $this->database->queryArray(utf8_decode($sql));
 
@@ -329,7 +230,8 @@ class CapturaInformacion {
         // print_r($return);
         return $return;
     }
-    public function validarPerfil($id) {
+    public function validarPerfil($id)
+    {
         $sql = " SELECT  count(*) as conteo FROM tb_person WHERE IdProfile=" . $id . " ";
         $data = $this->database->queryArray(utf8_decode($sql));
 
@@ -343,7 +245,8 @@ class CapturaInformacion {
         // print_r($return);
         return $return;
     }
-    public function validarTipoCliente($id) {
+    public function validarTipoCliente($id)
+    {
         $sql = " SELECT  count(*) as conteo FROM tb_person WHERE IdTypeClient=" . $id . " ";
         $data = $this->database->queryArray(utf8_decode($sql));
 
@@ -357,7 +260,8 @@ class CapturaInformacion {
         // print_r($return);
         return $return;
     }
-    public function validarTipoDocumento($id) {
+    public function validarTipoDocumento($id)
+    {
         $sql = " SELECT  count(*) as conteo FROM tb_person WHERE IdTypeDocument=" . $id . " ";
         $data = $this->database->queryArray(utf8_decode($sql));
 
@@ -372,7 +276,8 @@ class CapturaInformacion {
         return $return;
     }
 
-    public function getPerfiles() {
+    public function getPerfiles()
+    {
         $sql = " SELECT * FROM tb_profile";
         $data = $this->database->queryArray(utf8_decode($sql));
 
@@ -387,7 +292,8 @@ class CapturaInformacion {
         return $return;
     }
 
-    public function getTiposClientes() {
+    public function getTiposClientes()
+    {
         $sql = " SELECT * FROM tb_typeclient";
         $data = $this->database->queryArray(utf8_decode($sql));
 
@@ -401,8 +307,9 @@ class CapturaInformacion {
         // print_r($return);
         return $return;
     }
-    
-    public function getTiposDocumento() {
+
+    public function getTiposDocumento()
+    {
         $sql = " SELECT * FROM tb_typedocument";
         $data = $this->database->queryArray(utf8_decode($sql));
 
@@ -417,7 +324,8 @@ class CapturaInformacion {
         return $return;
     }
 
-    public function getUsuarios1($id) {
+    public function getUsuarios1($id)
+    {
         $sql = " SELECT  * FROM tb_person WHERE IdPerson=" . $id . " and  State=1 LIMIT 1";
         $data = $this->database->queryArray(utf8_decode($sql));
 
@@ -432,23 +340,26 @@ class CapturaInformacion {
         return $return;
     }
 
-    public function eliminarPerfiles($id) {
+    public function eliminarPerfiles($id)
+    {
         $sql = " DELETE FROM tb_profile WHERE IdProfile=" . $id . "  and State=1";
         $data = $this->database->nonReturnQuery(utf8_decode($sql));
 
         // print_r($return);
         return 1;
     }
-    
-    public function eliminarTiposCliente($id) {
+
+    public function eliminarTiposCliente($id)
+    {
         $sql = " DELETE FROM tb_typeclient WHERE idTypeClient=" . $id . "  and State=1";
         $data = $this->database->nonReturnQuery(utf8_decode($sql));
 
         // print_r($return);
         return 1;
     }
-    
-    public function eliminarTiposDocumento($id) {
+
+    public function eliminarTiposDocumento($id)
+    {
         $sql = " DELETE FROM tb_typedocument WHERE IdTypeDocument=" . $id . "  and State=1";
         $data = $this->database->nonReturnQuery(utf8_decode($sql));
 
@@ -456,7 +367,8 @@ class CapturaInformacion {
         return 1;
     }
 
-    public function eliminarUsuarios($id) {
+    public function eliminarUsuarios($id)
+    {
         $sql = " DELETE FROM tb_person WHERE IdPerson=" . $id . "  and State=1";
         $data = $this->database->nonReturnQuery(utf8_decode($sql));
 
@@ -464,7 +376,8 @@ class CapturaInformacion {
         return 1;
     }
 
-    public function getPerfilesActivos() {
+    public function getPerfilesActivos()
+    {
         $sql = " SELECT * FROM tb_profile WHERE  State=1 ";
         $data = $this->database->queryArray(utf8_decode($sql));
 
@@ -479,7 +392,8 @@ class CapturaInformacion {
         return $return;
     }
 
-    public function getTiposDocumentos() {
+    public function getTiposDocumentos()
+    {
         $sql = " SELECT * FROM tb_typedocument WHERE  State=1 ";
         $data = $this->database->queryArray(utf8_decode($sql));
 
@@ -494,7 +408,8 @@ class CapturaInformacion {
         return $return;
     }
 
-    public function getTiposCliente() {
+    public function getTiposCliente()
+    {
         $sql = " SELECT * FROM tb_typeclient WHERE  State=1 ";
         $data = $this->database->queryArray(utf8_decode($sql));
 
@@ -509,7 +424,8 @@ class CapturaInformacion {
         return $return;
     }
 
-    public function setUsuarios($Nombre, $Documento, $Telefono, $Email, $Contraseña, $Status, $idTypeDocument, $idProfile, $idClient) {
+    public function setUsuarios($Nombre, $Documento, $Telefono, $Email, $Contraseña, $Status, $idTypeDocument, $idProfile, $idClient)
+    {
         if ($Email != "") {
             $select = "SELECT  * FROM tb_person  WHERE Email like '%" . $Email . "%' LIMIT 1 ";
             $data = $this->database->QueryArray($select);
@@ -531,7 +447,7 @@ class CapturaInformacion {
                            ,IdTypeClient=" . $idClient . ",
                       WHERE IdPerson = " . $data[0]["IdPerson"] . "";
                 $dataupdate = $this->database->nonReturnQuery($UPDATE);
-            } ELSE {
+            } else {
 
                 $sql = "INSERT INTO tb_person
            (Name
@@ -552,7 +468,7 @@ class CapturaInformacion {
            ,'" . $Status . "'
            ,now()
            ," . $idTypeDocument . ""
-                        . "," . $idProfile . ")";
+                    . "," . $idProfile . ")";
                 $data = $this->database->nonReturnQuery($sql);
             }
         } else {
@@ -575,14 +491,15 @@ class CapturaInformacion {
            ,'" . $Status . "'
            ,now()
            ," . $idTypeDocument . ""
-                    . "," . $idProfile . ")";
+                . "," . $idProfile . ")";
             $data = $this->database->nonReturnQuery($sql);
         }
 
         return 1;
     }
 
-    public function setPerfiles($Descripcion, $Status, $Id) {
+    public function setPerfiles($Descripcion, $Status, $Id)
+    {
         if ($Id != "") {
             $select = "SELECT  * FROM tb_profile  WHERE IdProfile=" . $Id . " LIMIT 1";
             $data = $this->database->QueryArray($select);
@@ -619,8 +536,9 @@ class CapturaInformacion {
 
         return 1;
     }
-    
-    public function setTiposCliente($Descripcion, $Status, $Id) {
+
+    public function setTiposCliente($Descripcion, $Status, $Id)
+    {
         if ($Id != "") {
             $select = "SELECT  * FROM tb_typeclient  WHERE idTypeClient=" . $Id . " LIMIT 1";
             $data = $this->database->QueryArray($select);
@@ -657,8 +575,9 @@ class CapturaInformacion {
 
         return 1;
     }
-    
-    public function setTiposDocumento($Descripcion, $Status, $Id) {
+
+    public function setTiposDocumento($Descripcion, $Status, $Id)
+    {
         if ($Id != "") {
             $select = "SELECT  * FROM tb_typedocument  WHERE IdTypeDocument=" . $Id . " LIMIT 1";
             $data = $this->database->QueryArray($select);
@@ -696,6 +615,40 @@ class CapturaInformacion {
         return 1;
     }
 
-}
+    public function createLoad($dataLoad)
+    {
+        $queryInsert = "INSERT INTO tb_load ("
+            . " NameDocument,"
+            . " Description,"
+            . " State, "
+            . " DateCreate,"
+            . " IdTypeLoad, "
+            . " IdPerson)"
+            . " VALUES ("
+            . "'" . $dataLoad['nameLoad'] . "',"
+            . "'" . $dataLoad['descriptionLoad'] . "',"
+            . "'1',"
+            . "now(),"
+            . $dataLoad['typeLoad'] . ","
+            . $dataLoad['idPerson'] . ")";
+        
+        $this->database->nonReturnQuery($queryInsert);
 
-?>
+        $sql = " SELECT IdLoad, NameDocument, Description, State, DateCreate, IdTypeLoad, IdPerson "
+            . " FROM tb_load "
+            . " WHERE State = 1 "
+            . " AND NameDocument = '" . $dataLoad['nameLoad'] . "'"
+            . " AND Description = '" . $dataLoad['descriptionLoad'] . "'"
+            . " AND IdTypeLoad = " . $dataLoad['typeLoad']
+            . " AND IdPerson = " . $dataLoad['idPerson'];
+        $data = $this->database->query(utf8_decode($sql));
+        $exists = $data->num_rows;
+        if ($exists == 1) {
+            $row = $data->fetch_assoc();
+            $resul = $row['IdLoad'];
+        } else {
+            $resul = $exists;
+        }
+        return $resul;
+    }
+}
