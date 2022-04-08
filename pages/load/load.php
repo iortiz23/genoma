@@ -36,12 +36,11 @@ $IdProfile = $_SESSION['IdProfile'];
     <script src="../../plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap 4 -->
     <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- bs-custom-file-input -->
-    <script src="../../plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+
     <!-- AdminLTE App -->
     <script src="../../dist/js/adminlte.js"></script>
     <!-- Theme javascript -->
-    <script src="js/load1.js" type="text/javascript"></script>
+    <script src="js/load.js" type="text/javascript"></script>
 </head>
 <input type="hidden" id="idPerson" value="<?php echo $IdPerson; ?>">
 
@@ -63,6 +62,7 @@ $IdProfile = $_SESSION['IdProfile'];
                         <!-- form start -->
                         <form>
                             <div class="card-body">
+
                                 <div class="form-group">
                                     <label for="inputName">Nombre del documento</label>
                                     <input type="text" class="form-control" id="inputName" placeholder="Nombre del documento">
@@ -78,7 +78,7 @@ $IdProfile = $_SESSION['IdProfile'];
                                     <div class="input-group">
                                         <div class="custom-file">
                                             <input type="file" class="custom-file-input" id="inputFile" accept="application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
-                                            <label class="custom-file-label" for="inputFile">Seleccione un archivo</label>
+                                            <label class="custom-file-label" for="inputFile" id="fileLabel">Seleccione un archivo</label>
                                         </div>
                                     </div>
                                     <p id="p_validaFile" style="color: #E50850; display: none;"></p>
@@ -87,7 +87,13 @@ $IdProfile = $_SESSION['IdProfile'];
                             <!-- /.card-body -->
 
                             <div class="card-footer">
-                                <button type="button" id="btnUpload" class="btn btn-primary">Cargar</button>
+                                <div class="input-group">
+                                    <button type="button" id="btnUpload" class="btn btn-primary">Cargar</button>
+                                    <div class="input-group" id="divloading" style="display: none;">
+                                        <img src="../../dist/img/loader.gif" style="width: 30px;" />&nbsp&nbsp
+                                        <label style="color: #201C42;">Cargando la informaci&oacute;n...</label>
+                                    </div>
+                                </div>
                             </div>
                         </form>
                     </div>
@@ -127,17 +133,52 @@ $IdProfile = $_SESSION['IdProfile'];
         <!-- /.modal-dialog -->
     </div>
     <!-- /.modal -->
-    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-sm" id="btnModal-sm"></button>
+    <button type="button" style="display: none; " class="btn btn-default" data-toggle="modal" data-target="#modal-sm" id="btnModal-sm"></button>
+    <!-- /.modal -->
+
+    <div class="modal fade" id="modal-sm-loading">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <img src="../../dist/img/loader.gif" style="width: 30px;" />&nbsp&nbsp
+                    <h4 class="modal-title" style="color: #201C42;">Cargando...</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p id="txtloading" style="color: #201C42;">Estamos cargando la información, espera un momento.</p>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+    <button type="button" style="display: none; " class="btn btn-default" data-toggle="modal" data-target="#modal-sm-loading" id="btnModal-sm-loading"></button>
 
 
     <script>
+        $(function() {
+            bsCustomFileInput.init();
+        });
         $(document).ready(function() {
 
             $("#modal-sm").on('hidden.bs.modal', function() {
+                $("#divloading").hide();
+                $("#inputName").val("");
+                $("#inputObservation").val("");
+                $("#inputFile").val("");
+                $("#fileLabel").html("Seleccione un archivo");
+                $("#btnUpload").show();
+            });
+            $("#modal-sm-loading").on('hidden.bs.modal', function() {
 
             });
         });
     </script>
+    <!-- bs-custom-file-input -->
+    <script src="../../plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
 </body>
 
 </html>

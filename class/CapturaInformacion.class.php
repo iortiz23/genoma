@@ -106,9 +106,10 @@ class CapturaInformacion
 
     public function loadFile($_idPerson, $_inputName, $_inputObservation, $_inputFile)
     {
-        $sql = " SELECT IdLoad, NameDocument, Description, State, DateCreate, IdTypeLoad, IdPerson"
+        $sql = " SELECT IdLoad, NameLoad, NameDocument, Description, State, DateCreate, IdTypeLoad, IdPerson"
             . " FROM tb_load"
-            . " WHERE NameDocument = '" . $_inputName . "'";
+            . " WHERE State  = 1"
+            . " AND NameLoad = '" . $_inputName . "'";
         $data = $this->database->query(utf8_decode($sql));
         $exists = $data->num_rows;
         if ($exists <= 0) {
@@ -125,6 +126,7 @@ class CapturaInformacion
                     $resultLoadFile = $loadFile->readDataFileVarient($resultCreateFile);
                     $result = $resultLoadFile;
                 } else {
+                    $loadFile->delateLocalFileVarient($resultCreateFile);
                     $result = array(
                         'idLoad' => 0,
                         'columna' => 0,
@@ -141,8 +143,9 @@ class CapturaInformacion
                 );
             }
         } else {
+            $row = $data->fetch_assoc();
             $result = array(
-                'idLoad' => 0,
+                'idLoad' => $row['IdLoad'],
                 'columna' => 0,
                 'fila' => 0,
                 'result' => 'NOMBRE_YA_EXISTE',
@@ -618,26 +621,31 @@ class CapturaInformacion
     public function createLoad($dataLoad)
     {
         $queryInsert = "INSERT INTO tb_load ("
+            . " NameLoad,"
             . " NameDocument,"
             . " Description,"
             . " State, "
             . " DateCreate,"
             . " IdTypeLoad, "
-            . " IdPerson)"
+            . " IdPerson,"
+            . " IdStateLoad)"
             . " VALUES ("
             . "'" . $dataLoad['nameLoad'] . "',"
+            . "'" . $dataLoad['nameFileOld'] . "',"
             . "'" . $dataLoad['descriptionLoad'] . "',"
             . "'1',"
             . "now(),"
             . $dataLoad['typeLoad'] . ","
-            . $dataLoad['idPerson'] . ")";
-        
+            . $dataLoad['idPerson'] . ", 
+            4)";
+
         $this->database->nonReturnQuery($queryInsert);
 
-        $sql = " SELECT IdLoad, NameDocument, Description, State, DateCreate, IdTypeLoad, IdPerson "
+        $sql = " SELECT IdLoad, NameLoad, NameDocument, Description, State, DateCreate, IdTypeLoad, IdPerson "
             . " FROM tb_load "
             . " WHERE State = 1 "
-            . " AND NameDocument = '" . $dataLoad['nameLoad'] . "'"
+            . " AND NameLoad = '" . $dataLoad['nameLoad'] . "'"
+            . " AND NameDocument = '" . $dataLoad['nameFileOld'] . "'"
             . " AND Description = '" . $dataLoad['descriptionLoad'] . "'"
             . " AND IdTypeLoad = " . $dataLoad['typeLoad']
             . " AND IdPerson = " . $dataLoad['idPerson'];
@@ -646,9 +654,22 @@ class CapturaInformacion
         if ($exists == 1) {
             $row = $data->fetch_assoc();
             $resul = $row['IdLoad'];
+
+            $queryUpdate = "UPDATE tb_load SET IdStateLoad = 7 WHERE IdLoad = " . $resul;
+            $this->database->nonReturnQuery($queryUpdate);
         } else {
             $resul = $exists;
         }
         return $resul;
+    }
+
+    function updateStateLoad($_idLoad, $_idStateLoad, $_idState, $_Processedrows)
+    {
+        $queryUpdate = "UPDATE tb_load SET "
+            . " IdStateLoad = " . $_idStateLoad . ","
+            . " State = " . $_idState . ","
+            . " Processedrows = " . $_Processedrows
+            . " WHERE IdLoad = " . $_idLoad;
+        $this->database->nonReturnQuery($queryUpdate);
     }
 }

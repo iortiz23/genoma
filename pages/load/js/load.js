@@ -1,4 +1,13 @@
 $(document).ready(function() {
+    //$("#btnModal-sm-loading").trigger("click");
+    $("#btnVale").click(function() {
+        $("#inputName").val("");
+        $("#inputObservation").val("");
+        $("#inputFile").val("");
+        $("#fileLabel").html("Seleccione un archivo");
+        $("#btnUpload").show();
+        $("#modal-sm").trigger("click");
+    });
     $("#btnUpload").click(function() {
         var inputFile = $("#inputFile");
         var inputName = $("#inputName").val().trim();
@@ -6,8 +15,11 @@ $(document).ready(function() {
         var inputObservation = $("#inputObservation").val().trim();
         if (inputName.length >= 8) {
             if (inputFile.get(0).files.length > 0) {
+                $("#btnUpload").hide();
                 $("#p_validaName").hide();
                 $("#p_validaFile").hide();
+                $("#divloading").show();
+                // sleep(2000);
                 var formData = new FormData();
 
                 formData.append("inputFile", inputFile.get(0).files[0]); // En la posición 0; es decir, el primer elemento
@@ -18,7 +30,7 @@ $(document).ready(function() {
                 $.ajax({
                     type: "POST",
                     dataType: "xml",
-                    async: false,
+                    async: true,
                     url: "../../controller/CapturaInformacionController.php",
                     data: formData,
                     enctype: "multipart/form-data",
@@ -31,6 +43,7 @@ $(document).ready(function() {
                                 $(xml)
                                     .find("registro")
                                     .each(function() {
+                                        $("#divloading").hide();
                                         switch ($(this).attr("result")) {
                                             case "NOMBRE_YA_EXISTE":
                                                 $("#txtResult").html(
@@ -75,7 +88,10 @@ $(document).ready(function() {
                                                 break;
                                             case "EXITOSO":
                                                 $("#txtResult").html(
-                                                    "Todo salio muy bien, el cargue se realizó correctamente."
+                                                    "Todo salio muy bien, el cargue se realizó correctamente. " +
+                                                    '<br><b><i> Se procesaron "' +
+                                                    $(this).attr("fila") +
+                                                    '" filas.</i></b>'
                                                 );
                                                 $("#txtResult").css("color", "#201C42");
                                                 break;
@@ -97,13 +113,24 @@ $(document).ready(function() {
                 $("#p_validaFile").html("Aún no se ha seleccionado un documento.");
                 $("#p_validaName").hide();
                 $("#p_validaFile").show();
+                $("#btnUpload").show();
             }
         } else {
             // El usuario no ha seleccionado archivos
             $("#p_validaName").html(
                 "El nombre del documento debe ser de al menos 8 caracteres."
             );
+            $("#btnUpload").show();
             $("#p_validaName").show();
         }
     });
 });
+
+function sleep(milliseconds) {
+    var start = new Date().getTime();
+    for (var i = 0; i < 1e7; i++) {
+        if (new Date().getTime() - start > milliseconds) {
+            break;
+        }
+    }
+}

@@ -23,13 +23,15 @@ class loadFiles extends IOFactory
         $uploads_dir = '../class/loadFiles/files';
         $newName = pathinfo($_inputFile["name"], PATHINFO_FILENAME) . '-' . uniqid() . '.' . pathinfo($_inputFile["name"], PATHINFO_EXTENSION);
         $resultado = move_uploaded_file($_inputFile["tmp_name"], "$uploads_dir/$newName");
-        $result = array(
-            'result_move_uploaded_file' => $resultado,
-            'nameFile' => $newName,
-            'uploads_dir' => $uploads_dir,
-            'uploads_dir_complete' => "$uploads_dir/$newName",
-            'extension' => pathinfo($_inputFile["name"], PATHINFO_EXTENSION),
-        );
+        $rs =
+            $result = array(
+                'result_move_uploaded_file' => $resultado,
+                'nameFileOld' => $_inputFile["name"],
+                'nameFileNew' => $newName,
+                'uploads_dir' => $uploads_dir,
+                'uploads_dir_complete' => "$uploads_dir/$newName",
+                'extension' => pathinfo($_inputFile["name"], PATHINFO_EXTENSION),
+            );
 
         return $result;
     }
@@ -54,6 +56,11 @@ class loadFiles extends IOFactory
                             'fila' => $fila,
                             'result' => 'ERROR_FORMATO_ENCABEZADOS',
                         );
+
+                        $this->delateLocalFileVarient($_inputFileData);
+                        $captura = new CapturaInformacion();
+                        $captura->updateStateLoad($_inputFileData['idLoad'], 3, 0, $fila);
+
                         return $result;
                     }
                 } else {
@@ -67,9 +74,12 @@ class loadFiles extends IOFactory
                     $result = array(
                         'idLoad' => $_inputFileData['idLoad'],
                         'columna' => 0,
-                        'fila' => ($fila + 1),
+                        'fila' => $fila,
                         'result' => 'CARGUE_NO_COMPLETADO',
                     );
+                    $this->delateLocalFileVarient($_inputFileData);
+                    $captura = new CapturaInformacion();
+                    $captura->updateStateLoad($_inputFileData['idLoad'], 2, 0, $fila);
                     return $result;
                 }
             }
@@ -77,9 +87,12 @@ class loadFiles extends IOFactory
         $result = array(
             'idLoad' => $_inputFileData['idLoad'],
             'columna' => $columna,
-            'fila' => ($fila + 1),
+            'fila' => $fila,
             'result' => 'EXITOSO',
         );
+        $this->delateLocalFileVarient($_inputFileData);
+        $captura = new CapturaInformacion();
+        $captura->updateStateLoad($_inputFileData['idLoad'], 1, 1, $fila);
 
         return $result;
     }
@@ -106,7 +119,7 @@ class loadFiles extends IOFactory
             'Q' => 'ID dbSNP',
             'R' => 'Comment',
         );
- 
+
         if ($headers[$_column] != $_value) {
             $result = "ERROR";
         } else {
@@ -181,5 +194,9 @@ class loadFiles extends IOFactory
             $result = 0;
         }
         return $result;
+    }
+    public function delateLocalFileVarient($_inputFileData)
+    {
+        unlink($_inputFileData['uploads_dir_complete']);
     }
 }
