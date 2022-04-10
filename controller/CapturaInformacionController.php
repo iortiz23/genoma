@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require_once('../class/CapturaInformacion.class.php');
 require_once('../class/XML.class.php');
 switch ($_REQUEST['metodo']) {
@@ -65,6 +65,9 @@ switch ($_REQUEST['metodo']) {
         break;
     case 'setTipoDocumento':
         XML::xmlResponse(setTipoDocumento($_POST['Description'], $_POST['Status'], $_POST['Id']));
+        break;
+    case 'offSession':
+        XML::xmlResponse(offSession());
         break;
 
     default:
@@ -413,5 +416,11 @@ function getTypeClient()
     } else {
         $xml = "<registro>NOEXITOSO</registro>";
     }
+    return $xml;
+}
+function offSession()
+{
+    session_destroy();
+    $xml = "<registro>EXITOSO</registro>";
     return $xml;
 }
