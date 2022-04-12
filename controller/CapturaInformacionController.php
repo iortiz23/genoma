@@ -69,6 +69,9 @@ switch ($_REQUEST['metodo']) {
     case 'offSession':
         XML::xmlResponse(offSession());
         break;
+    case 'getLoads':
+        XML::xmlResponse(getLoads());
+        break;
 
     default:
         echo 'No se encontro el metodo';
@@ -422,5 +425,28 @@ function offSession()
 {
     session_destroy();
     $xml = "<registro>EXITOSO</registro>";
+    return $xml;
+}
+function getLoads()
+{
+    $xml = "";
+    $captura = new CapturaInformacion();
+    $data = $captura->getLoads();
+    if (sizeof($data) > 0) {
+        for ($i = 0; $i < count($data); $i++) {
+            $xml .= "<registro                    
+                        IdLoad='" . utf8_encode(trim($data[$i]['IdLoad'])) . "'                    
+                        NameLoad='" . utf8_encode(trim($data[$i]['NameLoad'])) . "'                    
+                        NameDocument='" . utf8_encode(trim($data[$i]['NameDocument'])) . "'                                          
+                        Description='" . utf8_encode(trim($data[$i]['Description'])) . "'  
+                        DescriptionState='" . utf8_encode(trim($data[$i]['DescriptionState'])) . "'  
+                        DateCreate='" . utf8_encode(trim($data[$i]['DateCreate'])) . "'
+                        Processedrows='" . utf8_encode(trim($data[$i]['Processedrows'])) . "' 
+                        Name='" . utf8_encode(trim($data[$i]['Name'])) . "'
+                    ></registro>";
+        }
+    } else {
+        $xml = "<registro>NOEXITOSO</registro>";
+    }
     return $xml;
 }

@@ -252,7 +252,7 @@ $IdProfile = $_SESSION['IdProfile'];
             <section class="content">
                 <div class="container-fluid">
 
-                    <iframe src="blanco.php" name="centerframe" align="center" frameBorder=0 width="100%" style="align-content: center; height: 100%; position: absolute" frameSpacing=0>
+                    <iframe src="blanco.php" name="centerframe" frameBorder=0 style="align-content: center; height: 100%; position: absolute; width: 85%;" frameSpacing=0>
                     </iframe>
                 </div>
 

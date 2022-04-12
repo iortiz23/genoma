@@ -672,4 +672,22 @@ class CapturaInformacion
             . " WHERE IdLoad = " . $_idLoad;
         $this->database->nonReturnQuery($queryUpdate);
     }
+    public function getLoads()
+    {
+        $sql = " SELECT IdLoad,"
+            . " NameLoad,"
+            . " NameDocument,"
+            . " tl.Description,"
+            . " tsl.DescriptionState,"
+            . " tl.DateCreate,"
+            . " Processedrows,"
+            . " tp.Name"
+            . " FROM tb_load tl "
+            . " INNER JOIN tb_stateload tsl ON tl.IdStateLoad = tsl.idStateLoad"
+            . " INNER JOIN tb_person tp ON tl.IdPerson = tp.IdPerson"
+            . " WHERE tl.State = 1";
+        $data = $this->database->queryArray(utf8_decode($sql));
+
+        return $data;
+    }
 }

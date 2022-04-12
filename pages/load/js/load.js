@@ -1,5 +1,6 @@
 $(document).ready(function() {
-    //$("#btnModal-sm-loading").trigger("click");
+    getLoads();
+
     $("#btnVale").click(function() {
         $("#inputName").val("");
         $("#inputObservation").val("");
@@ -19,7 +20,6 @@ $(document).ready(function() {
                 $("#p_validaName").hide();
                 $("#p_validaFile").hide();
                 $("#divloading").show();
-                // sleep(2000);
                 var formData = new FormData();
 
                 formData.append("inputFile", inputFile.get(0).files[0]); // En la posición 0; es decir, el primer elemento
@@ -126,11 +126,46 @@ $(document).ready(function() {
     });
 });
 
-function sleep(milliseconds) {
-    var start = new Date().getTime();
-    for (var i = 0; i < 1e7; i++) {
-        if (new Date().getTime() - start > milliseconds) {
-            break;
-        }
-    }
+function getLoads() {
+    $("#divLoadingLoads").show();
+    $("#divCardTableLoads").hide();
+    $.ajax({
+        type: "POST",
+        dataType: "xml",
+        async: true,
+        url: "../../controller/CapturaInformacionController.php",
+        data: ({
+            metodo: "getLoads",
+        }),
+        success: function(xml) {
+            $(xml)
+                .find("response")
+                .each(function() {
+                    $(xml)
+                        .find("registro")
+                        .each(function() {
+                            if ($(this).text() === "NOEXITOSO") {
+                                $("#divLoadingLoads").hide();
+                                $("#divNotdata").show();
+                            } else {
+                                $("#divNotdata").hide();
+                                $("#divLoadingLoads").hide();
+                                $("#divCardTableLoads").show();
+                                $("#table_Loads")
+                                    .dataTable()
+                                    .fnAddData([
+                                        $(this).attr("IdLoad"),
+                                        $(this).attr("NameLoad"),
+                                        $(this).attr("NameDocument"),
+                                        $(this).attr("Description"),
+                                        $(this).attr("DescriptionState"),
+                                        $(this).attr("DateCreate"),
+                                        $(this).attr("Processedrows"),
+                                        $(this).attr("Name"),
+                                    ]);
+                            }
+                        });
+                });
+        },
+    });
 }
