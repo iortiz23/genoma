@@ -226,7 +226,7 @@ function getUser() {
                         Id='" . utf8_encode(trim($data[$i]['IdPerson'])) . "'                    
                         Name='" . utf8_encode(trim($data[$i]['Name'])) . "'                    
                         Document='" . utf8_encode(trim($data[$i]['Document'])) . "'                                          
-                        State='" . utf8_encode(trim($data[$i]['State'])) . "'                                          
+                        Type_client='" . utf8_encode(trim($data[$i]['type_client'])) . "'                                          
                         ></registro>";
             } else {
                 $xml = "<registro>NOEXITOSO</registro>";

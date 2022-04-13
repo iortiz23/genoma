@@ -54,7 +54,7 @@ if (isset($_REQUEST['id'])) {
                             </div>
                             <div class="col-sm-6">
                                 <!-- checkbox -->
-                                <div class="form-group">
+                                <div class="form-group" style="margin-top: 8%;">
                                     <div class="form-check">
                                         <input name="status" id="status" class="form-check-input" type="checkbox" data-req="requerido" <?php echo isset($result[0]['State']) ? 'Checked' : ''; ?>>
                                         <label   class="form-check-label" >Status</label>
