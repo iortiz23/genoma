@@ -5,9 +5,17 @@
  */
 
 $(document).ready(function (){
-    $('#tbUsuarios').dataTable({
-     "aaSorting":[]   
-    });
+    $('#tbUsuarios').dataTable( {
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
+        },
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
+    } );
+    $(".paginate_page").text("Página");
+    $(".paginate_of").text($(".paginate_of").text().replace("of","de"));
     $.ajax({
         url:"../../controller/CapturaInformacionController.php",
         data:({
@@ -28,9 +36,9 @@ $(document).ready(function (){
                  if($(this).text() != 'NOEXITOSO'){
                      $('#tbUsuarios').dataTable().fnAddData([
                          $(this).attr('Id'),
-                         $(this).attr('Name'),
+                         decodeURIComponent(escape($(this).attr('Name'))),
                          $(this).attr('Document'),
-                         $(this).attr('State'),
+                         $(this).attr('Type_client'),
                          '<a type="button" class="btn bg-gradient-warning btn-sm-1" href="./FormUsuarios.php?id='+$(this).attr('Id')+'" ><i class="nav-icon fas fa-edit"></i></a>\n\
                           <button type="button" class="btn  bg-gradient-danger btn-sm-1" onclick="deleteUser('+$(this).attr('Id')+')"><i class="nav-icon fas fa-trash" ></i></button>',
                      ]);
