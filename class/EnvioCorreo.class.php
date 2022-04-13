@@ -27,14 +27,14 @@ class EnvioCorreo {
 
             //$mail->SMTPDebug = SMTP::DEBUG_SERVER;
             $mail->isSMTP();
-            $mail->Host = 'smtp.gmail.com';
+            $mail->Host = 'smtp.hostinger.com';
             $mail->SMTPAuth = true;
-            $mail->Username = '***';
-            $mail->Password = '**';
+            $mail->Username = 'contactenos@duponte.tubids.com.co';
+            $mail->Password = '$B*6ehYRW';
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
-            $mail->Port = 587;
+            $mail->Port = 465;
 
-            $mail->setFrom('neider.1991@gmail.com', 'Esneider');
+            $mail->setFrom('contactenos@duponte.tubids.com.co', 'Duponte');
 //            $mail->setFrom('soporte@ciclibi.com.co', 'Tubids.com.co');
             $mail->addAddress($_email);
             $mail->addEmbeddedImage('../dist/img/duponte-icono.png', 'duponte-icono.png');
