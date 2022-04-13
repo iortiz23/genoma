@@ -153,10 +153,9 @@ class CapturaInformacion
         }
         return $result;
     }
-
-    public function getUsuarios()
-    {
-        $sql = " SELECT * FROM tb_person";
+    
+    public function getUsuarios() {
+        $sql = " SELECT per.*, cli.Description as type_client FROM tb_person as per INNER JOIN tb_typeclient as cli ON cli.idTypeClient=per.IdTypeClient";
         $data = $this->database->queryArray(utf8_decode($sql));
 
         if (sizeof($data) > 0) {
@@ -430,7 +429,7 @@ class CapturaInformacion
     public function setUsuarios($Nombre, $Documento, $Telefono, $Email, $Contraseña, $Status, $idTypeDocument, $idProfile, $idClient)
     {
         if ($Email != "") {
-            $select = "SELECT  * FROM tb_person  WHERE Email like '%" . $Email . "%' LIMIT 1 ";
+            $select = "SELECT  * FROM tb_person  WHERE Email like '%" . $Email . "%' ";
             $data = $this->database->QueryArray($select);
             if (sizeof($data) > 0) {
                 $valor = "";
@@ -461,7 +460,8 @@ class CapturaInformacion
            ,State
            ,DateCreate
            ,IdTypeDocument
-           ,IdProfile)
+           ,IdProfile
+           ,IdTypeClient)
      VALUES
            ('" . $Nombre . "'
            ,'" . $Documento . "'
@@ -471,7 +471,8 @@ class CapturaInformacion
            ,'" . $Status . "'
            ,now()
            ," . $idTypeDocument . ""
-                    . "," . $idProfile . ")";
+           . "," . $idProfile . ""
+           . "," . $idClient . ")";
                 $data = $this->database->nonReturnQuery($sql);
             }
         } else {
