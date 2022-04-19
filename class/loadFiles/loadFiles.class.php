@@ -1,5 +1,5 @@
 <?php
-require '../vendor/autoload.php';
+require '../../vendor/autoload.php';
 
 //require_once('../../CapturaInformacion.class.php');
 //require_once('../DataBase.class.php');
