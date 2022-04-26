@@ -38,7 +38,8 @@ $IdProfile = $_SESSION['IdProfile'];
     <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
     <!-- summernote -->
     <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
-
+    <!-- index -->
+    <link rel="stylesheet" href="css/index.css">
     <!-- jQuery -->
     <script src="plugins/jquery/jquery.min.js"></script>
 
@@ -113,8 +114,8 @@ $IdProfile = $_SESSION['IdProfile'];
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
             <a href="index3.html" class="brand-link">
-                <img src="dist/img/duponte.png" alt="Duponte Logo" class="brand-image  elevation-3">
-                <span class="brand-text font-weight-light">Duponte</span>
+                
+                <img src="dist/img/duponte-icono.png"  alt="Duponte Logo" class="brand-image  elevation-3" />
             </a>
 
             <!-- Sidebar -->
@@ -252,7 +253,7 @@ $IdProfile = $_SESSION['IdProfile'];
             <section class="content">
                 <div class="container-fluid">
 
-                    <iframe src="blanco.php" name="centerframe" frameBorder=0 style="align-content: center; height: 100%; position: absolute; width: 85%;" frameSpacing=0>
+                    <iframe src="dashboard.php" name="centerframe" frameBorder=0 style="align-content: center; height: 100%; position: absolute; width: 85%;" frameSpacing=0>
                     </iframe>
                 </div>
 
