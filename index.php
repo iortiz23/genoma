@@ -47,6 +47,7 @@ $IdProfile = $_SESSION['IdProfile'];
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
+    <input type="hidden" id="idProfile" value="<?php echo $IdProfile; ?>">
     <div class="wrapper">
 
         <!-- Preloader -->
@@ -114,8 +115,8 @@ $IdProfile = $_SESSION['IdProfile'];
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
             <a href="index3.html" class="brand-link">
-                
-                <img src="dist/img/duponte-icono.png"  alt="Duponte Logo" class="brand-image  elevation-3" />
+
+                <img src="dist/img/duponte-icono.png" alt="Duponte Logo" class="brand-image  elevation-3" />
             </a>
 
             <!-- Sidebar -->
@@ -148,7 +149,7 @@ $IdProfile = $_SESSION['IdProfile'];
                         <!-- Add icons to the links using the .nav-icon class
                                  with font-awesome or any other icon font library -->
 
-                        <li class="nav-item">
+                        <li class="nav-item" id="li-permisos-adminUsu">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-edit"></i>
                                 <p>
@@ -185,7 +186,7 @@ $IdProfile = $_SESSION['IdProfile'];
                             </ul>
                         </li>
 
-                        <li class="nav-item">
+                        <li class="nav-item" id="li-permisos-cargue">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-upload"></i>
                                 <p>
@@ -209,7 +210,7 @@ $IdProfile = $_SESSION['IdProfile'];
 
                             </ul>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item" id="li-permisos-busqueda">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-search"></i>
                                 <p>
@@ -328,7 +329,7 @@ $IdProfile = $_SESSION['IdProfile'];
     <script src="dist/js/demo.js"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="dist/js/pages/dashboard.js"></script>
-   
+
 </body>
 
 </html>

@@ -4,8 +4,7 @@
  * and open the template in the editor.
  */
 
-$(document).ready(function () {
-
+$(document).ready(function() {
     //charge selects
 
 
@@ -16,16 +15,13 @@ $(document).ready(function () {
         }),
         type: "post",
         dataType: "xml",
-        beforeSend: function () {
-            bootbox.alert({
-                message: 'Cargando ....',
-                title: "Cargando"
-            });
+        beforeSend: function() {
+
         },
-        success: function (xml) {
+        success: function(xml) {
             bootbox.hideAll();
-            $(xml).find("response").each(function () {
-                $(this).find("registro").each(function () {
+            $(xml).find("response").each(function() {
+                $(this).find("registro").each(function() {
                     if ($(this).text() != 'NOEXITOSO') {
                         $('#idprofile').html($(this).text());
                     } else {
@@ -44,16 +40,13 @@ $(document).ready(function () {
         }),
         type: "post",
         dataType: "xml",
-        beforeSend: function () {
-            bootbox.alert({
-                message: 'Cargando ....',
-                title: "Cargando"
-            });
+        beforeSend: function() {
+
         },
-        success: function (xml) {
+        success: function(xml) {
             bootbox.hideAll();
-            $(xml).find("response").each(function () {
-                $(this).find("registro").each(function () {
+            $(xml).find("response").each(function() {
+                $(this).find("registro").each(function() {
                     if ($(this).text() != 'NOEXITOSO') {
                         $('#idtypedocument').html($(this).text());
                     } else {
@@ -72,16 +65,13 @@ $(document).ready(function () {
         }),
         type: "post",
         dataType: "xml",
-        beforeSend: function () {
-            bootbox.alert({
-                message: 'Cargando ....',
-                title: "Cargando"
-            });
+        beforeSend: function() {
+
         },
-        success: function (xml) {
+        success: function(xml) {
             bootbox.hideAll();
-            $(xml).find("response").each(function () {
-                $(this).find("registro").each(function () {
+            $(xml).find("response").each(function() {
+                $(this).find("registro").each(function() {
                     if ($(this).text() != 'NOEXITOSO') {
                         $('#idclient').html($(this).text());
                     } else {
@@ -95,7 +85,7 @@ $(document).ready(function () {
 
 
     // metodo para guardar los  datos 
-    $("#guardar").click(function () {
+    $("#guardar").click(function() {
         if ($("#message1") || $("#message2") || $("#message3") || $("#message4") || $("#message5") || $("#message6") || $("#message7") || $("#message8") || $("#message9") || $("#message10") || $("#message11")) {
             if ($("#message1")) {
                 $("#message1").remove();
@@ -136,7 +126,7 @@ $(document).ready(function () {
 
         }
         if ($("#name").val() == "" || $("#document").val() == "" || $("#phone").val() == "" || $("#email").val() == "" || $("#pass").val() == "" || $("#pass2").val() == "" ||
-                $("#idtypedocument").val() == "-1" || $("#idprofile").val() == "-1" || $("#idclient").val() == "-1") {
+            $("#idtypedocument").val() == "-1" || $("#idprofile").val() == "-1" || $("#idclient").val() == "-1") {
             if ($("#name").val() == "") {
                 $("#name").attr('class', 'form-control is-invalid');
                 $('input[name=name]').after('<div id="message1"><p>El campo Nombre es obligatorio</p></div>');
@@ -202,21 +192,21 @@ $(document).ready(function () {
                             }),
                             type: "post",
                             dataType: "xml",
-                            beforeSend: function () {
+                            beforeSend: function() {
                                 bootbox.alert({
                                     message: 'Cargando ....',
                                     title: "Cargando"
                                 });
                             },
-                            success: function (xml) {
+                            success: function(xml) {
                                 bootbox.hideAll();
-                                $(xml).find("response").each(function () {
-                                    $(this).find("registro").each(function () {
+                                $(xml).find("response").each(function() {
+                                    $(this).find("registro").each(function() {
                                         if ($(this).text() != 'NOEXITOSO') {
                                             bootbox.alert({
                                                 message: 'Proceso de guardado  exitoso',
                                                 title: "Correcto",
-                                                callback: function () {
+                                                callback: function() {
                                                     window.location = './usuario.php';
                                                 }
                                             });
@@ -225,7 +215,7 @@ $(document).ready(function () {
                                             bootbox.alert({
                                                 message: 'No se  genero envio de forma correcta',
                                                 title: "Alerta",
-                                                callback: function () {
+                                                callback: function() {
                                                     window.location = './usuario.php';
                                                 }
                                             });
@@ -246,6 +236,7 @@ $(document).ready(function () {
 
     });
 });
+
 function isEmail(email) {
     var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
     return regex.test(email);
@@ -255,5 +246,3 @@ function isPass(pass) {
     var reg = /^(?=\w*\d)(?=\w*[a-zA-Z])\S{8,16}$/;
     return reg.test(pass);
 }
-
-
