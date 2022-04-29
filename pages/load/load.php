@@ -249,6 +249,7 @@ $IdProfile = $_SESSION['IdProfile'];
                 $("#inputFile").val("");
                 $("#fileLabel").html("Seleccione un archivo");
                 $("#btnUpload").show();
+                location.reload();
             });
             $("#modal-sm-loading").on('hidden.bs.modal', function() {
 

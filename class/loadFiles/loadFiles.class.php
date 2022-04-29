@@ -1,5 +1,6 @@
 <?php
-require '../../vendor/autoload.php';
+include($_SERVER['DOCUMENT_ROOT']."/genoma/vendor/autoload.php");
+//require '../vendor/autoload.php';
 
 //require_once('../../CapturaInformacion.class.php');
 //require_once('../DataBase.class.php');
