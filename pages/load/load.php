@@ -34,6 +34,7 @@ $IdProfile = $_SESSION['IdProfile'];
     <link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="../../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" href="../../plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+    <link rel="stylesheet" href="css/load.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
     <!-- jQuery -->
@@ -55,8 +56,8 @@ $IdProfile = $_SESSION['IdProfile'];
             </div>
             <div class="col-md-4">
                 <!-- general form elements -->
-                <div class="card card-primary">
-                    <div class="card-header">
+                <div class="card ">
+                    <div class="card-header card-color">
                         <h3 class="card-title">Cargar Variantes</h3>
                     </div>
                     <!-- /.card-header -->
@@ -89,7 +90,7 @@ $IdProfile = $_SESSION['IdProfile'];
 
                         <div class="card-footer">
                             <div class="input-group">
-                                <button type="button" id="btnUpload" class="btn btn-primary">Cargar</button>
+                                <button type="button" id="btnUpload" class="btn card-color">Cargar</button>
                                 <div class="input-group" id="divloading" style="display: none;">
                                     <img src="../../dist/img/loader.gif" style="width: 30px;" />&nbsp&nbsp
                                     <label style="color: #201C42;">Cargando la informaci&oacute;n...</label>
@@ -187,7 +188,7 @@ $IdProfile = $_SESSION['IdProfile'];
                     <p id="txtResult"></p>
                 </div>
                 <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-primary" id="btnVale">Vale</button>
+                    <button type="button" class="btn card-color" id="btnVale">Vale</button>
                 </div>
             </div>
             <!-- /.modal-content -->
