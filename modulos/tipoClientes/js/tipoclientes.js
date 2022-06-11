@@ -26,13 +26,8 @@ $(document).ready(function () {
         type: "post",
         dataType: "xml",
         beforeSend: function () {
-            bootbox.alert({
-                message: 'Cargando ....',
-                title: "Cargando"
-            });
         },
         success: function (xml) {
-            bootbox.hideAll();
             $(xml).find("response").each(function () {
                 $(this).find("registro").each(function () {
                     if ($(this).text() != 'NOEXITOSO') {
@@ -49,6 +44,15 @@ $(document).ready(function () {
                             title: "Alerta",
                             callback: function () {
                                 window.location = './tipoclientes.php';
+                            },
+                            buttons: {
+                                "success": {
+                                   label: "Ok",
+                                   className: "card-color",
+                                   callback: function () {
+                                    window.location = './tipoclientes.php';s
+                                   }
+                                }
                             }
                         });
                         return false;
@@ -70,13 +74,8 @@ function deleteTypeClient(id) {
         type: "post",
         dataType: "xml",
         beforeSend: function () {
-            bootbox.alert({
-                message: 'Cargando ....',
-                title: "Cargando"
-            });
         },
         success: function (xml) {
-            bootbox.hideAll();
             $(xml).find("response").each(function () {
                 $(this).find("registro").each(function () {
                     if ($(this).text() != 'NOEXITOSO') {
@@ -86,6 +85,15 @@ function deleteTypeClient(id) {
                                 title: "Alerta",
                             callback: function () {
                                 window.location = './tipoclientes.php';
+                            },
+                            buttons: {
+                                "success": {
+                                   label: "Ok",
+                                   className: "card-color",
+                                   callback: function () {
+                                    window.location = './tipoclientes.php';
+                                   }
+                                }
                             }
                             });
                             valor = 1;
@@ -97,6 +105,15 @@ function deleteTypeClient(id) {
                             title: "Alerta",
                             callback: function () {
                                 window.location = './tipoclientes.php';
+                            },
+                            buttons: {
+                                "success": {
+                                   label: "Ok",
+                                   className: "card-color",
+                                   callback: function () {
+                                    window.location = './tipoclientes.php';
+                                   }
+                                }
                             }
                         });
                         return false;
@@ -115,13 +132,8 @@ function deleteTypeClient(id) {
             type: "post",
             dataType: "xml",
             beforeSend: function () {
-                bootbox.alert({
-                    message: 'Cargando ....',
-                    title: "Cargando"
-                });
             },
             success: function (xml) {
-                bootbox.hideAll();
                 $(xml).find("response").each(function () {
                     $(this).find("registro").each(function () {
                         if ($(this).text() != 'NOEXITOSO') {
@@ -130,6 +142,15 @@ function deleteTypeClient(id) {
                                 title: "Alerta",
                             callback: function () {
                                 window.location = './tipoclientes.php';
+                            },
+                            buttons: {
+                                "success": {
+                                   label: "Ok",
+                                   className: "card-color",
+                                   callback: function () {
+                                    window.location = './tipoclientes.php';
+                                   }
+                                }
                             }
                             });
                         } else {
@@ -138,6 +159,15 @@ function deleteTypeClient(id) {
                                 title: "Alerta",
                             callback: function () {
                                 window.location = './tipoclientes.php';
+                            },
+                            buttons: {
+                                "success": {
+                                   label: "Ok",
+                                   className: "card-color",
+                                   callback: function () {
+                                    window.location = './tipoclientes.php';
+                                   }
+                                }
                             }
                             });
                             return false;
@@ -162,13 +192,8 @@ function deleteTypeClient(id) {
             type: "post",
             dataType: "xml",
             beforeSend: function () {
-                bootbox.alert({
-                    message: 'Cargando ....',
-                    title: "Cargando"
-                });
             },
             success: function (xml) {
-                bootbox.hideAll();
                 $(xml).find("response").each(function () {
                     $(this).find("registro").each(function () {
                         if ($(this).text() != 'NOEXITOSO') {
@@ -185,6 +210,15 @@ function deleteTypeClient(id) {
                                 title: "Alerta",
                             callback: function () {
                                 window.location = './tipoclientes.php';
+                            },
+                            buttons: {
+                                "success": {
+                                   label: "Ok",
+                                   className: "card-color",
+                                   callback: function () {
+                                    window.location = './tipoclientes.php';
+                                   }
+                                }
                             }
                             });
                             return false;
