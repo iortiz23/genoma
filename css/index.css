@@ -1,3 +1,5 @@
+
+
 nav.main-header.navbar.navbar-expand.navbar-white.navbar-light {
     background-color: #201C42 !important;
     color: white !important;
@@ -63,3 +65,8 @@ a.brand-link {
     background-color: #E50850 !important;
     border-radius: 30px !important; 
 }*/
+
+.nav-link:hover {
+    background-color: #E50850;
+    color: #fff;
+}
