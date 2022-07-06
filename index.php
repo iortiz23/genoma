@@ -243,7 +243,7 @@ $IdProfile = $_SESSION['IdProfile'];
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <img src="dist/img/duponte-icono.png" width="25%" />
+                            <img src="dist/img/duponte-icono2.png" width="25%" />
                         </div><!-- /.col -->
                     </div><!-- /.row -->
                 </div><!-- /.container-fluid -->

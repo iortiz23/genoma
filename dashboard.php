@@ -122,13 +122,13 @@
                                                         class="img-circle img-size-32 mr-2">
                                                     Some Product
                                                 </td>
-                                                <td>$13 USD</td>
+                                                <td>13 </td>
                                                 <td>
                                                     <small class="text-success mr-1">
                                                         <i class="fas fa-arrow-up"></i>
                                                         12%
                                                     </small>
-                                                    12,000 Sold
+                                                    12,000 
                                                 </td>
                                                 <td>
                                                     <a href="#" class="text-muted">
@@ -142,13 +142,13 @@
                                                         class="img-circle img-size-32 mr-2">
                                                     Another Product
                                                 </td>
-                                                <td>$29 USD</td>
+                                                <td>29 </td>
                                                 <td>
                                                     <small class="text-warning mr-1">
                                                         <i class="fas fa-arrow-down"></i>
                                                         0.5%
                                                     </small>
-                                                    123,234 Sold
+                                                    123,234 
                                                 </td>
                                                 <td>
                                                     <a href="#" class="text-muted">
@@ -162,13 +162,13 @@
                                                         class="img-circle img-size-32 mr-2">
                                                     Amazing Product
                                                 </td>
-                                                <td>$1,230 USD</td>
+                                                <td>1,230 </td>
                                                 <td>
                                                     <small class="text-danger mr-1">
                                                         <i class="fas fa-arrow-down"></i>
                                                         3%
                                                     </small>
-                                                    198 Sold
+                                                    198 
                                                 </td>
                                                 <td>
                                                     <a href="#" class="text-muted">
@@ -183,13 +183,13 @@
                                                     Perfect Item
                                                     <span class="badge bg-danger">NEW</span>
                                                 </td>
-                                                <td>$199 USD</td>
+                                                <td>199</td>
                                                 <td>
                                                     <small class="text-success mr-1">
                                                         <i class="fas fa-arrow-up"></i>
                                                         63%
                                                     </small>
-                                                    87 Sold
+                                                    87 
                                                 </td>
                                                 <td>
                                                     <a href="#" class="text-muted">

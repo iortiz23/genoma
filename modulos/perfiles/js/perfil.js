@@ -25,13 +25,8 @@ $(document).ready(function () {
         type: "post",
         dataType: "xml",
         beforeSend: function () {
-            bootbox.alert({
-                message: 'Cargando ....',
-                title: "Cargando"
-            });
         },
         success: function (xml) {
-            bootbox.hideAll();
             $(xml).find("response").each(function () {
                 $(this).find("registro").each(function () {
                     if ($(this).text() != 'NOEXITOSO') {
@@ -48,6 +43,13 @@ $(document).ready(function () {
                             title: "Alerta",
                             callback: function () {
                                 window.location = './perfil.php';
+                            },
+                            buttons: {
+                                "success": {
+                                   label: "Ok",
+                                   className: "card-color",
+                                   callback: function () {}
+                                }
                             }
                         });
                         return false;
@@ -69,13 +71,8 @@ function deletePerfil(id) {
         type: "post",
         dataType: "xml",
         beforeSend: function () {
-            bootbox.alert({
-                message: 'Cargando ....',
-                title: "Cargando"
-            });
         },
         success: function (xml) {
-            bootbox.hideAll();
             $(xml).find("response").each(function () {
                 $(this).find("registro").each(function () {
                     if ($(this).text() != 'NOEXITOSO') {
@@ -85,6 +82,13 @@ function deletePerfil(id) {
                                 title: "Alerta",
                             callback: function () {
                                 window.location = './perfil.php';
+                            },
+                            buttons: {
+                                "success": {
+                                   label: "Ok",
+                                   className: "card-color",
+                                   callback: function () {}
+                                }
                             }
                             });
                             valor = 1;
@@ -96,6 +100,13 @@ function deletePerfil(id) {
                             title: "Alerta",
                             callback: function () {
                                 window.location = './perfil.php';
+                            },
+                            buttons: {
+                                "success": {
+                                   label: "Ok",
+                                   className: "card-color",
+                                   callback: function () {}
+                                }
                             }
                         });
                         return false;
@@ -114,13 +125,8 @@ function deletePerfil(id) {
             type: "post",
             dataType: "xml",
             beforeSend: function () {
-                bootbox.alert({
-                    message: 'Cargando ....',
-                    title: "Cargando"
-                });
             },
             success: function (xml) {
-                bootbox.hideAll();
                 $(xml).find("response").each(function () {
                     $(this).find("registro").each(function () {
                         if ($(this).text() != 'NOEXITOSO') {
@@ -137,6 +143,13 @@ function deletePerfil(id) {
                                 title: "Alerta",
                             callback: function () {
                                 window.location = './perfil.php';
+                            },
+                            buttons: {
+                                "success": {
+                                   label: "Ok",
+                                   className: "card-color",
+                                   callback: function () {}
+                                }
                             }
                             });
                             return false;
@@ -161,13 +174,8 @@ function deletePerfil(id) {
             type: "post",
             dataType: "xml",
             beforeSend: function () {
-                bootbox.alert({
-                    message: 'Cargando ....',
-                    title: "Cargando"
-                });
             },
             success: function (xml) {
-                bootbox.hideAll();
                 $(xml).find("response").each(function () {
                     $(this).find("registro").each(function () {
                         if ($(this).text() != 'NOEXITOSO') {
@@ -184,6 +192,13 @@ function deletePerfil(id) {
                                 title: "Alerta",
                             callback: function () {
                                 window.location = './perfil.php';
+                            },
+                             buttons: {
+                                "success": {
+                                   label: "Ok",
+                                   className: "card-color",
+                                   callback: function () {}
+                                }
                             }
                             });
                             return false;
