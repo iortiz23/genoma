@@ -5,13 +5,22 @@
  */
 
 $(document).ready(function (){
-    $('#tbDocumentos').dataTable({
-     "aaSorting":[]   
-    });
+    
+    $('#tbDocumentos').dataTable( {
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
+        },
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
+    } );
+    $(".paginate_page").text("Página");
+    $(".paginate_of").text($(".paginate_of").text().replace("of","de"));
     $.ajax({
         url:"../../controller/CapturaInformacionController.php",
         data:({
-            'metodo':'getUser'
+            'metodo':'getBusqueda'
         }),
         type:"post",
         dataType:"xml",
@@ -23,19 +32,19 @@ $(document).ready(function (){
                 $(this).find("registro").each(function(){
                  if($(this).text() != 'NOEXITOSO'){
                      $('#tbDocumentos').dataTable().fnAddData([
-                         $(this).attr('Id'),
-                         $(this).attr('Name'),
-                         $(this).attr('Document'),
-                         $(this).attr('State'),
-                         '<a type="button" class="btn bg-gradient-warning btn-sm-1" href="./FormUsuarios.php?id='+$(this).attr('Id')+'" ><i class="nav-icon fas fa-edit"></i></a>\n\
-                          <button type="button" class="btn  bg-gradient-danger btn-sm-1" onclick="deleteUser('+$(this).attr('Id')+')"><i class="nav-icon fas fa-trash" ></i></button>',
+                         $(this).attr('IdLoad'),
+                         $(this).attr('NameLoad'),
+                         $(this).attr('Description'),
+                         $(this).attr('DateCreate'),
+                         $(this).attr('State')=='1'?'Activo':'Inactivo',
+                         '<a type="button" class="btn bg-gradient-warning btn-sm-1" href="./dashboardbusqueda.php?id='+$(this).attr('IdLoad')+'" ><i class="nav-icon fas fa-edit"></i></a>',
                      ]);
                  }else{
                      bootbox.alert({
                          message:'',
                          title:"Alerta",
                             callback: function () {
-                                window.location = './usuario.php';
+                                window.location = './busqueda.php';
                             },
                             buttons: {
                                 "success": {

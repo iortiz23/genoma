@@ -22,10 +22,12 @@
         <link rel="stylesheet" href="../../plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
         <!-- Theme style -->
         <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+        
+        <link rel="stylesheet" href="./css/busqueda.css">
         <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.min.js" integrity="sha512-RdSPYh1WA6BF0RhpisYJVYkOyTzK4HwofJ3Q7ivt/jkpW6Vc8AurL1R+4AUcvn9IwEKAPm/fk7qFZW3OuiUDeg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-        <script src="./js/usuario.js"></script>
+        <script src="./js/busqueda.js"></script>
     </head>
     <body class="container" style="background-color: #f4f6f9;">
         <div class="row">
@@ -39,7 +41,11 @@
                             <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        
+                                    <div class="row">
+                                            <div class="col-md-10"><h3 class="card-title">Busqueda</h3></div>
+                                            
+                                            <!-- comment -->
+                                        </div>
                                     </div>
                                     <!-- /.card-header -->
                                     <div class="card-body">
@@ -47,10 +53,11 @@
                                             <thead>
                                                 <tr>
                                                     <th>#</th>
-                                                    <th>Documento</th>
-                                                    <th>Nombre</th>
+                                                    <th>Genoma</th>
+                                                    <th>Descripcion</th>
+                                                    <th>Fecha </th>
+                                                    <th>Estado </th>
                                                     <th>Reporte</th>
-                                                    <th>Accion</th>
                                                 </tr>
                                             </thead>
                                             <tbody>                  

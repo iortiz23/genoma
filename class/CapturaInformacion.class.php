@@ -168,6 +168,20 @@ class CapturaInformacion
         // print_r($return);
         return $return;
     }
+    public function getBusquedas() {
+        $sql = " SELECT * FROM tb_load  ";
+        $data = $this->database->queryArray(utf8_decode($sql));
+
+        if (sizeof($data) > 0) {
+
+            $return = $data;
+        } else {
+
+            $return = null;
+        }
+        // print_r($return);
+        return $return;
+    }
 
     public function getUserById($id)
     {

@@ -12,6 +12,9 @@ switch ($_REQUEST['metodo']) {
     case 'getUser':
         XML::xmlResponse(getUser());
         break;
+    case 'getBusqueda':
+        XML::xmlResponse(getBusqueda());
+        break;
     case 'getPerfil':
         XML::xmlResponse(getPerfil());
         break;
@@ -158,6 +161,31 @@ function getUser()
                         Name='" . utf8_encode(trim($data[$i]['Name'])) . "'                    
                         Document='" . utf8_encode(trim($data[$i]['Document'])) . "'                                          
                         Type_client='" . utf8_encode(trim($data[$i]['type_client'])) . "'                                          
+                        ></registro>";
+            } else {
+                $xml = "<registro>NOEXITOSO</registro>";
+            }
+        }
+    } else {
+        $xml = "<registro>NOEXITOSO</registro>";
+    }
+    return $xml;
+}
+
+function getBusqueda()
+{
+    $xml = "";
+    $captura = new CapturaInformacion();
+    $data = $captura->getBusquedas();
+    if (count($data) > 0) {
+        for ($i = 0; $i < count($data); $i++) {
+            if (sizeof($data) > 0) {
+                $xml .= "<registro                    
+                        IdLoad='" . utf8_encode(trim($data[$i]['IdLoad'])) . "'                    
+                        NameLoad='" . utf8_encode(trim($data[$i]['NameLoad'])) . "'                    
+                        Description='" . utf8_encode(trim($data[$i]['Description'])) . "'                                          
+                        DateCreate='" . utf8_encode(trim($data[$i]['DateCreate'])) . "'
+                        State='" . utf8_encode(trim($data[$i]['State'])) . "'                                           
                         ></registro>";
             } else {
                 $xml = "<registro>NOEXITOSO</registro>";
