@@ -15,6 +15,30 @@ switch ($_REQUEST['metodo']) {
     case 'getBusqueda':
         XML::xmlResponse(getBusqueda());
         break;
+    case 'getGen':
+         XML::xmlResponse(getGen($_REQUEST['id']));
+        break;
+    case 'getSNP1':
+        XML::xmlResponse(getSNP1($_REQUEST['id']));
+        break;
+    case 'getProteina1':
+        XML::xmlResponse(getProteina1($_REQUEST['id']));
+        break;
+    case 'getTranscripto1':
+        XML::xmlResponse(getTranscripto1($_REQUEST['id']));
+        break;
+    case 'getGQ1':
+        XML::xmlResponse(getGQ1($_REQUEST['id']));
+        break;
+    case 'getACMG1':
+        XML::xmlResponse(getACMG1($_REQUEST['id']));
+        break;
+    case 'getEfecto1':
+        XML::xmlResponse(getEfecto1($_REQUEST['id']));
+        break;
+    case 'getCigosidad1':
+        XML::xmlResponse(getCigosidad1($_REQUEST['id']));
+        break;
     case 'getPerfil':
         XML::xmlResponse(getPerfil());
         break;
@@ -176,7 +200,7 @@ function getBusqueda()
 {
     $xml = "";
     $captura = new CapturaInformacion();
-    $data = $captura->getBusquedas();
+    $data = $captura->getBusqueda();
     if (count($data) > 0) {
         for ($i = 0; $i < count($data); $i++) {
             if (sizeof($data) > 0) {
@@ -186,6 +210,185 @@ function getBusqueda()
                         Description='" . utf8_encode(trim($data[$i]['Description'])) . "'                                          
                         DateCreate='" . utf8_encode(trim($data[$i]['DateCreate'])) . "'
                         State='" . utf8_encode(trim($data[$i]['State'])) . "'                                           
+                        ></registro>";
+            } else {
+                $xml = "<registro>NOEXITOSO</registro>";
+            }
+        }
+    } else {
+        $xml = "<registro>NOEXITOSO</registro>";
+    }
+    return $xml;
+}
+
+function getGen($id)
+{
+    $xml = "";
+    $captura = new CapturaInformacion();
+    
+    $data = $captura->getGenoma($id);    
+    if (count($data) > 0) {
+        for ($i = 0; $i < count($data); $i++) {
+            if (sizeof($data) > 0) {
+                $xml .= "<registro                                 
+                Num_Gen='" . utf8_encode(trim($data[$i]['Num_Gen'])) . "'                                                               
+                        ></registro>";
+            } else {
+                $xml = "<registro>NOEXITOSO</registro>";
+            }
+        }
+    } else {
+        $xml = "<registro>NOEXITOSO</registro>";
+    }
+    return $xml;
+}
+
+function getSNP1($id)
+{
+    $xml = "";
+    $captura = new CapturaInformacion();
+    
+    $data = $captura->getSNP($id);    
+    if (count($data) > 0) {
+        for ($i = 0; $i < count($data); $i++) {
+            if (sizeof($data) > 0) {
+                $xml .= "<registro                                    
+                Num_IDdbSNP='" . utf8_encode(trim($data[$i]['Num_IDdbSNP'])) . "'                                                               
+                        ></registro>";
+            } else {
+                $xml = "<registro>NOEXITOSO</registro>";
+            }
+        }
+    } else {
+        $xml = "<registro>NOEXITOSO</registro>";
+    }
+    return $xml;
+}
+
+function getProteina1($id)
+{
+    $xml = "";
+    $captura = new CapturaInformacion();
+    
+    $data = $captura->getProteina($id);    
+    if (count($data) > 0) {
+        for ($i = 0; $i < count($data); $i++) {
+            if (sizeof($data) > 0) {
+                $xml .= "<registro  
+                Num_VarianteProteina='" . utf8_encode(trim($data[$i]['Num_VarianteProteina'])) . "'                                                               
+                        ></registro>";
+            } else {
+                $xml = "<registro>NOEXITOSO</registro>";
+            }
+        }
+    } else {
+        $xml = "<registro>NOEXITOSO</registro>";
+    }
+    return $xml;
+}
+
+function getTranscripto1($id)
+{
+    $xml = "";
+    $captura = new CapturaInformacion();
+    
+    $data = $captura->getTranscripto($id);    
+    if (count($data) > 0) {
+        for ($i = 0; $i < count($data); $i++) {
+            if (sizeof($data) > 0) {
+                $xml .= "<registro                                       
+                VarianteTranscripto1='" . utf8_encode(trim($data[$i]['VarianteTranscripto1'])) . "'                                                               
+                        ></registro>";
+            } else {
+                $xml = "<registro>NOEXITOSO</registro>";
+            }
+        }
+    } else {
+        $xml = "<registro>NOEXITOSO</registro>";
+    }
+    return $xml;
+}
+
+function getGQ1($id)
+{
+    $xml = "";
+    $captura = new CapturaInformacion();
+    
+    $data = $captura->getGQ($id);    
+    if (count($data) > 0) {
+        for ($i = 0; $i < count($data); $i++) {
+            if (sizeof($data) > 0) {
+                $xml .= "<registro                        
+                Num_GQ='" . utf8_encode(trim($data[$i]['Num_GQ'])) . "'                                                               
+                        ></registro>";
+            } else {
+                $xml = "<registro>NOEXITOSO</registro>";
+            }
+        }
+    } else {
+        $xml = "<registro>NOEXITOSO</registro>";
+    }
+    return $xml;
+}
+
+function getCigosidad1($id)
+{
+    $xml = "";
+    $captura = new CapturaInformacion();
+    
+    $data = $captura->getCigosidad($id);    
+    if (count($data) > 0) {
+        for ($i = 0; $i < count($data); $i++) {
+            if (sizeof($data) > 0) {
+                $xml .= "<registro                    
+                Cigosidad='" . utf8_encode(trim($data[$i]['Cigosidad'])) . "'                    
+                Cigosidad1='" . utf8_encode(trim($data[$i]['Cigosidad1'])) . "'                                                               
+                        ></registro>";
+            } else {
+                $xml = "<registro>NOEXITOSO</registro>";
+            }
+        }
+    } else {
+        $xml = "<registro>NOEXITOSO</registro>";
+    }
+    return $xml;
+}
+
+function getACMG1($id)
+{
+    $xml = "";
+    $captura = new CapturaInformacion();
+    
+    $data = $captura->getACMG($id);    
+    if (count($data) > 0) {
+        for ($i = 0; $i < count($data); $i++) {
+            if (sizeof($data) > 0) {
+                $xml .= "<registro                    
+                ACMG='" . utf8_encode(trim($data[$i]['ACMG'])) . "'                    
+                Num_ACMG='" . utf8_encode(trim($data[$i]['Num_ACMG'])) . "'                                                               
+                        ></registro>";
+            } else {
+                $xml = "<registro>NOEXITOSO</registro>";
+            }
+        }
+    } else {
+        $xml = "<registro>NOEXITOSO</registro>";
+    }
+    return $xml;
+}
+
+function getEfecto1($id)
+{
+    $xml = "";
+    $captura = new CapturaInformacion();
+    
+    $data = $captura->getEfecto($id);    
+    if (count($data) > 0) {
+        for ($i = 0; $i < count($data); $i++) {
+            if (sizeof($data) > 0) {
+                $xml .= "<registro                    
+                Efect='" . utf8_encode(trim($data[$i]['Efect'])) . "'                    
+                Num_Efect='" . utf8_encode(trim($data[$i]['Num_Efect'])) . "'                                                               
                         ></registro>";
             } else {
                 $xml = "<registro>NOEXITOSO</registro>";

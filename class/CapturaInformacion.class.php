@@ -168,8 +168,176 @@ class CapturaInformacion
         // print_r($return);
         return $return;
     }
-    public function getBusquedas() {
-        $sql = " SELECT * FROM tb_load  ";
+    public function getBusqueda() {
+        $sql = " SELECT * FROM tb_load where State=1  ";
+        $data = $this->database->queryArray(utf8_decode($sql));
+
+        if (sizeof($data) > 0) {
+
+            $return = $data;
+        } else {
+
+            $return = null;
+        }
+        // print_r($return);
+        return $return;
+    }
+
+    public function getGenoma($id) {
+        $sql = "SELECT  COUNT(DISTINCT(dlv.Gen)) AS Num_Gen  FROM tb_dataloadvariants dlv WHERE dlv.IdLoad =".$id."   ";
+        $data = $this->database->queryArray(utf8_decode($sql));
+
+        if (sizeof($data) > 0) {
+
+            $return = $data;
+        } else {
+
+            $return = null;
+        }
+        // print_r($return);
+        return $return;
+    }
+    public function getCigosidad($id) {
+        $sql ="SELECT dlv.Cigosidad AS Cigosidad, COUNT(dlv.Cigosidad) AS Cigosidad1  FROM tb_dataloadvariants dlv WHERE dlv.IdLoad =".$id." GROUP by dlv.Cigosidad";
+        $data = $this->database->queryArray(utf8_decode($sql));
+
+        if (sizeof($data) > 0) {
+
+            $return = $data;
+        } else {
+
+            $return = null;
+        }
+        // print_r($return);
+        return $return;
+    }
+    public function getSNP($id) {
+        $sql ="SELECT  COUNT(dlv.IDdbSNP) AS Num_IDdbSNP FROM tb_dataloadvariants dlv WHERE dlv.IdLoad = ".$id." ";
+        $data = $this->database->queryArray(utf8_decode($sql));
+
+        if (sizeof($data) > 0) {
+
+            $return = $data;
+        } else {
+
+            $return = null;
+        }
+        // print_r($return);
+        return $return;
+    }
+
+    public function getProteina($id) {
+        $sql ="SELECT   COUNT(dlv.VarianteProteina) AS Num_VarianteProteina  FROM tb_dataloadvariants dlv WHERE dlv.IdLoad = ".$id."  ";
+        $data = $this->database->queryArray(utf8_decode($sql));
+
+        if (sizeof($data) > 0) {
+
+            $return = $data;
+        } else {
+
+            $return = null;
+        }
+        // print_r($return);
+        return $return;
+    }
+
+    public function getTranscripto($id) {
+        $sql ="SELECT   COUNT(dlv.VarianteTranscripto) AS VarianteTranscripto1   FROM tb_dataloadvariants dlv WHERE dlv.IdLoad = ".$id."  ";
+        $data = $this->database->queryArray(utf8_decode($sql));
+
+        if (sizeof($data) > 0) {
+
+            $return = $data;
+        } else {
+
+            $return = null;
+        }
+        // print_r($return);
+        return $return;
+    }
+
+    public function getGQ($id) {
+        $sql ="SELECT  COUNT(dlv.GQ) AS Num_GQ    FROM tb_dataloadvariants dlv WHERE dlv.IdLoad = ".$id." ";
+        $data = $this->database->queryArray(utf8_decode($sql));
+
+        if (sizeof($data) > 0) {
+
+            $return = $data;
+        } else {
+
+            $return = null;
+        }
+        // print_r($return);
+        return $return;
+    }
+
+    public function getACMG($id) {
+        $sql ="SELECT 
+        'Benign' AS ACMG, COUNT(dlv.ACMG) AS Num_ACMG        
+        FROM tb_dataloadvariants dlv
+        WHERE dlv.IdLoad = ".$id."
+        AND dlv.ACMG LIKE 'Benign%'
+        UNION
+        SELECT 
+        'Likely_pathogenic' AS ACMG, COUNT(dlv.ACMG) AS Num_ACMG        
+        FROM tb_dataloadvariants dlv
+        WHERE dlv.IdLoad = ".$id."
+        AND dlv.ACMG LIKE 'Likely_pathogenic%'
+        UNION
+        SELECT 
+        'Uncertain_significance' AS ACMG, COUNT(dlv.ACMG) AS Num_ACMG        
+        FROM tb_dataloadvariants dlv
+        WHERE dlv.IdLoad = ".$id."
+        AND dlv.ACMG LIKE 'Uncertain_significance%'
+        UNION
+        SELECT 
+        'No reportadas' AS ACMG, COUNT(dlv.ACMG) AS Num_ACMG        
+        FROM tb_dataloadvariants dlv
+        WHERE dlv.IdLoad = ".$id."
+        AND TRIM(dlv.ACMG) = ''";
+        $data = $this->database->queryArray(utf8_decode($sql));
+
+        if (sizeof($data) > 0) {
+
+            $return = $data;
+        } else {
+
+            $return = null;
+        }
+        // print_r($return);
+        return $return;
+    }
+
+    public function getEfecto($id) {
+        $sql ="SELECT 
+        '3 prime utr variant' AS Efect, COUNT(dlv.Efect) AS Num_Efect        
+        FROM tb_dataloadvariants dlv
+        WHERE dlv.IdLoad = ".$id."
+        AND dlv.Efect LIKE '3 prime utr variant'
+        UNION
+        SELECT 
+        '5 prime utr variant' AS Efect, COUNT(dlv.Efect) AS Num_Efect        
+        FROM tb_dataloadvariants dlv
+        WHERE dlv.IdLoad = ".$id."
+        AND dlv.Efect LIKE '5 prime utr variant'
+        UNION
+        SELECT 
+        'intragenic variant' AS Efect, COUNT(dlv.Efect) AS Num_Efect        
+        FROM tb_dataloadvariants dlv
+        WHERE dlv.IdLoad = ".$id."
+        AND dlv.Efect LIKE 'intragenic variant'
+        UNION
+        SELECT 
+        'splice' AS Efect, COUNT(dlv.Efect) AS Num_Efect        
+        FROM tb_dataloadvariants dlv
+        WHERE dlv.IdLoad = ".$id."
+        AND dlv.Efect LIKE 'splice%'
+        UNION
+        SELECT 
+        'No reportadas' AS Efect, COUNT(dlv.Efect) AS Num_Efect        
+        FROM tb_dataloadvariants dlv
+        WHERE dlv.IdLoad = ".$id."
+        AND TRIM(dlv.Efect) = ''";
         $data = $this->database->queryArray(utf8_decode($sql));
 
         if (sizeof($data) > 0) {
