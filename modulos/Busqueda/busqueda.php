@@ -60,7 +60,7 @@
                                                     <th>Reporte</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>                  
+                                            <tbody>                                                             
                                             </tbody>
 
                                         </table>
