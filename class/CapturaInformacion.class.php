@@ -399,6 +399,38 @@ class CapturaInformacion
         return $return;
     }
 
+    public function getTypeIllensById($id)
+    {
+        $sql = " SELECT  * FROM tb_typeillness WHERE IdTypeIllnes=" . $id . " and  State=1 LIMIT 1";
+        $data = $this->database->queryArray(utf8_decode($sql));
+
+        if (sizeof($data) > 0) {
+
+            $return = $data;
+        } else {
+
+            $return = null;
+        }
+        // print_r($return);
+        return $return;
+    }
+
+    public function getTypeMedicineById($id)
+    {
+        $sql = " SELECT  * FROM tb_typemedicine WHERE IdTypeMedicine=" . $id . " and  State=1 LIMIT 1";
+        $data = $this->database->queryArray(utf8_decode($sql));
+
+        if (sizeof($data) > 0) {
+
+            $return = $data;
+        } else {
+
+            $return = null;
+        }
+        // print_r($return);
+        return $return;
+    }
+
     public function getProfileById($id)
     {
         $sql = " SELECT  * FROM tb_profile WHERE IdProfile=" . $id . " and  State=1 LIMIT 1";
@@ -492,6 +524,67 @@ class CapturaInformacion
         return $return;
     }
 
+    public function getTipoClienteId($id)
+    {
+        $sql = " SELECT * FROM tb_typeclient where idTypeClient=".$id."";
+        $data = $this->database->queryArray(utf8_decode($sql));
+        $htmlOption = "";
+        if (sizeof($data) > 0) {
+            for ($i = 0; $i < count($data); $i++) {
+                if (sizeof($data) > 0) {
+                    $htmlOption .= "<option value=" . $data[$i]['idTypeClient'] . " selected>" . $data[$i]['Description'] . "</option>";
+                }
+            }
+            $return = $htmlOption;
+        } else {
+
+            $return = null;
+        }
+        // print_r($return);
+        return $return;
+    }
+
+    public function getTipoDocumentoId($id)
+    {
+        $sql = " SELECT * FROM tb_typedocument where IdTypeDocument=".$id."";
+        $data = $this->database->queryArray(utf8_decode($sql));
+        $htmlOption = "";
+        if (sizeof($data) > 0) {
+            for ($i = 0; $i < count($data); $i++) {
+                if (sizeof($data) > 0) {
+                    $htmlOption .= "<option value=" . $data[$i]['IdTypeDocument'] . " selected>" . $data[$i]['Description'] . "</option>";
+                }
+            }
+            $return = $htmlOption;
+        } else {
+
+            $return = null;
+        }
+        // print_r($return);
+        return $return;
+    }
+
+    public function getPerfilId($id)
+    {
+        $sql = " SELECT * FROM tb_profile where IdProfile=".$id."";
+        $data = $this->database->queryArray(utf8_decode($sql));
+        $htmlOption = "";
+        if (sizeof($data) > 0) {
+            for ($i = 0; $i < count($data); $i++) {
+                if (sizeof($data) > 0) {
+                    $htmlOption .= "<option value=" . $data[$i]['IdProfile'] . " selected>" . $data[$i]['Description'] . "</option>";
+                }
+            }
+            $return = $htmlOption;
+        } else {
+
+            $return = null;
+        }
+        // print_r($return);
+        return $return;
+    }
+
+
     public function getTiposDocumento()
     {
         $sql = " SELECT * FROM tb_typedocument";
@@ -507,6 +600,38 @@ class CapturaInformacion
         // print_r($return);
         return $return;
     }
+    public function getTiposEnfermedad()
+    {
+        $sql = " SELECT * FROM tb_typeillness";
+        $data = $this->database->queryArray(utf8_decode($sql));
+
+        if (sizeof($data) > 0) {
+
+            $return = $data;
+        } else {
+
+            $return = null;
+        }
+        // print_r($return);
+        return $return;
+    }
+
+    public function getTiposMedicina()
+    {
+        $sql = "SELECT * FROM tb_typemedicine";
+        $data = $this->database->queryArray(utf8_decode($sql));
+
+        if (sizeof($data) > 0) {
+
+            $return = $data;
+        } else {
+
+            $return = null;
+        }
+        // print_r($return);
+        return $return;
+    }
+
 
     public function getUsuarios1($id)
     {
@@ -545,6 +670,24 @@ class CapturaInformacion
     public function eliminarTiposDocumento($id)
     {
         $sql = " DELETE FROM tb_typedocument WHERE IdTypeDocument=" . $id . "  and State=1";
+        $data = $this->database->nonReturnQuery(utf8_decode($sql));
+
+        // print_r($return);
+        return 1;
+    }
+
+    public function eliminarTiposEnfermedad($id)
+    {
+        $sql = " DELETE FROM tb_typeillness WHERE IdTypeIllnes=" . $id . "  and State=1";
+        $data = $this->database->nonReturnQuery(utf8_decode($sql));
+
+        // print_r($return);
+        return 1;
+    }
+
+    public function eliminarTiposMedicina($id)
+    {
+        $sql = " DELETE FROM tb_typemedicine WHERE IdTypeMedicine=" . $id . "  and State=1";
         $data = $this->database->nonReturnQuery(utf8_decode($sql));
 
         // print_r($return);
@@ -788,6 +931,84 @@ class CapturaInformacion
             }
         } else {
             $sql = "INSERT INTO tb_typedocument
+           (Description           
+           ,State
+           ,DateCreate)
+     VALUES
+           ('" . $Descripcion . "'           
+           ,'" . $Status . "'
+           ,now())";
+            $data = $this->database->nonReturnQuery($sql);
+        }
+
+        return 1;
+    }
+
+    public function setTiposEnfermedad($Descripcion, $Status, $Id)
+    {
+        if ($Id != "") {
+            $select = "SELECT  * FROM tb_typeillness  WHERE idTypeIllnes=" . $Id . " LIMIT 1";
+            $data = $this->database->QueryArray($select);
+            if (sizeof($data) > 0) {
+                $UPDATE = "UPDATE tb_typeillness
+                        SET Description = '" . $Descripcion . "'
+                           ,State = " . $Status . "
+                           ,DateCreate=now()
+                      WHERE IdTypeIllnes=" . $data[0]['idTypeIllnes'] . "";
+                $dataupdate = $this->database->nonReturnQuery($UPDATE);
+            } else {
+
+                $sql = "INSERT INTO tb_typeillness
+           (Description           
+           ,State
+           ,DateCreate)
+     VALUES
+           ('" . $Descripcion . "'           
+           ,'" . $Status . "'
+           ,now())";
+                $data = $this->database->nonReturnQuery($sql);
+            }
+        } else {
+            $sql = "INSERT INTO tb_typeillness
+           (Description           
+           ,State
+           ,DateCreate)
+     VALUES
+           ('" . $Descripcion . "'           
+           ,'" . $Status . "'
+           ,now())";
+            $data = $this->database->nonReturnQuery($sql);
+        }
+
+        return 1;
+    }
+
+    public function setTiposMedicamento($Descripcion, $Status, $Id)
+    {
+        if ($Id != "") {
+            $select = "SELECT  * FROM tb_typemedicine  WHERE idTypeMedicine=" . $Id . " LIMIT 1";
+            $data = $this->database->QueryArray($select);
+            if (sizeof($data) > 0) {
+                $UPDATE = "UPDATE tb_typemedicine
+                        SET Description = '" . $Descripcion . "'
+                           ,State = " . $Status . "
+                           ,DateCreate=now()
+                      WHERE idTypeMedicine=" . $data[0]['idTypeMedicine'] . "";
+                $dataupdate = $this->database->nonReturnQuery($UPDATE);
+            } else {
+
+                $sql = "INSERT INTO tb_typemedicine
+           (Description           
+           ,State
+           ,DateCreate)
+     VALUES
+           ('" . $Descripcion . "'           
+           ,'" . $Status . "'
+           ,now())";
+                $data = $this->database->nonReturnQuery($sql);
+            }
+        } else {
+            $sql = "INSERT INTO tb_typemedicine
            (Description           
            ,State
            ,DateCreate)

@@ -9,7 +9,7 @@ session_start();
 $result = null;
 $modulo = new CapturaInformacion();
 if (isset($_REQUEST['id'])) {
-    $result = $modulo->getTypeClientById($_REQUEST['id']);
+    $result = $modulo->getTypeIllensById($_REQUEST['id']);
 } else {
     $result = null;
 }
@@ -19,7 +19,7 @@ if (isset($_REQUEST['id'])) {
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Usuarios</title>
+        <title>Tipo Enfermedad</title>
 
         <!-- Google Font: Source Sans Pro -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -27,18 +27,18 @@ if (isset($_REQUEST['id'])) {
         <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
         <!-- Theme style -->
         <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
-        <link rel="stylesheet" href="./css/tipoclientes.css">
+        <link rel="stylesheet" href="./css/tipoenfermedad.css">
         <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.min.js" integrity="sha512-RdSPYh1WA6BF0RhpisYJVYkOyTzK4HwofJ3Q7ivt/jkpW6Vc8AurL1R+4AUcvn9IwEKAPm/fk7qFZW3OuiUDeg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-        <script src="./js/FormTipoClientes.js"></script>
+        <script src="./js/FormTipoenfermedad.js"></script>
     </head>
     <body class="container" style="background-color: #f4f6f9;">
         <div class="col-md-12"> 
             <!-- general form elements disabled -->
             <div class="card card-warning">
                 <div class="card-header">
-                    <h3 class="card-title">Tipo de cliente</h3>
+                    <h3 class="card-title">Tipo de Enfermedad</h3>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
@@ -49,7 +49,7 @@ if (isset($_REQUEST['id'])) {
                                 <!-- text input -->
                                 <div class="form-group">
                                     <label>Nombre</label>
-                                     <input type="hidden" name="id" id="id" value="<?php echo isset($result[0]['idTypeClient'])?$result[0]['idTypeClient']:''; ?>"/>
+                                     <input type="hidden" name="id" id="id" value="<?php echo isset($result[0]['idTypeIllnes'])?$result[0]['idTypeIllnes']:''; ?>"/>
                                     <input type="text" id="description" name="description"  maxlength="64" class="form-control" data-req="requerido" placeholder="Ej. Pedro" value="<?php echo isset($result[0]['Description']) ? $result[0]['Description'] : ''; ?>">
                                 </div>
                             </div>
@@ -81,7 +81,12 @@ if (isset($_REQUEST['id'])) {
             </div>
         </div>
         <!-- /.content-wrapper -->
-        
+        <footer class="main-footer">
+            <div class="float-right d-none d-sm-block">
+                <b>Version</b> 3.2.0
+            </div>
+            <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+        </footer>
 
         <!-- Control Sidebar -->
         <aside class="control-sidebar control-sidebar-dark">

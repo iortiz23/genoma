@@ -7,7 +7,7 @@
 $(document).ready(function () {
 
 
-    // metodo para guardar los  datos 
+     // metodo para guardar los  datos 
     $("#guardar").click(function () {
         if ($("#message1")) {
             if ($("#message1")) {
@@ -24,10 +24,10 @@ $(document).ready(function () {
             $.ajax({
                 url: "../../controller/CapturaInformacionController.php",
                 data: ({
-                    'metodo': 'setTipoDocumento',
+                    'metodo': 'setTipoMedicamento',
                     'Description': $("#description").val(),
-                    'Status': ($('#status').prop('checked')) ? 1 : 0,
-                    'Id': $("#id").val(),
+                    'Status': ($('#status').prop('checked'))?1:0,
+                    'Id':$("#id").val(),
                 }),
                 type: "post",
                 dataType: "xml",
@@ -40,27 +40,27 @@ $(document).ready(function () {
                                 bootbox.alert({
                                     message: 'Proceso de guardado  exitoso',
                                     title: "Correcto",
-                                    callback: function () {
-                                        window.location = './tipodocumentos.php';
-                                    }
+                            callback: function () {
+                                window.location = './tipomedicamento.php';
+                            }
                                 });
                                 return true;
                             } else {
                                 bootbox.alert({
                                     message: 'No se  genero envio de forma correcta',
                                     title: "Alerta",
-                                    callback: function () {
-                                        window.location = './tipodocumentos.php';
-                                    },
-                                    buttons: {
-                                        "success": {
-                                            label: "Ok",
-                                            className: "card-color",
-                                            callback: function () {
-                                                window.location = './tipodocumentos.php';
-                                            }
-                                        }
-                                    }
+                            callback: function () {
+                                window.location = './tipomedicamento.php';
+                            },
+                            buttons: {
+                                "success": {
+                                   label: "Ok",
+                                   className: "card-color",
+                                   callback: function () {
+                                    window.location = './tipomedicamento.php';
+                                   }
+                                }
+                            }
                                 });
                                 return false;
                             }

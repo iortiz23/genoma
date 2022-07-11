@@ -36,12 +36,12 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">Dashboard v3</h1>
+                            <h1 class="m-0">Dashboard Cargues</h1>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">Dashboard v3</li>
+                                <li class="breadcrumb-item active">Dashboard </li>
                             </ol>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
@@ -95,7 +95,7 @@
 
                             <div class="card">
                                 <div class="card-header border-0">
-                                    <h3 class="card-title">Products</h3>
+                                    <h3 class="card-title">Cargues</h3>
                                     <div class="card-tools">
                                         <a href="#" class="btn btn-tool btn-sm">
                                             <i class="fas fa-download"></i>

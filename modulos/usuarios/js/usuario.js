@@ -69,7 +69,7 @@ function deleteUser(id) {
                                 window.location = './usuario.php';
                             },
                             buttons: {
-                                "success": {
+                                "ok": {
                                    label: "Ok",
                                    className: "card-color",
                                    callback: function () {}
@@ -84,7 +84,7 @@ function deleteUser(id) {
                                 window.location = './usuario.php';
                             },
                             buttons: {
-                                "success": {
+                                "ok": {
                                    label: "Ok",
                                    className: "card-color",
                                    callback: function () {}
@@ -121,10 +121,10 @@ function deleteUser(id) {
                     if ($(this).text() != 'NOEXITOSO') {
                         $('#tbUsuarios').dataTable().fnAddData([
                             $(this).attr('Id'),
-                            $(this).attr('Name'),
+                            decodeURIComponent(escape($(this).attr('Name'))),
                             $(this).attr('Document'),
-                            $(this).attr('State'),
-                            '<a type="button" class="btn bg-gradient-warning btn-sm-1" href="./FormUsuarios.php/' + $(this).attr('Id') + '" ><i class="nav-icon fas fa-edit"></i></a>\n\
+                            $(this).attr('Type_client'),
+                            '<a type="button" class="btn bg-gradient-warning btn-sm-1" href="./FormUsuarios.php?id=' + $(this).attr('Id') + '" ><i class="nav-icon fas fa-edit"></i></a>\n\
                           <button type="button" class="btn  bg-gradient-danger btn-sm-1"><i class="nav-icon fas fa-trash" onclick="deleteUser(' + $(this).attr('Id') + ')"></i></button>',
                         ]);
                     } else {
@@ -135,7 +135,7 @@ function deleteUser(id) {
                                 window.location = './usuario.php';
                             },
                             buttons: {
-                                "success": {
+                                "ok": {
                                    label: "Ok",
                                    className: "card-color",
                                    callback: function () {}

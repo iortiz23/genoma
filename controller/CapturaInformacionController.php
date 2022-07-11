@@ -48,6 +48,12 @@ switch ($_REQUEST['metodo']) {
     case 'getTypeDocuments':
         XML::xmlResponse(getTypeDocuments());
         break;
+    case 'getTypeIllnes':
+        XML::xmlResponse(getTypeIllnes());
+        break;
+    case 'getTypeMedicine':
+        XML::xmlResponse(getTypeMedicine());
+        break;
     case 'deleteUser':
         XML::xmlResponse(deleteUsers($_REQUEST['id']));
         break;
@@ -59,6 +65,12 @@ switch ($_REQUEST['metodo']) {
         break;
     case 'deleteTypeDocument':
         XML::xmlResponse(deleteTypeDocument($_REQUEST['id']));
+        break;
+    case 'deleteTypeIllnes':
+        XML::xmlResponse(deleteTypeIllnes($_REQUEST['id']));
+        break;
+    case 'deleteTypeMedicine':
+        XML::xmlResponse(deleteTypeMedicine($_REQUEST['id']));
         break;
     case 'validateTypeDocument':
         XML::xmlResponse(validateTypeDocument($_REQUEST['id']));
@@ -92,6 +104,12 @@ switch ($_REQUEST['metodo']) {
         break;
     case 'setTipoDocumento':
         XML::xmlResponse(setTipoDocumento($_POST['Description'], $_POST['Status'], $_POST['Id']));
+        break;        
+    case 'setTipoMedicamento':
+        XML::xmlResponse(setTipoMedicamento($_POST['Description'], $_POST['Status'], $_POST['Id']));
+        break;
+    case 'setTipoEnfermedad':
+        XML::xmlResponse(setTipoEnfermedad($_POST['Description'], $_POST['Status'], $_POST['Id']));
         break;
     case 'offSession':
         XML::xmlResponse(offSession());
@@ -143,6 +161,29 @@ function setTipoDocumento($Descripcion, $Status, $Id)
 {
     $captura = new CapturaInformacion();
     $data = $captura->setTiposDocumento($Descripcion, $Status, $Id);
+    if ($data != 0) {
+        $xml = "<registro>EXITOSO</registro>";
+    } else {
+        $xml = "<registro>NOEXITOSO</registro>";
+    }
+    return $xml;
+}
+
+function setTipoEnfermedad($Descripcion, $Status, $Id)
+{
+    $captura = new CapturaInformacion();
+    $data = $captura->setTiposEnfermedad($Descripcion, $Status, $Id);
+    if ($data != 0) {
+        $xml = "<registro>EXITOSO</registro>";
+    } else {
+        $xml = "<registro>NOEXITOSO</registro>";
+    }
+    return $xml;
+}
+function setTipoMedicamento($Descripcion, $Status, $Id)
+{
+    $captura = new CapturaInformacion();
+    $data = $captura->setTiposMedicamento($Descripcion, $Status, $Id);
     if ($data != 0) {
         $xml = "<registro>EXITOSO</registro>";
     } else {
@@ -469,6 +510,52 @@ function getTypeDocuments()
     return $xml;
 }
 
+function getTypeIllnes()
+{
+    $xml = "";
+    $captura = new CapturaInformacion();
+    $data = $captura->getTiposEnfermedad();
+    if (count($data) > 0) {
+        for ($i = 0; $i < count($data); $i++) {
+            if (sizeof($data) > 0) {
+                $xml .= "<registro                    
+                        Id='" . utf8_encode(trim($data[$i]['idTypeIllnes'])) . "'                    
+                        Description='" . utf8_encode(trim($data[$i]['Description'])) . "'                                        
+                        State='" . utf8_encode(trim($data[$i]['State'])) . "'                                          
+                        ></registro>";
+            } else {
+                $xml = "<registro>NOEXITOSO</registro>";
+            }
+        }
+    } else {
+        $xml = "<registro>NOEXITOSO</registro>";
+    }
+    return $xml;
+}
+
+function getTypeMedicine()
+{
+    $xml = "";
+    $captura = new CapturaInformacion();
+    $data = $captura->getTiposMedicina();
+    if (count($data) > 0) {
+        for ($i = 0; $i < count($data); $i++) {
+            if (sizeof($data) > 0) {
+                $xml .= "<registro                    
+                        Id='" . utf8_encode(trim($data[$i]['idTypeMedicine'])) . "'                    
+                        Description='" . utf8_encode(trim($data[$i]['Description'])) . "'                                        
+                        State='" . utf8_encode(trim($data[$i]['State'])) . "'                                          
+                        ></registro>";
+            } else {
+                $xml = "<registro>NOEXITOSO</registro>";
+            }
+        }
+    } else {
+        $xml = "<registro>NOEXITOSO</registro>";
+    }
+    return $xml;
+}
+
 function getUsers($id)
 {
     $xml = "";
@@ -524,6 +611,32 @@ function deleteTypeDocument($id)
     $xml = "";
     $captura = new CapturaInformacion();
     $data = $captura->eliminarTiposDocumento($id);
+    if (sizeof($data) > 0) {
+        $xml = "<registro>EXITOSO</registro>";
+    } else {
+        $xml = "<registro>NOEXITOSO</registro>";
+    }
+    return $xml;
+}
+
+function deleteTypeIllnes($id)
+{
+    $xml = "";
+    $captura = new CapturaInformacion();
+    $data = $captura->eliminarTiposEnfermedad($id);
+    if (sizeof($data) > 0) {
+        $xml = "<registro>EXITOSO</registro>";
+    } else {
+        $xml = "<registro>NOEXITOSO</registro>";
+    }
+    return $xml;
+}
+
+function deleteTypeMedicine($id)
+{
+    $xml = "";
+    $captura = new CapturaInformacion();
+    $data = $captura->eliminarTiposMedicina($id);
     if (sizeof($data) > 0) {
         $xml = "<registro>EXITOSO</registro>";
     } else {
