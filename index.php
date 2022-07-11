@@ -62,9 +62,6 @@ $IdProfile = $_SESSION['IdProfile'];
                 <li class="nav-item">
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
-                <li class="nav-item d-none d-sm-inline-block">
-                    <a href="index.php" class="nav-link">Inicio</a>
-                </li>
 
             </ul>
 
@@ -92,7 +89,7 @@ $IdProfile = $_SESSION['IdProfile'];
                     </div>
                 </li>
 
-                <li class="nav-item">
+                <!--<li class="nav-item">
                     <a class="nav-link" data-widget="fullscreen" href="#" role="button">
                         <i class="fas fa-expand-arrows-alt"></i>
                     </a>
@@ -101,7 +98,7 @@ $IdProfile = $_SESSION['IdProfile'];
                     <a class="nav-link" data-widget="control-sidebar" data-controlsidebar-slide="true" href="#" role="button">
                         <i class="fas fa-th-large"></i>
                     </a>
-                </li>
+                </li>-->
                 <li class="nav-item">
                     <a class="nav-link" data-widget="control-sidebars" role="button" data-toggle="modal" data-target="#modal-default">
                         <i class="fas fa-power-off"></i>
@@ -202,9 +199,21 @@ $IdProfile = $_SESSION['IdProfile'];
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="pages/forms/advanced.html" class="nav-link" target="centerframe">
+                                    <a href="pages/load-relation/load-relation.php" class="nav-link" target="centerframe">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Cargar Relación</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="modulos/TipoEnfermedad/tipoenfermedad.php" class="nav-link" target="centerframe">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Tipos de Enfermedad</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="modulos/TipoMedicamento/tipomedicamento.php" class="nav-link" target="centerframe">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Tipos de Medicamento</p>
                                     </a>
                                 </li>
 
