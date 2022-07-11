@@ -6,8 +6,7 @@
 
 $(document).ready(function() {
     //charge selects
-
-
+    if($("#name").val()==''){
     $.ajax({
         url: "../../controller/CapturaInformacionController.php",
         data: ({
@@ -50,6 +49,7 @@ $(document).ready(function() {
                     } else {
                         $('#idtypedocument').html('');
                     }
+
                 });
             });
 
@@ -78,8 +78,7 @@ $(document).ready(function() {
             });
 
         }
-    });
-
+    });}
 
     // metodo para guardar los  datos 
     $("#guardar").click(function() {
@@ -169,8 +168,9 @@ $(document).ready(function() {
                     $("#pass2").attr('class', 'form-control is-invalid');
                     $('input[name=pass2]').after('<div id="message10"><p>Las claves no coinciden </p></div>');
                 } else {
-                    if (isPass($("#pass").val())) {
-                        $("#pass").attr('class', 'form-control is-invalid');
+                    if (isPass($("#pass").val())!== true) {
+                        
+                        $("#pass2").attr('class', 'form-control is-invalid');
                         $('input[name=pass2]').after('<div id="message11"><p>La clave debe ser de minimo 8 caracteres con letras y numeros </p></div>');
                     } else {
                         $.ajax({
@@ -202,7 +202,7 @@ $(document).ready(function() {
                                                     window.location = './usuario.php';
                                                 },
                                                 buttons: {
-                                                    "success": {
+                                                    "ok": {
                                                        label: "Ok",
                                                        className: "card-color",
                                                        callback: function () {}
@@ -218,7 +218,7 @@ $(document).ready(function() {
                                                     window.location = './usuario.php';
                                                 },
                                                 buttons: {
-                                                    "success": {
+                                                    "ok": {
                                                        label: "Ok",
                                                        className: "card-color",
                                                        callback: function () {}
@@ -249,6 +249,6 @@ function isEmail(email) {
 }
 
 function isPass(pass) {
-    var reg = /^(?=\w*\d)(?=\w*[a-zA-Z])\S{8,16}$/;
+    var reg = /^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/;
     return reg.test(pass);
 }

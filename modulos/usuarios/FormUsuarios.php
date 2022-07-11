@@ -6,13 +6,23 @@
  */
 include '../../class/CapturaInformacion.class.php';
 session_start();
+
+
 $result=null;
+$html_typeclient=null;
+$html_profile=null;
+$html_typedocument=null;
+
 $modulo = new CapturaInformacion();
 if(isset($_REQUEST['id'])){
     $result = $modulo->getUserById($_REQUEST['id']);
+    $html_typeclient = $modulo->getTipoClienteId($result[0]['IdTypeClient']);
+    $html_typedocument = $modulo->getTipoDocumentoId($result[0]['IdTypeDocument']);
+    $html_profile = $modulo->getPerfilId($result[0]['IdProfile']);
 }else{
    $result = null;
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -95,6 +105,7 @@ if(isset($_REQUEST['id'])){
                             <div class="form-group">
                                 <label>Tipo de documento</label>
                                 <select id="idtypedocument" name="idtypedocument" class="custom-select" data-req="requerido">
+                                    <?php echo $html_typedocument ?>
                                 </select>
                             </div>
                         </div>
@@ -102,6 +113,7 @@ if(isset($_REQUEST['id'])){
                             <div class="form-group">
                                 <label>Perfil</label>
                                 <select id="idprofile" name="idprofile" class="custom-select" data-req="requerido">
+                                <?php echo $html_profile ?>
                                 </select>
                             </div>
                         </div>
@@ -111,6 +123,7 @@ if(isset($_REQUEST['id'])){
                             <div class="form-group">
                                 <label>Tipo de cliente</label>
                                 <select id="idclient" name="idclient"  class="custom-select" data-req="requerido">
+                                <?php echo $html_typeclient ?>
                                 </select>
                             </div>
                         </div>
