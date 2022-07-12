@@ -43,7 +43,7 @@
 
 
                                         <div class="row">
-                                            <div class="col-md-10"><h3 class="card-title">Tipos de medicamento por Genoma</h3></div>
+                                            <div class="col-md-10"><h3 class="card-title">Informe Genómico Medicamentos</h3></div>
                                             <div class="col-md-2">
                                                 <!--<a href="./FormTiposmedicamento.php" class="btn bg-gradient-success btn-sm-1"><i class="nav-icon fas fa-plus"></i> Nuevo</a>-->
                                             </div>

@@ -2,3 +2,14 @@ img.logo-dashboard {
     width: 100%;
     margin-top: 14%;
 }
+
+.otros{
+    background-image: url('../dist/img/burbujas.gif');
+    background-size: cover;
+    
+    
+    
+    height: 100vh;
+    padding:0;
+    margin:0;
+}

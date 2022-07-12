@@ -34,7 +34,7 @@ $IdProfile = $_SESSION['IdProfile'];
     <link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="../../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" href="../../plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
-    <link rel="stylesheet" href="css/load.css">
+    <link rel="stylesheet" href="./css/load.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
     <!-- jQuery -->
@@ -49,7 +49,7 @@ $IdProfile = $_SESSION['IdProfile'];
 </head>
 <input type="hidden" id="idPerson" value="<?php echo $IdPerson; ?>">
 
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="hold-transition sidebar-mini layout-fixed" style="background: linear-gradient(to right, #D22F53, #82174A, #491845, #1F1C40);">
     <section class="content">
         <div class="row">
             <div class="col-md-4">
