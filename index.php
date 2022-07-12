@@ -111,7 +111,7 @@ $IdProfile = $_SESSION['IdProfile'];
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
-            <a href="index3.html" class="brand-link">
+            <a href="index.php" class="brand-link">
 
                 <img src="dist/img/duponte-icono.png" alt="Duponte Logo" class="brand-image  elevation-3" />
             </a>
@@ -252,7 +252,7 @@ $IdProfile = $_SESSION['IdProfile'];
         </aside>
 
         <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
+        <div class="content-wrapper" style="min-height: 916px;background: linear-gradient(to right, #D22F53, #82174A, #491845, #1F1C40);">
             <!-- Content Header (Page header) -->
             <div class="content-header">
                 <div class="container-fluid">
@@ -269,7 +269,7 @@ $IdProfile = $_SESSION['IdProfile'];
             <section class="content">
                 <div class="container-fluid">
 
-                    <iframe src="dashboard.php" name="centerframe" frameBorder=0 style="align-content: center; height: 100%; position: absolute; width: 85%;" frameSpacing=0>
+                    <iframe src="dashboard.php" name="centerframe" class="pages" frameBorder=0 style="align-content: center; height: 100%; position: absolute; width: 85%;" frameSpacing=0>
                     </iframe>
                 </div>
 

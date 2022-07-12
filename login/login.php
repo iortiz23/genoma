@@ -26,6 +26,7 @@ if ($_POST) {
         <link rel="stylesheet" href="../plugins/icheck-bootstrap/icheck-bootstrap.min.css">
         <!-- Theme style -->
         <link rel="stylesheet" href="../dist/css/adminlte.min.css">
+        <link rel="stylesheet" href="css/login.css">
     </head>
     <body class="hold-transition login-page" style="color: #C3E4E5">
         <div class="login-box">

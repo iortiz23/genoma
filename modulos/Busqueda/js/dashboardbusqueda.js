@@ -232,40 +232,37 @@ $(document).ready(function() {
         },
         type: "post",
         dataType: "xml",
-        beforeSend: function() {},
-        success: function(xml) {
-            $(xml)
-                .find("response")
-                .each(function() {
-                    var n = 0;
-                    $(this)
-                        .find("registro")
-                        .each(function() {
-                            if ($(this).text() != "NOEXITOSO") {
-                                acmg.push($(this).attr("ACMG"));
-                                Num_Acmg.push($(this).attr("Num_ACMG"));
-                                if (n % 2 == 0) {
-                                    colorA.push("#f56954");
-                                } else {
-                                    colorA.push("#00a65a");
+        beforeSend: function () {
+
+        },
+        success: function (xml) {
+            $(xml).find("response").each(function () {
+
+                var n = 0;
+                $(this).find("registro").each(function () {
+                    if ($(this).text() != 'NOEXITOSO') {
+                        acmg.push($(this).attr('ACMG'));
+                        Num_Acmg.push($(this).attr('Num_ACMG'));
+                        if (n % 2 == 0) {
+                            colorA.push('#201C42');
+                        } else {
+                            colorA.push('#E50850');
+                        }
+                    } else {
+                        bootbox.alert({
+                            message: '',
+                            title: "Alerta",
+                            callback: function () {
+                                window.location = './busqueda.php';
+                            },
+                            buttons: {
+                                "success": {
+                                    label: "Ok",
+                                    className: "card-color",
+                                    callback: function () { }
                                 }
-                            } else {
-                                bootbox.alert({
-                                    message: "",
-                                    title: "Alerta",
-                                    callback: function() {
-                                        window.location = "./busqueda.php";
-                                    },
-                                    buttons: {
-                                        success: {
-                                            label: "Ok",
-                                            className: "card-color",
-                                            callback: function() {},
-                                        },
-                                    },
-                                });
-                                return false;
-                            }
+                            }});
+                        }
                             n = n + 1;
                         });
                 });
@@ -319,42 +316,40 @@ $(document).ready(function() {
         },
         type: "post",
         dataType: "xml",
-        beforeSend: function() {},
-        success: function(xml) {
-            $(xml)
-                .find("response")
-                .each(function() {
-                    var o = 0;
-                    $(this)
-                        .find("registro")
-                        .each(function() {
-                            if ($(this).text() != "NOEXITOSO") {
-                                cigosidad.push($(this).attr("Cigosidad"));
-                                Num_Cigosidad.push($(this).attr("Cigosidad1"));
-                                if (o % 2 == 0) {
-                                    colorCi.push("#f56954");
-                                } else {
-                                    colorCi.push("#00a65a");
-                                }
-                            } else {
-                                bootbox.alert({
-                                    message: "",
-                                    title: "Alerta",
-                                    callback: function() {
-                                        window.location = "./busqueda.php";
-                                    },
-                                    buttons: {
-                                        success: {
-                                            label: "Ok",
-                                            className: "card-color",
-                                            callback: function() {},
-                                        },
-                                    },
-                                });
-                                return false;
-                            }
+        beforeSend: function () {
+
+        },
+        success: function (xml) {
+            $(xml).find("response").each(function () {
+
+                var o = 0;
+                $(this).find("registro").each(function () {
+                    if ($(this).text() != 'NOEXITOSO') {
+                        cigosidad.push($(this).attr('Cigosidad'));
+                        Num_Cigosidad.push($(this).attr('Cigosidad1'));
+                        if (o % 2 == 0) {
+                            colorCi.push('#201C42');
+                        } else {
+                            colorCi.push('#E50850');
+                        }
+                    } else {
+                        bootbox.alert({
+                            message: '',
+                            title: "Alerta",
+                            callback: function () {
+                                window.location = './busqueda.php';
+                            },
+                            buttons: {
+                                "success": {
+                                    label: "Ok",
+                                    className: "card-color",
+                                    callback: function () { }
+                                }                            
+                            }});
+                        }
                             o = o + 1;
                         });
+                    
                 });
             var donutChartCanvas = $("#donutChart6").get(0).getContext("2d");
             var donutData = {
@@ -385,40 +380,37 @@ $(document).ready(function() {
         },
         type: "post",
         dataType: "xml",
-        beforeSend: function() {},
-        success: function(xml) {
-            $(xml)
-                .find("response")
-                .each(function() {
-                    var p = 0;
-                    $(this)
-                        .find("registro")
-                        .each(function() {
-                            if ($(this).text() != "NOEXITOSO") {
-                                efecto.push($(this).attr("Efect"));
-                                Num_Efecto.push($(this).attr("Num_Efect"));
-                                if (p % 2 == 0) {
-                                    colorEf.push("#f56954");
-                                } else {
-                                    colorEf.push("#00a65a");
-                                }
-                            } else {
-                                bootbox.alert({
-                                    message: "",
-                                    title: "Alerta",
-                                    callback: function() {
-                                        window.location = "./busqueda.php";
-                                    },
-                                    buttons: {
-                                        success: {
-                                            label: "Ok",
-                                            className: "card-color",
-                                            callback: function() {},
-                                        },
-                                    },
-                                });
-                                return false;
-                            }
+        beforeSend: function () {
+
+        },
+        success: function (xml) {
+            $(xml).find("response").each(function () {
+
+                var p = 0;
+                $(this).find("registro").each(function () {
+                    if ($(this).text() != 'NOEXITOSO') {
+                        efecto.push($(this).attr('Efect'));
+                        Num_Efecto.push($(this).attr('Num_Efect'));
+                        if (p % 2 == 0) {
+                            colorEf.push('#201C42');
+                        } else {
+                            colorEf.push('#E50850');
+                        }
+                    } else {
+                        bootbox.alert({
+                            message: '',
+                            title: "Alerta",
+                            callback: function () {
+                                window.location = './busqueda.php';
+                            },
+                            buttons: {
+                                "success": {
+                                    label: "Ok",
+                                    className: "card-color",
+                                    callback: function () { }
+                                }                            
+                            }});
+                        }
                             p = p + 1;
                         });
                 });

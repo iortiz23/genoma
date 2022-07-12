@@ -42,6 +42,15 @@ $(document).ready(function () {
                                     title: "Correcto",
                                     callback: function () {
                                         window.location = './tipodocumentos.php';
+                                    },
+                                    buttons: {
+                                        "ok": {
+                                            label: "Ok",
+                                            className: "card-color",
+                                            callback: function () {
+                                                window.location = './tipodocumentos.php';
+                                            }
+                                        }
                                     }
                                 });
                                 return true;
@@ -53,7 +62,7 @@ $(document).ready(function () {
                                         window.location = './tipodocumentos.php';
                                     },
                                     buttons: {
-                                        "success": {
+                                        "ok": {
                                             label: "Ok",
                                             className: "card-color",
                                             callback: function () {

@@ -43,7 +43,7 @@
 }
 
 body.container {
-    background-color: #ffffff !important;
+    background: linear-gradient(to right, #D22F53, #82174A, #491845, #1F1C40) !important;
 }
 
 .btn-secondary:hover {

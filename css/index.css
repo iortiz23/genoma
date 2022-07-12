@@ -29,7 +29,9 @@ a.brand-link {
 .sidebar .nav-link p{
     color: #201C42;
 }
-
+.pages{
+    background: linear-gradient(to right, #D22F53, #82174A, #491845, #1F1C40); 
+}
 .nav-sidebar>.nav-item .nav-icon{
     color: #201C42; 
 }

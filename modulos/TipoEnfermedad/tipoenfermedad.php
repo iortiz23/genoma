@@ -26,7 +26,7 @@
         <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.min.js" integrity="sha512-RdSPYh1WA6BF0RhpisYJVYkOyTzK4HwofJ3Q7ivt/jkpW6Vc8AurL1R+4AUcvn9IwEKAPm/fk7qFZW3OuiUDeg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-        <script src="./js/tipoenfermedad.js"></script>
+        <script src="./js/tipoenfermedad2.js"></script>
     </head>
     <body class="container" style="background-color: #f4f6f9;">
         <div class="row">
@@ -43,9 +43,9 @@
 
 
                                         <div class="row">
-                                            <div class="col-md-10"><h3 class="card-title">Tipos de Enfermedades</h3></div>
+                                            <div class="col-md-10"><h3 class="card-title">Tipos de Enfermedades por Genoma</h3></div>
                                             <div class="col-md-2">
-                                                <a href="./FormTipoenfermedad.php" class="btn bg-gradient-success btn-sm-1"><i class="nav-icon fas fa-plus"></i> Nuevo</a>
+                                                <!--<a href="./FormTipoenfermedad.php" class="btn bg-gradient-success btn-sm-1"><i class="nav-icon fas fa-plus"></i> Nuevo</a>-->
                                             </div>
                                             <!-- comment -->
                                         </div>
@@ -53,12 +53,14 @@
                                     <!-- /.card-header -->
                                     <div class="card-body">
                                         <table id="tbTypeEnfermedad" class="table table-bordered table-striped">
-                                            <thead>
+                                        <thead>
                                                 <tr>
                                                     <th>#</th>
-                                                    <th>Nombre</th>
-                                                    <th>Estado</th>
-                                                    <th>Accion</th>
+                                                    <th>Genoma</th>
+                                                    <th>Descripcion</th>
+                                                    <th>Fecha </th>
+                                                    <th>Estado </th>
+                                                    <th>Reporte</th>
                                                 </tr>
                                             </thead>
                                             <tbody>                  
