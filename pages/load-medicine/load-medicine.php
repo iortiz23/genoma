@@ -34,7 +34,7 @@ $IdProfile = $_SESSION['IdProfile'];
     <link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="../../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" href="../../plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
-    <link rel="stylesheet" href="css/load-relation.css">
+    <link rel="stylesheet" href="css/load-medicine.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
     <!-- jQuery -->
@@ -45,7 +45,7 @@ $IdProfile = $_SESSION['IdProfile'];
     <!-- AdminLTE App -->
     <script src="../../dist/js/adminlte.js"></script>
     <!-- Theme javascript -->
-    <script src="js/load-relation.js" type="text/javascript"></script>
+    <script src="js/load-medicine.js" type="text/javascript"></script>
 </head>
 <input type="hidden" id="idPerson" value="<?php echo $IdPerson; ?>">
 
@@ -58,7 +58,7 @@ $IdProfile = $_SESSION['IdProfile'];
                 <!-- general form elements -->
                 <div class="card ">
                     <div class="card-header card-color">
-                        <h3 class="card-title">Cargar Relaci&oacute;n Enfermedades</h3>
+                        <h3 class="card-title">Cargar Relaci&oacute;n Medicina</h3>
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->

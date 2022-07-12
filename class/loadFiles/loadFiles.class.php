@@ -1,5 +1,5 @@
 <?php
-include($_SERVER['DOCUMENT_ROOT']."/genoma/vendor/autoload.php");
+include($_SERVER['DOCUMENT_ROOT'] . "/genoma/vendor/autoload.php");
 //require '../vendor/autoload.php';
 
 //require_once('../../CapturaInformacion.class.php');
@@ -49,7 +49,7 @@ class loadFiles extends IOFactory
                 $columna = $celda->getColumn();
 
                 if ($fila == "1") {
-                    $resulvalidateHeaderExcel = $this->validateHeaderExcel($columna, $valRow);
+                    $resulvalidateHeaderExcel = $this->validateHeaderExcel($columna, $valRow, $_inputFileData['typeLoad']);
                     if ($resulvalidateHeaderExcel === 'ERROR') {
                         $result = array(
                             'idLoad' => $_inputFileData['idLoad'],
@@ -70,7 +70,14 @@ class loadFiles extends IOFactory
             }
 
             if ($query != "") {
-                $resulInsertData = $this->insertDataFileVarient($query, $_inputFileData['idLoad']);
+                if ($_inputFileData['typeLoad'] === '1') {
+                    $resulInsertData = $this->insertDataFileVarient($query, $_inputFileData['idLoad']);
+                } elseif (($_inputFileData['typeLoad'] === '2')) {
+                    $resulInsertData = $this->insertDataFileIllness($query, $_inputFileData['idLoad']);
+                } else {
+                    $resulInsertData = $this->insertDataFileMedicine($query, $_inputFileData['idLoad']);
+                }
+
                 if ($resulInsertData === 0) {
                     $result = array(
                         'idLoad' => $_inputFileData['idLoad'],
@@ -98,28 +105,44 @@ class loadFiles extends IOFactory
         return $result;
     }
 
-    public function validateHeaderExcel($_column, $_value)
+    public function validateHeaderExcel($_column, $_value, $_typeLoad)
     {
-        $headers = array(
-            'A' => 'Muestra',
-            'B' => 'Cr.:Posición',
-            'C' => 'Gen',
-            'D' => 'Variante Transcripto',
-            'E' => 'Variante Proteina',
-            'F' => 'Efecto',
-            'G' => 'ACMG',
-            'H' => 'gnomAD Exome',
-            'I' => 'gnomAD Genome',
-            'J' => 'Frequency ExAC',
-            'K' => 'Cigosidad',
-            'L' => 'Coverage',
-            'M' => 'FS',
-            'N' => 'GQ',
-            'O' => 'Qual',
-            'P' => 'RefSeq',
-            'Q' => 'ID dbSNP',
-            'R' => 'Comment',
-        );
+
+        if ($_typeLoad === '1') {
+            $headers = array(
+                'A' => 'Muestra',
+                'B' => 'Cr.:Posición',
+                'C' => 'Gen',
+                'D' => 'Variante Transcripto',
+                'E' => 'Variante Proteina',
+                'F' => 'Efecto',
+                'G' => 'ACMG',
+                'H' => 'gnomAD Exome',
+                'I' => 'gnomAD Genome',
+                'J' => 'Frequency ExAC',
+                'K' => 'Cigosidad',
+                'L' => 'Coverage',
+                'M' => 'FS',
+                'N' => 'GQ',
+                'O' => 'Qual',
+                'P' => 'RefSeq',
+                'Q' => 'ID dbSNP',
+                'R' => 'Comment',
+            );
+        } elseif ($_typeLoad === '2') {
+            $headers = array(
+                'A' => 'ENFERMEDAD',
+                'B' => 'BUSQUEDA',
+                'C' => 'NILVEL DE EVIDENCIA MATCHGÉNICA',
+                'D' => 'FUENTE',
+            );
+        } else {
+            $headers = array(
+                'A' => 'Gene',
+                'B' => 'Drug',
+            );
+        }
+
 
         if ($headers[$_column] != $_value) {
             $result = "ERROR";
@@ -196,6 +219,114 @@ class loadFiles extends IOFactory
         }
         return $result;
     }
+    public function insertDataFileIllness($_query, $_idLoad)
+    {
+        $_queryNow = "SELECT now() as 'DataTime'";
+        $data = $this->database->query(utf8_decode($_queryNow));
+        $exists = $data->num_rows;
+        if ($exists > 0) {
+            $row = $data->fetch_assoc();
+            $_now = $row['DataTime'];
+        }
+        $_queryIdData = "SELECT max(IdDataLoadIllness) as IdDataLoadIllness FROM tb_dataload_illness"
+            . " WHERE IdLoad = " . $_idLoad
+            . " AND  DateCreate = '" . $_now . "'";
+
+        $data = $this->database->query(utf8_decode($_queryIdData));
+        $exists = $data->num_rows;
+        if ($exists > 0) {
+            $row = $data->fetch_assoc();
+            $_IdDataLoadIllnesOld = $row['IdDataLoadIllness'];
+        } else {
+            $_IdDataLoadIllnesOld = 0;
+        }
+        $queryInsertData = "INSERT INTO tb_dataload_illness("
+            . " NameIllness,"
+            . " Search,"
+            . " LevelMatchgenicEvidence,"
+            . " Source,"
+            . " IdLoad,"
+            . " DateCreate)"
+            . " VALUES ("
+            . $_query
+            .  $_idLoad . ","
+            . "'" . $_now . "'"
+            . ")";
+
+        $this->database->nonReturnQuery($queryInsertData);
+
+        $_queryIdData = "SELECT max(IdDataLoadIllness) as IdDataLoadIllness FROM tb_dataload_illness"
+            . " WHERE IdLoad = " . $_idLoad
+            . " AND  DateCreate = '" . $_now . "'";
+        $data = $this->database->query(utf8_decode($_queryIdData));
+        $exists = $data->num_rows;
+        if ($exists > 0) {
+            $row = $data->fetch_assoc();
+            $_IdDataLoadVariNew = $row['IdDataLoadIllness'];
+            if ($_IdDataLoadVariNew > $_IdDataLoadIllnesOld) {
+                $result = $_IdDataLoadVariNew;
+            } else {
+                $result = 0;
+            }
+        } else {
+            $result = 0;
+        }
+        return $result;
+    }
+
+    public function insertDataFileMedicine($_query, $_idLoad)
+    {
+        $_queryNow = "SELECT now() as 'DataTime'";
+        $data = $this->database->query(utf8_decode($_queryNow));
+        $exists = $data->num_rows;
+        if ($exists > 0) {
+            $row = $data->fetch_assoc();
+            $_now = $row['DataTime'];
+        }
+        $_queryIdData = "SELECT max(IdDataLoadMedicine) as IdDataLoadMedicine  FROM tb_dataload_medicine"
+            . " WHERE IdLoad = " . $_idLoad
+            . " AND  DateCreate = '" . $_now . "'";
+
+        $data = $this->database->query(utf8_decode($_queryIdData));
+        $exists = $data->num_rows;
+        if ($exists > 0) {
+            $row = $data->fetch_assoc();
+            $_IdDataLoadIllnesOld = $row['IdDataLoadMedicine'];
+        } else {
+            $_IdDataLoadIllnesOld = 0;
+        }
+        $queryInsertData = "INSERT INTO tb_dataload_medicine("
+            . " Gene,"
+            . " Drug,"
+            . " IdLoad,"
+            . " DateCreate)"
+            . " VALUES ("
+            . $_query
+            .  $_idLoad . ","
+            . "'" . $_now . "'"
+            . ")";
+
+        $this->database->nonReturnQuery($queryInsertData);
+
+        $_queryIdData = "SELECT max(IdDataLoadMedicine) as IdDataLoadMedicine  FROM tb_dataload_medicine"
+            . " WHERE IdLoad = " . $_idLoad
+            . " AND  DateCreate = '" . $_now . "'";
+        $data = $this->database->query(utf8_decode($_queryIdData));
+        $exists = $data->num_rows;
+        if ($exists > 0) {
+            $row = $data->fetch_assoc();
+            $_IdDataLoadVariNew = $row['IdDataLoadMedicine'];
+            if ($_IdDataLoadVariNew > $_IdDataLoadIllnesOld) {
+                $result = $_IdDataLoadVariNew;
+            } else {
+                $result = 0;
+            }
+        } else {
+            $result = 0;
+        }
+        return $result;
+    }
+
     public function delateLocalFileVarient($_inputFileData)
     {
         unlink($_inputFileData['uploads_dir_complete']);
