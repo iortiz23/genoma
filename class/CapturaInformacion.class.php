@@ -409,37 +409,7 @@ class CapturaInformacion
         return $return;
     }
 
-    public function getTypeIllensById($id)
-    {
-        $sql = " SELECT  * FROM tb_typeillness WHERE IdTypeIllnes=" . $id . " and  State=1 LIMIT 1";
-        $data = $this->database->queryArray(utf8_decode($sql));
-
-        if (sizeof($data) > 0) {
-
-            $return = $data;
-        } else {
-
-            $return = null;
-        }
-        // print_r($return);
-        return $return;
-    }
-
-    public function getTypeMedicineById($id)
-    {
-        $sql = " SELECT  * FROM tb_typemedicine WHERE IdTypeMedicine=" . $id . " and  State=1 LIMIT 1";
-        $data = $this->database->queryArray(utf8_decode($sql));
-
-        if (sizeof($data) > 0) {
-
-            $return = $data;
-        } else {
-
-            $return = null;
-        }
-        // print_r($return);
-        return $return;
-    }
+    
 
     public function getProfileById($id)
     {
@@ -612,7 +582,7 @@ class CapturaInformacion
     }
     public function getTiposEnfermedad()
     {
-        $sql = " SELECT * FROM tb_typeillness";
+        $sql = " SELECT * FROM tb_load where State=1  ";
         $data = $this->database->queryArray(utf8_decode($sql));
 
         if (sizeof($data) > 0) {
@@ -626,9 +596,9 @@ class CapturaInformacion
         return $return;
     }
 
-    public function getTiposMedicina()
+    public function getTiposMedicamento()
     {
-        $sql = "SELECT * FROM tb_typemedicine";
+        $sql = " SELECT * FROM tb_load where State=1  ";
         $data = $this->database->queryArray(utf8_decode($sql));
 
         if (sizeof($data) > 0) {
@@ -638,6 +608,51 @@ class CapturaInformacion
 
             $return = null;
         }
+        // print_r($return);
+        return $return;
+    }
+
+    public function getTiposEnfermedadPorGen($id)
+    {
+        $return=null;
+        if($id!=""){
+
+            $sql = " SELECT  DISTINCT tb1.IdLoad as Id,tb1.Gen as Genoma,tb2.NameIllness as Enfermedad,tb2.LevelMatchgenicEvidence as Nivel_evidencia, tb2.Source as Base_datos FROM tb_dataloadvariants as tb1
+        INNER JOIN tb_dataload_illness as tb2  on tb1.Gen=tb2.Search
+        WHERE tb1.IdLoad=".$id."";
+        $data = $this->database->queryArray(utf8_decode($sql));
+
+        if (sizeof($data) > 0) {
+
+            $return = $data;
+        } else {
+
+            $return = null;
+        }
+        }
+        
+        // print_r($return);
+        return $return;
+    }
+    public function getTiposMedicinaPorGen($id)
+    {
+        $return=null;
+        if($id!=""){
+
+            $sql = "SELECT DISTINCT tb1.IdLoad as Id,tb1.Gen as Genoma ,tb2.Drug as Medicamento FROM tb_dataloadvariants as tb1
+            INNER JOIN tb_dataload_medicine tb2  on tb1.Gen=tb2.Gene
+            WHERE tb1.IdLoad=".$id."";
+        $data = $this->database->queryArray(utf8_decode($sql));
+
+        if (sizeof($data) > 0) {
+
+            $return = $data;
+        } else {
+
+            $return = null;
+        }
+        }
+        
         // print_r($return);
         return $return;
     }
@@ -686,23 +701,6 @@ class CapturaInformacion
         return 1;
     }
 
-    public function eliminarTiposEnfermedad($id)
-    {
-        $sql = " DELETE FROM tb_typeillness WHERE IdTypeIllnes=" . $id . "  and State=1";
-        $data = $this->database->nonReturnQuery(utf8_decode($sql));
-
-        // print_r($return);
-        return 1;
-    }
-
-    public function eliminarTiposMedicina($id)
-    {
-        $sql = " DELETE FROM tb_typemedicine WHERE IdTypeMedicine=" . $id . "  and State=1";
-        $data = $this->database->nonReturnQuery(utf8_decode($sql));
-
-        // print_r($return);
-        return 1;
-    }
 
     public function eliminarUsuarios($id)
     {
@@ -955,84 +953,7 @@ class CapturaInformacion
         return 1;
     }
 
-    public function setTiposEnfermedad($Descripcion, $Status, $Id)
-    {
-        if ($Id != "") {
-            $select = "SELECT  * FROM tb_typeillness  WHERE idTypeIllnes=" . $Id . " LIMIT 1";
-            $data = $this->database->QueryArray($select);
-            if (sizeof($data) > 0) {
-                $UPDATE = "UPDATE tb_typeillness
-                        SET Description = '" . $Descripcion . "'
-                           ,State = " . $Status . "
-                           ,DateCreate=now()
-                      WHERE IdTypeIllnes=" . $data[0]['idTypeIllnes'] . "";
-                $dataupdate = $this->database->nonReturnQuery($UPDATE);
-            } else {
-
-                $sql = "INSERT INTO tb_typeillness
-           (Description           
-           ,State
-           ,DateCreate)
-     VALUES
-           ('" . $Descripcion . "'           
-           ,'" . $Status . "'
-           ,now())";
-                $data = $this->database->nonReturnQuery($sql);
-            }
-        } else {
-            $sql = "INSERT INTO tb_typeillness
-           (Description           
-           ,State
-           ,DateCreate)
-     VALUES
-           ('" . $Descripcion . "'           
-           ,'" . $Status . "'
-           ,now())";
-            $data = $this->database->nonReturnQuery($sql);
-        }
-
-        return 1;
-    }
-
-    public function setTiposMedicamento($Descripcion, $Status, $Id)
-    {
-        if ($Id != "") {
-            $select = "SELECT  * FROM tb_typemedicine  WHERE idTypeMedicine=" . $Id . " LIMIT 1";
-            $data = $this->database->QueryArray($select);
-            if (sizeof($data) > 0) {
-                $UPDATE = "UPDATE tb_typemedicine
-                        SET Description = '" . $Descripcion . "'
-                           ,State = " . $Status . "
-                           ,DateCreate=now()
-                      WHERE idTypeMedicine=" . $data[0]['idTypeMedicine'] . "";
-                $dataupdate = $this->database->nonReturnQuery($UPDATE);
-            } else {
-
-                $sql = "INSERT INTO tb_typemedicine
-           (Description           
-           ,State
-           ,DateCreate)
-     VALUES
-           ('" . $Descripcion . "'           
-           ,'" . $Status . "'
-           ,now())";
-                $data = $this->database->nonReturnQuery($sql);
-            }
-        } else {
-            $sql = "INSERT INTO tb_typemedicine
-           (Description           
-           ,State
-           ,DateCreate)
-     VALUES
-           ('" . $Descripcion . "'           
-           ,'" . $Status . "'
-           ,now())";
-            $data = $this->database->nonReturnQuery($sql);
-        }
-
-        return 1;
-    }
-
+    
     public function createLoad($dataLoad)
     {
         $queryInsert = "INSERT INTO tb_load ("

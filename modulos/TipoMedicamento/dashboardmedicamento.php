@@ -10,7 +10,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Tipos de Enfermedad</title>
+        <title>Tipos de medicamento</title>
 
         <!-- Google Font: Source Sans Pro -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -22,11 +22,11 @@
         <link rel="stylesheet" href="../../plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
         <!-- Theme style -->
         <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
-        <link rel="stylesheet" href="./css/tipoenfermedad.css">
+        <link rel="stylesheet" href="./css/tipomedicamento.css">
         <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.min.js" integrity="sha512-RdSPYh1WA6BF0RhpisYJVYkOyTzK4HwofJ3Q7ivt/jkpW6Vc8AurL1R+4AUcvn9IwEKAPm/fk7qFZW3OuiUDeg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-        <script src="./js/tipoenfermedad2.js"></script>
+        <script src="./js/dashboardmedicamento.js"></script>
     </head>
     <body class="container" style="background-color: #f4f6f9;">
         <div class="row">
@@ -43,24 +43,23 @@
 
 
                                         <div class="row">
-                                            <div class="col-md-10"><h3 class="card-title">Tipos de Enfermedades por Genoma</h3></div>
+                                            <div class="col-md-10"><h3 class="card-title">Tipos de medicamento por Gen</h3></div>
                                             <div class="col-md-2">
-                                                <!--<a href="./FormTipoenfermedad.php" class="btn bg-gradient-success btn-sm-1"><i class="nav-icon fas fa-plus"></i> Nuevo</a>-->
+                                                <!--<a href="./FormTiposmedicamento.php" class="btn bg-gradient-success btn-sm-1"><i class="nav-icon fas fa-plus"></i> Nuevo</a>-->
+                                                <input type="hidden" name="id" id="id" value="<?php echo isset($_GET['id'])?$_GET['id']:''; ?>"/>
+                                            
                                             </div>
                                             <!-- comment -->
                                         </div>
                                     </div>
                                     <!-- /.card-header -->
                                     <div class="card-body">
-                                        <table id="tbTypeEnfermedad" class="table table-bordered table-striped">
-                                        <thead>
+                                        <table id="tbMedicamentoGenoma" class="table table-bordered table-striped">
+                                            <thead>
                                                 <tr>
-                                                    <th>#</th>
+                                                <th>#</th>
                                                     <th>Genoma</th>
-                                                    <th>Descripcion</th>
-                                                    <th>Fecha </th>
-                                                    <th>Estado </th>
-                                                    <th>Reporte</th>
+                                                    <th>Medicamento</th>
                                                 </tr>
                                             </thead>
                                             <tbody>                  

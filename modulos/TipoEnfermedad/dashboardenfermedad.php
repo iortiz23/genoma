@@ -26,7 +26,7 @@
         <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.min.js" integrity="sha512-RdSPYh1WA6BF0RhpisYJVYkOyTzK4HwofJ3Q7ivt/jkpW6Vc8AurL1R+4AUcvn9IwEKAPm/fk7qFZW3OuiUDeg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-        <script src="./js/tipoenfermedad2.js"></script>
+        <script src="./js/dashboardenfermedad.js"></script>
     </head>
     <body class="container" style="background-color: #f4f6f9;">
         <div class="row">
@@ -43,24 +43,24 @@
 
 
                                         <div class="row">
-                                            <div class="col-md-10"><h3 class="card-title">Tipos de Enfermedades por Genoma</h3></div>
+                                            <div class="col-md-10"><h3 class="card-title">Listado de Enfermedades por Genoma</h3></div>
                                             <div class="col-md-2">
                                                 <!--<a href="./FormTipoenfermedad.php" class="btn bg-gradient-success btn-sm-1"><i class="nav-icon fas fa-plus"></i> Nuevo</a>-->
+                                                <input type="hidden" name="id" id="id" value="<?php echo isset($_GET['id'])?$_GET['id']:''; ?>"/>
                                             </div>
                                             <!-- comment -->
                                         </div>
                                     </div>
                                     <!-- /.card-header -->
                                     <div class="card-body">
-                                        <table id="tbTypeEnfermedad" class="table table-bordered table-striped">
+                                        <table id="tbEnfermedadGenoma" class="table table-bordered table-striped">
                                         <thead>
                                                 <tr>
                                                     <th>#</th>
                                                     <th>Genoma</th>
-                                                    <th>Descripcion</th>
-                                                    <th>Fecha </th>
-                                                    <th>Estado </th>
-                                                    <th>Reporte</th>
+                                                    <th>Enfermedad</th>
+                                                    <th>Nivel de evidencia  </th>
+                                                    <th>Base de datos </th>
                                                 </tr>
                                             </thead>
                                             <tbody>                  
