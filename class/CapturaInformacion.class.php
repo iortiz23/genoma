@@ -104,7 +104,7 @@ class CapturaInformacion
         return $resulEnvio;
     }
 
-    public function loadFile($_idPerson, $_inputName, $_inputObservation, $_inputFile)
+    public function loadFile($_idPerson, $_inputName, $_inputObservation, $_idTypeLoad, $_inputFile)
     {
         $sql = " SELECT IdLoad, NameLoad, NameDocument, Description, State, DateCreate, IdTypeLoad, IdPerson"
             . " FROM tb_load"
@@ -119,7 +119,7 @@ class CapturaInformacion
                 $resultCreateFile += ['idPerson' => $_idPerson];
                 $resultCreateFile += ['nameLoad' => $_inputName];
                 $resultCreateFile += ['descriptionLoad' => $_inputObservation];
-                $resultCreateFile += ['typeLoad' => '1'];
+                $resultCreateFile += ['typeLoad' => $_idTypeLoad];
                 $resultCreateLoad = $this->createLoad($resultCreateFile);
                 if ($resultCreateLoad > 0) {
                     $resultCreateFile += ['idLoad' => $resultCreateLoad];
@@ -153,8 +153,9 @@ class CapturaInformacion
         }
         return $result;
     }
-    
-    public function getUsuarios() {
+
+    public function getUsuarios()
+    {
         $sql = " SELECT per.*, cli.Description as type_client FROM tb_person as per INNER JOIN tb_typeclient as cli ON cli.idTypeClient=per.IdTypeClient";
         $data = $this->database->queryArray(utf8_decode($sql));
 
@@ -168,7 +169,8 @@ class CapturaInformacion
         // print_r($return);
         return $return;
     }
-    public function getBusqueda() {
+    public function getBusqueda()
+    {
         $sql = " SELECT * FROM tb_load where State=1  ";
         $data = $this->database->queryArray(utf8_decode($sql));
 
@@ -183,8 +185,9 @@ class CapturaInformacion
         return $return;
     }
 
-    public function getGenoma($id) {
-        $sql = "SELECT  COUNT(DISTINCT(dlv.Gen)) AS Num_Gen  FROM tb_dataloadvariants dlv WHERE dlv.IdLoad =".$id."   ";
+    public function getGenoma($id)
+    {
+        $sql = "SELECT  COUNT(DISTINCT(dlv.Gen)) AS Num_Gen  FROM tb_dataloadvariants dlv WHERE dlv.IdLoad =" . $id . "   ";
         $data = $this->database->queryArray(utf8_decode($sql));
 
         if (sizeof($data) > 0) {
@@ -197,8 +200,9 @@ class CapturaInformacion
         // print_r($return);
         return $return;
     }
-    public function getCigosidad($id) {
-        $sql ="SELECT dlv.Cigosidad AS Cigosidad, COUNT(dlv.Cigosidad) AS Cigosidad1  FROM tb_dataloadvariants dlv WHERE dlv.IdLoad =".$id." GROUP by dlv.Cigosidad";
+    public function getCigosidad($id)
+    {
+        $sql = "SELECT dlv.Cigosidad AS Cigosidad, COUNT(dlv.Cigosidad) AS Cigosidad1  FROM tb_dataloadvariants dlv WHERE dlv.IdLoad =" . $id . " GROUP by dlv.Cigosidad";
         $data = $this->database->queryArray(utf8_decode($sql));
 
         if (sizeof($data) > 0) {
@@ -211,38 +215,9 @@ class CapturaInformacion
         // print_r($return);
         return $return;
     }
-    public function getSNP($id) {
-        $sql ="SELECT  COUNT(dlv.IDdbSNP) AS Num_IDdbSNP FROM tb_dataloadvariants dlv WHERE dlv.IdLoad = ".$id." ";
-        $data = $this->database->queryArray(utf8_decode($sql));
-
-        if (sizeof($data) > 0) {
-
-            $return = $data;
-        } else {
-
-            $return = null;
-        }
-        // print_r($return);
-        return $return;
-    }
-
-    public function getProteina($id) {
-        $sql ="SELECT   COUNT(dlv.VarianteProteina) AS Num_VarianteProteina  FROM tb_dataloadvariants dlv WHERE dlv.IdLoad = ".$id."  ";
-        $data = $this->database->queryArray(utf8_decode($sql));
-
-        if (sizeof($data) > 0) {
-
-            $return = $data;
-        } else {
-
-            $return = null;
-        }
-        // print_r($return);
-        return $return;
-    }
-
-    public function getTranscripto($id) {
-        $sql ="SELECT   COUNT(dlv.VarianteTranscripto) AS VarianteTranscripto1   FROM tb_dataloadvariants dlv WHERE dlv.IdLoad = ".$id."  ";
+    public function getSNP($id)
+    {
+        $sql = "SELECT  COUNT(dlv.IDdbSNP) AS Num_IDdbSNP FROM tb_dataloadvariants dlv WHERE dlv.IdLoad = " . $id . " ";
         $data = $this->database->queryArray(utf8_decode($sql));
 
         if (sizeof($data) > 0) {
@@ -256,8 +231,9 @@ class CapturaInformacion
         return $return;
     }
 
-    public function getGQ($id) {
-        $sql ="SELECT  COUNT(dlv.GQ) AS Num_GQ    FROM tb_dataloadvariants dlv WHERE dlv.IdLoad = ".$id." ";
+    public function getProteina($id)
+    {
+        $sql = "SELECT   COUNT(dlv.VarianteProteina) AS Num_VarianteProteina  FROM tb_dataloadvariants dlv WHERE dlv.IdLoad = " . $id . "  ";
         $data = $this->database->queryArray(utf8_decode($sql));
 
         if (sizeof($data) > 0) {
@@ -271,29 +247,62 @@ class CapturaInformacion
         return $return;
     }
 
-    public function getACMG($id) {
-        $sql ="SELECT 
+    public function getTranscripto($id)
+    {
+        $sql = "SELECT   COUNT(dlv.VarianteTranscripto) AS VarianteTranscripto1   FROM tb_dataloadvariants dlv WHERE dlv.IdLoad = " . $id . "  ";
+        $data = $this->database->queryArray(utf8_decode($sql));
+
+        if (sizeof($data) > 0) {
+
+            $return = $data;
+        } else {
+
+            $return = null;
+        }
+        // print_r($return);
+        return $return;
+    }
+
+    public function getGQ($id)
+    {
+        $sql = "SELECT  COUNT(dlv.GQ) AS Num_GQ    FROM tb_dataloadvariants dlv WHERE dlv.IdLoad = " . $id . " ";
+        $data = $this->database->queryArray(utf8_decode($sql));
+
+        if (sizeof($data) > 0) {
+
+            $return = $data;
+        } else {
+
+            $return = null;
+        }
+        // print_r($return);
+        return $return;
+    }
+
+    public function getACMG($id)
+    {
+        $sql = "SELECT 
         'Benign' AS ACMG, COUNT(dlv.ACMG) AS Num_ACMG        
         FROM tb_dataloadvariants dlv
-        WHERE dlv.IdLoad = ".$id."
+        WHERE dlv.IdLoad = " . $id . "
         AND dlv.ACMG LIKE 'Benign%'
         UNION
         SELECT 
         'Likely_pathogenic' AS ACMG, COUNT(dlv.ACMG) AS Num_ACMG        
         FROM tb_dataloadvariants dlv
-        WHERE dlv.IdLoad = ".$id."
+        WHERE dlv.IdLoad = " . $id . "
         AND dlv.ACMG LIKE 'Likely_pathogenic%'
         UNION
         SELECT 
         'Uncertain_significance' AS ACMG, COUNT(dlv.ACMG) AS Num_ACMG        
         FROM tb_dataloadvariants dlv
-        WHERE dlv.IdLoad = ".$id."
+        WHERE dlv.IdLoad = " . $id . "
         AND dlv.ACMG LIKE 'Uncertain_significance%'
         UNION
         SELECT 
         'No reportadas' AS ACMG, COUNT(dlv.ACMG) AS Num_ACMG        
         FROM tb_dataloadvariants dlv
-        WHERE dlv.IdLoad = ".$id."
+        WHERE dlv.IdLoad = " . $id . "
         AND TRIM(dlv.ACMG) = ''";
         $data = $this->database->queryArray(utf8_decode($sql));
 
@@ -308,35 +317,36 @@ class CapturaInformacion
         return $return;
     }
 
-    public function getEfecto($id) {
-        $sql ="SELECT 
+    public function getEfecto($id)
+    {
+        $sql = "SELECT 
         '3 prime utr variant' AS Efect, COUNT(dlv.Efect) AS Num_Efect        
         FROM tb_dataloadvariants dlv
-        WHERE dlv.IdLoad = ".$id."
+        WHERE dlv.IdLoad = " . $id . "
         AND dlv.Efect LIKE '3 prime utr variant'
         UNION
         SELECT 
         '5 prime utr variant' AS Efect, COUNT(dlv.Efect) AS Num_Efect        
         FROM tb_dataloadvariants dlv
-        WHERE dlv.IdLoad = ".$id."
+        WHERE dlv.IdLoad = " . $id . "
         AND dlv.Efect LIKE '5 prime utr variant'
         UNION
         SELECT 
         'intragenic variant' AS Efect, COUNT(dlv.Efect) AS Num_Efect        
         FROM tb_dataloadvariants dlv
-        WHERE dlv.IdLoad = ".$id."
+        WHERE dlv.IdLoad = " . $id . "
         AND dlv.Efect LIKE 'intragenic variant'
         UNION
         SELECT 
         'splice' AS Efect, COUNT(dlv.Efect) AS Num_Efect        
         FROM tb_dataloadvariants dlv
-        WHERE dlv.IdLoad = ".$id."
+        WHERE dlv.IdLoad = " . $id . "
         AND dlv.Efect LIKE 'splice%'
         UNION
         SELECT 
         'No reportadas' AS Efect, COUNT(dlv.Efect) AS Num_Efect        
         FROM tb_dataloadvariants dlv
-        WHERE dlv.IdLoad = ".$id."
+        WHERE dlv.IdLoad = " . $id . "
         AND TRIM(dlv.Efect) = ''";
         $data = $this->database->queryArray(utf8_decode($sql));
 
@@ -526,7 +536,7 @@ class CapturaInformacion
 
     public function getTipoClienteId($id)
     {
-        $sql = " SELECT * FROM tb_typeclient where idTypeClient=".$id."";
+        $sql = " SELECT * FROM tb_typeclient where idTypeClient=" . $id . "";
         $data = $this->database->queryArray(utf8_decode($sql));
         $htmlOption = "";
         if (sizeof($data) > 0) {
@@ -546,7 +556,7 @@ class CapturaInformacion
 
     public function getTipoDocumentoId($id)
     {
-        $sql = " SELECT * FROM tb_typedocument where IdTypeDocument=".$id."";
+        $sql = " SELECT * FROM tb_typedocument where IdTypeDocument=" . $id . "";
         $data = $this->database->queryArray(utf8_decode($sql));
         $htmlOption = "";
         if (sizeof($data) > 0) {
@@ -566,7 +576,7 @@ class CapturaInformacion
 
     public function getPerfilId($id)
     {
-        $sql = " SELECT * FROM tb_profile where IdProfile=".$id."";
+        $sql = " SELECT * FROM tb_profile where IdProfile=" . $id . "";
         $data = $this->database->queryArray(utf8_decode($sql));
         $htmlOption = "";
         if (sizeof($data) > 0) {
@@ -796,8 +806,8 @@ class CapturaInformacion
            ,'" . $Status . "'
            ,now()
            ," . $idTypeDocument . ""
-           . "," . $idProfile . ""
-           . "," . $idClient . ")";
+                    . "," . $idProfile . ""
+                    . "," . $idClient . ")";
                 $data = $this->database->nonReturnQuery($sql);
             }
         } else {
@@ -1076,7 +1086,7 @@ class CapturaInformacion
             . " WHERE IdLoad = " . $_idLoad;
         $this->database->nonReturnQuery($queryUpdate);
     }
-    public function getLoads()
+    public function getLoads($_idTypeLoad)
     {
         $sql = " SELECT IdLoad,"
             . " NameLoad,"
@@ -1089,7 +1099,9 @@ class CapturaInformacion
             . " FROM tb_load tl "
             . " INNER JOIN tb_stateload tsl ON tl.IdStateLoad = tsl.idStateLoad"
             . " INNER JOIN tb_person tp ON tl.IdPerson = tp.IdPerson"
-            . " WHERE tl.State = 1";
+            . " WHERE tl.State = 1"
+            . " AND IdTypeLoad = " . $_idTypeLoad;
+           
         $data = $this->database->queryArray(utf8_decode($sql));
 
         return $data;

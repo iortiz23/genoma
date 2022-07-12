@@ -27,7 +27,7 @@ $(document).ready(function() {
                 formData.append("inputName", inputName);
                 formData.append("idPerson", idPerson);
                 formData.append("inputObservation", inputObservation);
-                formData.append("idTypeLoad", 1);
+                formData.append("idTypeLoad", 3);
                 $.ajax({
                     type: "POST",
                     dataType: "xml",
@@ -137,7 +137,7 @@ function getLoads() {
         url: "../../controller/CapturaInformacionController.php",
         data: ({
             metodo: "getLoads",
-            idTypeLoad: "1",
+            idTypeLoad: "3",
         }),
         success: function(xml) {
             $(xml)
