@@ -269,7 +269,7 @@ $IdProfile = $_SESSION['IdProfile'];
             <section class="content">
                 <div class="container-fluid">
 
-                    <iframe src="dashboard.php" name="centerframe" class="pages" frameBorder=0 style="align-content: center; height: 100%; position: absolute; width: 85%;" frameSpacing=0>
+                    <iframe src="dashboard.php" name="centerframe" class="pages" frameBorder=0 style="align-content: center; height: 85%; position: absolute; width: 85%;" frameSpacing=0>
                     </iframe>
                 </div>
 

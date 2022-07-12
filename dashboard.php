@@ -34,7 +34,7 @@
         <!-- Content Wrapper. Contains page content -->
         <div class="container">
            <div class="row">
-            <div class="col-lg-12">
+            <div class="col-lg-12 otros">
                 <img  class="logo-dashboard" src="./dist/img/MATCHGENICA_fondo.png"/>
             </div>
            </div>
