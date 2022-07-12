@@ -201,7 +201,13 @@ $IdProfile = $_SESSION['IdProfile'];
                                 <li class="nav-item">
                                     <a href="pages/load-relation/load-relation.php" class="nav-link" target="centerframe">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Cargar Relación</p>
+                                        <p>Cargar Relación Enfermedades</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/load-medicine/load-medicine.php" class="nav-link" target="centerframe">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Cargar Relación Medicina</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">

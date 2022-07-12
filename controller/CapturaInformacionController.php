@@ -7,7 +7,7 @@ switch ($_REQUEST['metodo']) {
         XML::xmlResponse(setPassword($_REQUEST['email'], $_REQUEST['password_old'], $_REQUEST['password_new']));
         break;
     case 'loadFile':
-        XML::xmlResponse(loadFile($_REQUEST['idPerson'], $_REQUEST['inputName'], $_REQUEST['inputObservation'], $_FILES['inputFile']));
+        XML::xmlResponse(loadFile($_REQUEST['idPerson'], $_REQUEST['inputName'], $_REQUEST['inputObservation'], $_REQUEST['idTypeLoad'], $_FILES['inputFile']));
         break;
     case 'getUser':
         XML::xmlResponse(getUser());
@@ -16,7 +16,7 @@ switch ($_REQUEST['metodo']) {
         XML::xmlResponse(getBusqueda());
         break;
     case 'getGen':
-         XML::xmlResponse(getGen($_REQUEST['id']));
+        XML::xmlResponse(getGen($_REQUEST['id']));
         break;
     case 'getSNP1':
         XML::xmlResponse(getSNP1($_REQUEST['id']));
@@ -104,7 +104,7 @@ switch ($_REQUEST['metodo']) {
         break;
     case 'setTipoDocumento':
         XML::xmlResponse(setTipoDocumento($_POST['Description'], $_POST['Status'], $_POST['Id']));
-        break;        
+        break;
     case 'setTipoMedicamento':
         XML::xmlResponse(setTipoMedicamento($_POST['Description'], $_POST['Status'], $_POST['Id']));
         break;
@@ -115,7 +115,7 @@ switch ($_REQUEST['metodo']) {
         XML::xmlResponse(offSession());
         break;
     case 'getLoads':
-        XML::xmlResponse(getLoads());
+        XML::xmlResponse(getLoads($_REQUEST['idTypeLoad']));
         break;
 
     default:
@@ -200,10 +200,10 @@ function setPassword($_email, $_password_old, $_password_new)
     return $xml;
 }
 
-function loadFile($_idPerson, $_inputName, $_inputObservation, $_inputFile)
+function loadFile($_idPerson, $_inputName, $_inputObservation, $_idTypeLoad, $_inputFile)
 {
     $captura = new CapturaInformacion();
-    $data = $captura->loadFile($_idPerson, $_inputName, $_inputObservation, $_inputFile);
+    $data = $captura->loadFile($_idPerson, $_inputName, $_inputObservation, $_idTypeLoad, $_inputFile);
     $xml = "<registro"
         . " idLoad = '" . $data['idLoad'] . "'"
         . " columna = '" . $data['columna'] . "'"
@@ -266,8 +266,8 @@ function getGen($id)
 {
     $xml = "";
     $captura = new CapturaInformacion();
-    
-    $data = $captura->getGenoma($id);    
+
+    $data = $captura->getGenoma($id);
     if (count($data) > 0) {
         for ($i = 0; $i < count($data); $i++) {
             if (sizeof($data) > 0) {
@@ -288,8 +288,8 @@ function getSNP1($id)
 {
     $xml = "";
     $captura = new CapturaInformacion();
-    
-    $data = $captura->getSNP($id);    
+
+    $data = $captura->getSNP($id);
     if (count($data) > 0) {
         for ($i = 0; $i < count($data); $i++) {
             if (sizeof($data) > 0) {
@@ -310,8 +310,8 @@ function getProteina1($id)
 {
     $xml = "";
     $captura = new CapturaInformacion();
-    
-    $data = $captura->getProteina($id);    
+
+    $data = $captura->getProteina($id);
     if (count($data) > 0) {
         for ($i = 0; $i < count($data); $i++) {
             if (sizeof($data) > 0) {
@@ -332,8 +332,8 @@ function getTranscripto1($id)
 {
     $xml = "";
     $captura = new CapturaInformacion();
-    
-    $data = $captura->getTranscripto($id);    
+
+    $data = $captura->getTranscripto($id);
     if (count($data) > 0) {
         for ($i = 0; $i < count($data); $i++) {
             if (sizeof($data) > 0) {
@@ -354,8 +354,8 @@ function getGQ1($id)
 {
     $xml = "";
     $captura = new CapturaInformacion();
-    
-    $data = $captura->getGQ($id);    
+
+    $data = $captura->getGQ($id);
     if (count($data) > 0) {
         for ($i = 0; $i < count($data); $i++) {
             if (sizeof($data) > 0) {
@@ -376,8 +376,8 @@ function getCigosidad1($id)
 {
     $xml = "";
     $captura = new CapturaInformacion();
-    
-    $data = $captura->getCigosidad($id);    
+
+    $data = $captura->getCigosidad($id);
     if (count($data) > 0) {
         for ($i = 0; $i < count($data); $i++) {
             if (sizeof($data) > 0) {
@@ -399,8 +399,8 @@ function getACMG1($id)
 {
     $xml = "";
     $captura = new CapturaInformacion();
-    
-    $data = $captura->getACMG($id);    
+
+    $data = $captura->getACMG($id);
     if (count($data) > 0) {
         for ($i = 0; $i < count($data); $i++) {
             if (sizeof($data) > 0) {
@@ -422,8 +422,8 @@ function getEfecto1($id)
 {
     $xml = "";
     $captura = new CapturaInformacion();
-    
-    $data = $captura->getEfecto($id);    
+
+    $data = $captura->getEfecto($id);
     if (count($data) > 0) {
         for ($i = 0; $i < count($data); $i++) {
             if (sizeof($data) > 0) {
@@ -771,11 +771,11 @@ function offSession()
     $xml = "<registro>EXITOSO</registro>";
     return $xml;
 }
-function getLoads()
+function getLoads($_idTypeLoad)
 {
     $xml = "";
     $captura = new CapturaInformacion();
-    $data = $captura->getLoads();
+    $data = $captura->getLoads($_idTypeLoad);
     if (sizeof($data) > 0) {
         for ($i = 0; $i < count($data); $i++) {
             $xml .= "<registro                    
