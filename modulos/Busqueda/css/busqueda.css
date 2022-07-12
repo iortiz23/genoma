@@ -37,7 +37,7 @@
 }
 
 body.container {
-    background-color: #ffffff !important;
+    background: linear-gradient(to right, #D22F53, #82174A, #491845, #1F1C40) !important;
 }
 
 .btn-secondary:hover {
@@ -60,7 +60,7 @@ body.container {
 
 .card-header {
     color: #fff;
-    background-color: #201C42;
+    background-color: #201C42 !important;
 }
 
 .page-item.active .page-link {
@@ -68,4 +68,24 @@ body.container {
     color: #fff;
     background-color: #201C42;
     border-color: #201C42;
+}
+
+.bg-danger {
+    background-color: #E50850!important;
+}
+
+.bg-warning {
+    color: #fff !important;
+    background-color: #E50850!important;
+}
+
+.bg-primary {
+    background-color: #E50850!important;
+}
+
+.bg-success {
+    background-color: #E50850!important;
+}
+body{
+    background: linear-gradient(to right, #D22F53, #82174A, #491845, #1F1C40);
 }

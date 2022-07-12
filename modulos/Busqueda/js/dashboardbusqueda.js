@@ -239,9 +239,9 @@ $(document).ready(function () {
                         acmg.push($(this).attr('ACMG'));
                         Num_Acmg.push($(this).attr('Num_ACMG'));
                         if (n % 2 == 0) {
-                            colorA.push('#f56954');
+                            colorA.push('#201C42');
                         } else {
-                            colorA.push('#00a65a');
+                            colorA.push('#E50850');
                         }
                     } else {
                         bootbox.alert({
@@ -307,9 +307,9 @@ $(document).ready(function () {
                         cigosidad.push($(this).attr('Cigosidad'));
                         Num_Cigosidad.push($(this).attr('Cigosidad1'));
                         if (o % 2 == 0) {
-                            colorCi.push('#f56954');
+                            colorCi.push('#201C42');
                         } else {
-                            colorCi.push('#00a65a');
+                            colorCi.push('#E50850');
                         }
                     } else {
                         bootbox.alert({
@@ -375,9 +375,9 @@ $(document).ready(function () {
                         efecto.push($(this).attr('Efect'));
                         Num_Efecto.push($(this).attr('Num_Efect'));
                         if (p % 2 == 0) {
-                            colorEf.push('#f56954');
+                            colorEf.push('#201C42');
                         } else {
-                            colorEf.push('#00a65a');
+                            colorEf.push('#E50850');
                         }
                     } else {
                         bootbox.alert({

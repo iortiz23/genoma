@@ -753,13 +753,16 @@ class CapturaInformacion
 
     public function setUsuarios($Nombre, $Documento, $Telefono, $Email, $Contraseña, $Status, $idTypeDocument, $idProfile, $idClient)
     {
-        if ($Email != "") {
+        $select1 = "SELECT  * FROM tb_person  WHERE Email like '%" . $Email . "%' ";
+        $data2 = $this->database->QueryArray($select1);
+        if ($Email != "" && sizeof($data2) > 0) {
+            if($Contraseña!=""){
             $select = "SELECT  * FROM tb_person  WHERE Email like '%" . $Email . "%' ";
             $data = $this->database->QueryArray($select);
             if (sizeof($data) > 0) {
                 $valor = "";
                 if ($Contraseña != "" && $Contraseña != $data[0]["Passw"]) {
-                    $valor = "',Passw = '" . sha1($Contraseña) . "'";
+                    $valor = ",Passw = '" . sha1($Contraseña) . "'";
                 }
                 $UPDATE = "UPDATE tb_person
                         SET Name = '" . $Nombre . "'      
@@ -769,11 +772,31 @@ class CapturaInformacion
                            " . $valor . "
                            ,State = " . $Status . "
                            ,DateCreate=now()
-                           ,IdTypeDocument=" . $idTypeDocument . ",
-                           ,IdProfile=" . $idProfile . ",
-                           ,IdTypeClient=" . $idClient . ",
+                           ,IdTypeDocument=" . $idTypeDocument . "
+                           ,IdProfile=" . $idProfile . "
+                           ,IdTypeClient=" . $idClient . "
                       WHERE IdPerson = " . $data[0]["IdPerson"] . "";
                 $dataupdate = $this->database->nonReturnQuery($UPDATE);
+            }
+        }else{
+            $select = "SELECT  * FROM tb_person  WHERE Email like '%" . $Email . "%' ";
+            $data = $this->database->QueryArray($select);
+            if (sizeof($data) > 0) {
+                $UPDATE = "UPDATE tb_person
+                        SET Name = '" . $Nombre . "'      
+                           ,Document = '" . $Documento . "'
+                           ,Phone = " . $Telefono . "
+                           ,Email = '" . $Email . "'
+                           ,State = " . $Status . "
+                           ,DateCreate=now()
+                           ,IdTypeDocument=" . $idTypeDocument . "
+                           ,IdProfile=" . $idProfile . "
+                           ,IdTypeClient=" . $idClient . "
+                      WHERE IdPerson = " . $data[0]["IdPerson"] . "";
+                $dataupdate = $this->database->nonReturnQuery($UPDATE);
+            }
+        }
+            
             } else {
 
                 $sql = "INSERT INTO tb_person
@@ -800,29 +823,7 @@ class CapturaInformacion
            . "," . $idClient . ")";
                 $data = $this->database->nonReturnQuery($sql);
             }
-        } else {
-            $sql = "INSERT INTO tb_person
-           (Name
-           ,Document
-           ,Phone
-           ,Email
-           ,Passw           
-           ,State
-           ,DateCreate
-           ,IdTypeDocument
-           ,IdProfile)
-     VALUES
-           ('" . $Nombre . "'
-           ,'" . $Documento . "'
-           ,'" . $Telefono . "'
-           ,'" . $Email . "'
-           ,'" . sha1($Contraseña) . "'           
-           ,'" . $Status . "'
-           ,now()
-           ," . $idTypeDocument . ""
-                . "," . $idProfile . ")";
-            $data = $this->database->nonReturnQuery($sql);
-        }
+        
 
         return 1;
     }

@@ -46,7 +46,7 @@ $(document).ready(function () {
                                 window.location = './perfil.php';
                             },
                             buttons: {
-                                "success": {
+                                "ok": {
                                    label: "Ok",
                                    className: "card-color",
                                    callback: function () {
@@ -64,7 +64,7 @@ $(document).ready(function () {
                                 window.location = './perfil.php';
                             },
                             buttons: {
-                                "success": {
+                                "ok": {
                                    label: "Ok",
                                    className: "card-color",
                                    callback: function () {

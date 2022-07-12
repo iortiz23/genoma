@@ -89,13 +89,13 @@ if(isset($_REQUEST['id'])){
                             <!-- textarea -->
                             <div class="form-group">
                                 <label>Contraseña</label>
-                                <input name="pass" type="password" id="pass" min-length="8" max-length="16"data-req="requerido" class="form-control" value="<?php echo isset($result[0]['Passw'])?hash('sha256',$result[0]['Passw']):''; ?>" >
+                                <input name="pass" type="password" id="pass" min-length="8" max-length="16"data-req="requerido" class="form-control"  >
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label>Confirma Contraseña</label>
-                                <input name="pass2" type="password" id="pass2" min-length="8"  max-length="16" data-req="requerido" class="form-control" value="<?php echo isset($result[0]['Passw'])?hash('sha256',$result[0]['Passw']):''; ?>" >
+                                <input name="pass2" type="password" id="pass2" min-length="8"  max-length="16" data-req="requerido" class="form-control"  >
                             </div>
                         </div>
                     </div>
@@ -154,12 +154,7 @@ if(isset($_REQUEST['id'])){
             </div>
         </div>
         <!-- /.content-wrapper -->
-        <footer class="main-footer">
-            <div class="float-right d-none d-sm-block">
-                <b>Version</b> 3.2.0
-            </div>
-            <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
-        </footer>
+        
 
         <!-- Control Sidebar -->
         <aside class="control-sidebar control-sidebar-dark">
