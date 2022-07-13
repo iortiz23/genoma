@@ -32,22 +32,32 @@ function permisos(idProfile) {
             $("#li-permisos-adminUsu").show();
             $("#li-permisos-cargue").show();
             $("#li-permisos-busqueda").show();
+            $("#li-permisos-cargue-relacion").show();
+            $("#li-permisos-cargue-medicine").show();
+            
+            
             break;
         case '2':
             $("#li-permisos-adminUsu").hide();
             $("#li-permisos-cargue").show();
             $("#li-permisos-busqueda").show();
+            $("#li-permisos-cargue-relacion").hide();
+            $("#li-permisos-cargue-medicine").hide();
             break;
         case '3':
             $("#li-permisos-adminUsu").hide();
             $("#li-permisos-cargue").hide();
             $("#li-permisos-busqueda").show();
+            $("#li-permisos-cargue-relacion").hide();
+            $("#li-permisos-cargue-medicine").hide();
             break;
 
         default:
             $("#li-permisos-adminUsu").hide();
             $("#li-permisos-cargue").hide();
             $("#li-permisos-busqueda").hide();
+            $("#li-permisos-cargue-relacion").hide();
+            $("#li-permisos-cargue-medicine").hide();
             break;
     }
 }

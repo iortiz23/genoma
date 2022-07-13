@@ -195,34 +195,21 @@ $IdProfile = $_SESSION['IdProfile'];
                                 <li class="nav-item">
                                     <a href="pages/load/load.php" class="nav-link" target="centerframe">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Cargar Variantes</p>
+                                        <p>Cargue Variantes</p>
                                     </a>
                                 </li>
-                                <li class="nav-item">
+                                <li class="nav-item"  id="li-permisos-cargue-relacion">
                                     <a href="pages/load-relation/load-relation.php" class="nav-link" target="centerframe">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Cargar Relación Enfermedades</p>
+                                        <p>Cargue Relación Enfermedades</p>
                                     </a>
                                 </li>
-                                <li class="nav-item">
+                                <li class="nav-item" id="li-permisos-cargue-medicine">
                                     <a href="pages/load-medicine/load-medicine.php" class="nav-link" target="centerframe">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Cargar Relación Medicina</p>
+                                        <p>Cargue Relación Medicina</p>
                                     </a>
                                 </li>
-                                <li class="nav-item">
-                                    <a href="modulos/TipoEnfermedad/tipoenfermedad.php" class="nav-link" target="centerframe">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Tipos de Enfermedad</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="modulos/TipoMedicamento/tipomedicamento.php" class="nav-link" target="centerframe">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Tipos de Medicamento</p>
-                                    </a>
-                                </li>
-
                             </ul>
                         </li>
                         <li class="nav-item" id="li-permisos-busqueda">
@@ -238,6 +225,18 @@ $IdProfile = $_SESSION['IdProfile'];
                                     <a href="modulos/Busqueda/busqueda.php" class="nav-link" target="centerframe">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Consulta Informes</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="modulos/TipoEnfermedad/tipoenfermedad.php" class="nav-link" target="centerframe">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Match de Enfermedades</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="modulos/TipoMedicamento/tipomedicamento.php" class="nav-link" target="centerframe">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Match de Medicamentos</p>
                                     </a>
                                 </li>
 
@@ -269,7 +268,7 @@ $IdProfile = $_SESSION['IdProfile'];
             <section class="content">
                 <div class="container-fluid">
 
-                    <iframe src="dashboard.php" name="centerframe" class="pages" frameBorder=0 style="align-content: center; height: 85%; position: absolute; width: 85%;" frameSpacing=0>
+                    <iframe src="dashboard.php" name="centerframe" class="pages" frameBorder=0 style="align-content: center; height: 85%; position: absolute; width: 80%;" frameSpacing=0>
                     </iframe>
                 </div>
 
