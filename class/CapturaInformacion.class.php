@@ -763,7 +763,7 @@ class CapturaInformacion
     {
         $select1 = "SELECT  * FROM tb_person  WHERE Email like '%" . $Email . "%' ";
         $data2 = $this->database->QueryArray($select1);
-        if ($Email != "" && sizeof($data2) > 0) {
+        if ($Email != "" && sizeof($data2) > 0 && $idProfile!=1) {
             if($Contraseña!=""){
             $select = "SELECT  * FROM tb_person  WHERE Email like '%" . $Email . "%' ";
             $data = $this->database->QueryArray($select);
@@ -806,8 +806,9 @@ class CapturaInformacion
         }
             
             } else {
+                if($idProfile!=1){
 
-                $sql = "INSERT INTO tb_person
+                    $sql = "INSERT INTO tb_person
            (Name
            ,Document
            ,Phone
@@ -830,6 +831,8 @@ class CapturaInformacion
                     . "," . $idProfile . ""
                     . "," . $idClient . ")";
                 $data = $this->database->nonReturnQuery($sql);
+                }
+                
             }
         
 
