@@ -170,4 +170,7 @@ function getLoads() {
                 });
         },
     });
+    $('#table_Loads').removeClass("dataTable");
+    $('#table_Loads').removeClass("dtr-inline");
+    $('#table_Loads').addClass("manage");
 }

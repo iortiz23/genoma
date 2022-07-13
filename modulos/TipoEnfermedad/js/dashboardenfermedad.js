@@ -34,10 +34,10 @@ $(document).ready(function () {
                         $('#tbEnfermedadGenoma').dataTable().fnAddData([
                             $(this).attr('Id'),
                             $(this).attr('Genoma'),
-                            $(this).attr('Enfermedad'),
+                            decodeURIComponent(escape($(this).attr('Enfermedad'))),
                             $(this).attr('Nivelevidencia'),
-                            $(this).attr('Basedatos') ,
-                         ]);
+                            '<a type="button" class="btn bg-gradient-warning btn-sm-1" href="' + $(this).attr('Basedatos') + '" ><i class="nav-icon fas fa-edit"></i></a>',
+                            ]);
                     } else {
                         bootbox.alert({
                             message: 'No se encuentran registros',

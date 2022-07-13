@@ -32,8 +32,8 @@ $(document).ready(function () {
                     if ($(this).text() != 'NOEXITOSO') {
                         $('#tbTypeEnfermedad').dataTable().fnAddData([
                             $(this).attr('IdLoad'),
-                            $(this).attr('NameLoad'),
-                            $(this).attr('Description'),
+                            decodeURIComponent(escape($(this).attr('NameLoad'))),
+                            decodeURIComponent(escape($(this).attr('Description'))),
                             $(this).attr('DateCreate'),
                             $(this).attr('State') == '1' ? 'Activo' : 'Inactivo',
                             '<a type="button" class="btn bg-gradient-warning btn-sm-1" href="./dashboardenfermedad.php?id=' + $(this).attr('IdLoad') + '" ><i class="nav-icon fas fa-edit"></i></a>',

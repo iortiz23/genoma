@@ -142,7 +142,7 @@
                                         <tbody>
                                             <tr>
                                                 <td>1.</td>
-                                                <td>Numero de Genes</td>
+                                                <td>Número de Genes</td>
                                                 <td><span class="badge bg-danger" id="gen"></span></td>
                                             </tr>
                                             <tr>
@@ -152,7 +152,7 @@
                                             </tr>
                                             <tr>
                                                 <td>3.</td>
-                                                <td>Variantes Proteina</td>
+                                                <td>Variantes Proteína</td>
                                                 <td><span class="badge bg-primary" id="proteina"></span></td>
                                             </tr>
                                             <tr>
