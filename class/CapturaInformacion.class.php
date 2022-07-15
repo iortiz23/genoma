@@ -409,7 +409,7 @@ class CapturaInformacion
         return $return;
     }
 
-    
+
 
     public function getProfileById($id)
     {
@@ -614,45 +614,45 @@ class CapturaInformacion
 
     public function getTiposEnfermedadPorGen($id)
     {
-        $return=null;
-        if($id!=""){
+        $return = null;
+        if ($id != "") {
 
             $sql = " SELECT  DISTINCT tb1.IdLoad as Id,tb1.Gen as Genoma,tb2.NameIllness as Enfermedad,tb2.LevelMatchgenicEvidence as Nivel_evidencia, tb2.Source as Base_datos FROM tb_dataloadvariants as tb1
         INNER JOIN tb_dataload_illness as tb2  on tb1.Gen=tb2.Search
-        WHERE tb1.IdLoad=".$id."";
-        $data = $this->database->queryArray(utf8_decode($sql));
+        WHERE tb1.IdLoad=" . $id . "";
+            $data = $this->database->queryArray(utf8_decode($sql));
 
-        if (sizeof($data) > 0) {
+            if (sizeof($data) > 0) {
 
-            $return = $data;
-        } else {
+                $return = $data;
+            } else {
 
-            $return = null;
+                $return = null;
+            }
         }
-        }
-        
+
         // print_r($return);
         return $return;
     }
     public function getTiposMedicinaPorGen($id)
     {
-        $return=null;
-        if($id!=""){
+        $return = null;
+        if ($id != "") {
 
             $sql = "SELECT DISTINCT tb1.IdLoad as Id,tb1.Gen as Genoma ,tb2.Drug as Medicamento FROM tb_dataloadvariants as tb1
             INNER JOIN tb_dataload_medicine tb2  on tb1.Gen=tb2.Gene
-            WHERE tb1.IdLoad=".$id."";
-        $data = $this->database->queryArray(utf8_decode($sql));
+            WHERE tb1.IdLoad=" . $id . "";
+            $data = $this->database->queryArray(utf8_decode($sql));
 
-        if (sizeof($data) > 0) {
+            if (sizeof($data) > 0) {
 
-            $return = $data;
-        } else {
+                $return = $data;
+            } else {
 
-            $return = null;
+                $return = null;
+            }
         }
-        }
-        
+
         // print_r($return);
         return $return;
     }
@@ -763,16 +763,16 @@ class CapturaInformacion
     {
         $select1 = "SELECT  * FROM tb_person  WHERE Email like '%" . $Email . "%' ";
         $data2 = $this->database->QueryArray($select1);
-        if ($Email != "" && sizeof($data2) > 0 && $idProfile!=1) {
-            if($Contraseña!=""){
-            $select = "SELECT  * FROM tb_person  WHERE Email like '%" . $Email . "%' ";
-            $data = $this->database->QueryArray($select);
-            if (sizeof($data) > 0) {
-                $valor = "";
-                if ($Contraseña != "" && $Contraseña != $data[0]["Passw"]) {
-                    $valor = ",Passw = '" . sha1($Contraseña) . "'";
-                }
-                $UPDATE = "UPDATE tb_person
+        if ($Email != "" && sizeof($data2) > 0 && $idProfile != 1) {
+            if ($Contraseña != "") {
+                $select = "SELECT  * FROM tb_person  WHERE Email like '%" . $Email . "%' ";
+                $data = $this->database->QueryArray($select);
+                if (sizeof($data) > 0) {
+                    $valor = "";
+                    if ($Contraseña != "" && $Contraseña != $data[0]["Passw"]) {
+                        $valor = ",Passw = '" . sha1($Contraseña) . "'";
+                    }
+                    $UPDATE = "UPDATE tb_person
                         SET Name = '" . $Nombre . "'      
                            ,Document = '" . $Documento . "'
                            ,Phone = " . $Telefono . "
@@ -784,13 +784,13 @@ class CapturaInformacion
                            ,IdProfile=" . $idProfile . "
                            ,IdTypeClient=" . $idClient . "
                       WHERE IdPerson = " . $data[0]["IdPerson"] . "";
-                $dataupdate = $this->database->nonReturnQuery($UPDATE);
-            }
-        }else{
-            $select = "SELECT  * FROM tb_person  WHERE Email like '%" . $Email . "%' ";
-            $data = $this->database->QueryArray($select);
-            if (sizeof($data) > 0) {
-                $UPDATE = "UPDATE tb_person
+                    $dataupdate = $this->database->nonReturnQuery($UPDATE);
+                }
+            } else {
+                $select = "SELECT  * FROM tb_person  WHERE Email like '%" . $Email . "%' ";
+                $data = $this->database->QueryArray($select);
+                if (sizeof($data) > 0) {
+                    $UPDATE = "UPDATE tb_person
                         SET Name = '" . $Nombre . "'      
                            ,Document = '" . $Documento . "'
                            ,Phone = " . $Telefono . "
@@ -801,14 +801,13 @@ class CapturaInformacion
                            ,IdProfile=" . $idProfile . "
                            ,IdTypeClient=" . $idClient . "
                       WHERE IdPerson = " . $data[0]["IdPerson"] . "";
-                $dataupdate = $this->database->nonReturnQuery($UPDATE);
+                    $dataupdate = $this->database->nonReturnQuery($UPDATE);
+                }
             }
-        }
-            
-            } else {
-                if($idProfile!=1){
+        } else {
+            if ($idProfile != 1) {
 
-                    $sql = "INSERT INTO tb_person
+                $sql = "INSERT INTO tb_person
            (Name
            ,Document
            ,Phone
@@ -831,10 +830,9 @@ class CapturaInformacion
                     . "," . $idProfile . ""
                     . "," . $idClient . ")";
                 $data = $this->database->nonReturnQuery($sql);
-                }
-                
             }
-        
+        }
+
 
         return 1;
     }
@@ -956,7 +954,7 @@ class CapturaInformacion
         return 1;
     }
 
-    
+
     public function createLoad($dataLoad)
     {
         $queryInsert = "INSERT INTO tb_load ("
@@ -1026,7 +1024,50 @@ class CapturaInformacion
             . " INNER JOIN tb_person tp ON tl.IdPerson = tp.IdPerson"
             . " WHERE tl.State = 1"
             . " AND IdTypeLoad = " . $_idTypeLoad;
-           
+
+        $data = $this->database->queryArray(utf8_decode($sql));
+
+        return $data;
+    }
+    public function getBusquedaDetalle($_id, $_index, $_name, $_value)
+    {
+
+        $_where =  "";
+        if ($_index === 'ACMG') {
+            $_name = $_name == 'No reportadas' ? '' : $_name . '%';
+            $_where = "AND dlv.ACMG LIKE '" . $_name . "'";
+        } elseif ($_index === 'Efecto') {
+            $_name = $_name == 'splice' ? $_name . '%' : $_name;
+            $_name = $_name == 'No reportadas' ? '' : $_name . '%';
+            $_where = "AND dlv.Efect LIKE '" . $_name . "'";
+        } elseif ($_index === 'Cigosidad') {
+            $_where = "AND dlv.Cigosidad = '" . $_name . "'";
+        }
+
+        $sql = " SELECT 
+                    IdDataLoadVari, 
+                    Muestra, 
+                    CrPosicion, 
+                    Gen, 
+                    VarianteTranscripto, 
+                    VarianteProteina, 
+                    Efect, 
+                    ACMG, 
+                    gnomADExome, 
+                    gnomADGenome, 
+                    FrequencyExAC, 
+                    Cigosidad, 
+                    Coverage, 
+                    FS, 
+                    GQ, 
+                    Qual, 
+                    RefSeq, 
+                    IDdbSNP, 
+                    Comments, 
+                    DateCreate, 
+                    IdLoad  
+        FROM tb_dataloadvariants dlv
+        WHERE dlv.IdLoad = " . $_id . " " . $_where;
         $data = $this->database->queryArray(utf8_decode($sql));
 
         return $data;
