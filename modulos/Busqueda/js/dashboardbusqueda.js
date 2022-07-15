@@ -232,37 +232,39 @@ $(document).ready(function() {
         },
         type: "post",
         dataType: "xml",
-        beforeSend: function () {
-
-        },
-        success: function (xml) {
-            $(xml).find("response").each(function () {
-
-                var n = 0;
-                $(this).find("registro").each(function () {
-                    if ($(this).text() != 'NOEXITOSO') {
-                        acmg.push($(this).attr('ACMG'));
-                        Num_Acmg.push($(this).attr('Num_ACMG'));
-                        if (n % 2 == 0) {
-                            colorA.push('#201C42');
-                        } else {
-                            colorA.push('#E50850');
-                        }
-                    } else {
-                        bootbox.alert({
-                            message: '',
-                            title: "Alerta",
-                            callback: function () {
-                                window.location = './busqueda.php';
-                            },
-                            buttons: {
-                                "success": {
-                                    label: "Ok",
-                                    className: "card-color",
-                                    callback: function () { }
+        beforeSend: function() {},
+        success: function(xml) {
+            $(xml)
+                .find("response")
+                .each(function() {
+                    var n = 0;
+                    $(this)
+                        .find("registro")
+                        .each(function() {
+                            if ($(this).text() != "NOEXITOSO") {
+                                acmg.push($(this).attr("ACMG"));
+                                Num_Acmg.push($(this).attr("Num_ACMG"));
+                                if (n % 2 == 0) {
+                                    colorA.push("#201C42");
+                                } else {
+                                    colorA.push("#E50850");
                                 }
-                            }});
-                        }
+                            } else {
+                                bootbox.alert({
+                                    message: "",
+                                    title: "Alerta",
+                                    callback: function() {
+                                        window.location = "./busqueda.php";
+                                    },
+                                    buttons: {
+                                        success: {
+                                            label: "Ok",
+                                            className: "card-color",
+                                            callback: function() {},
+                                        },
+                                    },
+                                });
+                            }
                             n = n + 1;
                         });
                 });
@@ -292,21 +294,20 @@ $(document).ready(function() {
                 if (activePoints.length > 0) {
                     //get the internal index of slice in pie chart
                     var clickedElementindex = activePoints[0]["_index"];
-                    alert("clickedElementindex " + clickedElementindex);
+                    // alert("clickedElementindex " + clickedElementindex);
 
-                    //get specific label by index
+                    // //get specific label by index
                     var label = myNewChart.data.labels[clickedElementindex];
-                    alert("label " + label);
-                    //get value by index
+                    // alert("label " + label);
+                    // //get value by index
                     var value = myNewChart.data.datasets[0].data[clickedElementindex];
-                    alert("value " + value);
+                    // alert("value " + value);
                     /* other stuff that requires slice's label and value */
+                    SendData(getParameterByName("id"), "ACMG", label, value);
                 }
             };
         },
     });
-
-
 
     $.ajax({
         url: "../../controller/CapturaInformacionController.php",
@@ -316,40 +317,41 @@ $(document).ready(function() {
         },
         type: "post",
         dataType: "xml",
-        beforeSend: function () {
-
-        },
-        success: function (xml) {
-            $(xml).find("response").each(function () {
-
-                var o = 0;
-                $(this).find("registro").each(function () {
-                    if ($(this).text() != 'NOEXITOSO') {
-                        cigosidad.push($(this).attr('Cigosidad'));
-                        Num_Cigosidad.push($(this).attr('Cigosidad1'));
-                        if (o % 2 == 0) {
-                            colorCi.push('#201C42');
-                        } else {
-                            colorCi.push('#E50850');
-                        }
-                    } else {
-                        bootbox.alert({
-                            message: '',
-                            title: "Alerta",
-                            callback: function () {
-                                window.location = './busqueda.php';
-                            },
-                            buttons: {
-                                "success": {
-                                    label: "Ok",
-                                    className: "card-color",
-                                    callback: function () { }
-                                }                            
-                            }});
-                        }
+        beforeSend: function() {},
+        success: function(xml) {
+            $(xml)
+                .find("response")
+                .each(function() {
+                    var o = 0;
+                    $(this)
+                        .find("registro")
+                        .each(function() {
+                            if ($(this).text() != "NOEXITOSO") {
+                                cigosidad.push($(this).attr("Cigosidad"));
+                                Num_Cigosidad.push($(this).attr("Cigosidad1"));
+                                if (o % 2 == 0) {
+                                    colorCi.push("#201C42");
+                                } else {
+                                    colorCi.push("#E50850");
+                                }
+                            } else {
+                                bootbox.alert({
+                                    message: "",
+                                    title: "Alerta",
+                                    callback: function() {
+                                        window.location = "./busqueda.php";
+                                    },
+                                    buttons: {
+                                        success: {
+                                            label: "Ok",
+                                            className: "card-color",
+                                            callback: function() {},
+                                        },
+                                    },
+                                });
+                            }
                             o = o + 1;
                         });
-                    
                 });
             var donutChartCanvas = $("#donutChart6").get(0).getContext("2d");
             var donutData = {
@@ -365,11 +367,29 @@ $(document).ready(function() {
             };
             //Create pie or douhnut chart
             // You can switch between pie and douhnut using the method below.
-            new Chart(donutChartCanvas, {
+            var myNewChart = new Chart(donutChartCanvas, {
                 type: "doughnut",
                 data: donutData,
                 options: donutOptions,
             });
+            document.getElementById("donutChart6").onclick = function(evt) {
+                var activePoints = myNewChart.getElementsAtEvent(evt);
+
+                if (activePoints.length > 0) {
+                    //get the internal index of slice in pie chart
+                    var clickedElementindex = activePoints[0]["_index"];
+                    // alert("clickedElementindex " + clickedElementindex);
+
+                    // //get specific label by index
+                    var label = myNewChart.data.labels[clickedElementindex];
+                    // alert("label " + label);
+                    // //get value by index
+                    var value = myNewChart.data.datasets[0].data[clickedElementindex];
+                    // alert("value " + value);
+                    /* other stuff that requires slice's label and value */
+                    SendData(getParameterByName("id"), "Cigosidad", label, value);
+                }
+            };
         },
     });
     $.ajax({
@@ -380,37 +400,39 @@ $(document).ready(function() {
         },
         type: "post",
         dataType: "xml",
-        beforeSend: function () {
-
-        },
-        success: function (xml) {
-            $(xml).find("response").each(function () {
-
-                var p = 0;
-                $(this).find("registro").each(function () {
-                    if ($(this).text() != 'NOEXITOSO') {
-                        efecto.push($(this).attr('Efect'));
-                        Num_Efecto.push($(this).attr('Num_Efect'));
-                        if (p % 2 == 0) {
-                            colorEf.push('#201C42');
-                        } else {
-                            colorEf.push('#E50850');
-                        }
-                    } else {
-                        bootbox.alert({
-                            message: '',
-                            title: "Alerta",
-                            callback: function () {
-                                window.location = './busqueda.php';
-                            },
-                            buttons: {
-                                "success": {
-                                    label: "Ok",
-                                    className: "card-color",
-                                    callback: function () { }
-                                }                            
-                            }});
-                        }
+        beforeSend: function() {},
+        success: function(xml) {
+            $(xml)
+                .find("response")
+                .each(function() {
+                    var p = 0;
+                    $(this)
+                        .find("registro")
+                        .each(function() {
+                            if ($(this).text() != "NOEXITOSO") {
+                                efecto.push($(this).attr("Efect"));
+                                Num_Efecto.push($(this).attr("Num_Efect"));
+                                if (p % 2 == 0) {
+                                    colorEf.push("#201C42");
+                                } else {
+                                    colorEf.push("#E50850");
+                                }
+                            } else {
+                                bootbox.alert({
+                                    message: "",
+                                    title: "Alerta",
+                                    callback: function() {
+                                        window.location = "./busqueda.php";
+                                    },
+                                    buttons: {
+                                        success: {
+                                            label: "Ok",
+                                            className: "card-color",
+                                            callback: function() {},
+                                        },
+                                    },
+                                });
+                            }
                             p = p + 1;
                         });
                 });
@@ -428,11 +450,42 @@ $(document).ready(function() {
             };
             //Create pie or douhnut chart
             // You can switch between pie and douhnut using the method below.
-            new Chart(donutChartCanvas, {
+            var myNewChart = new Chart(donutChartCanvas, {
                 type: "doughnut",
                 data: donutData,
                 options: donutOptions,
             });
+            document.getElementById("donutChart7").onclick = function(evt) {
+                var activePoints = myNewChart.getElementsAtEvent(evt);
+
+                if (activePoints.length > 0) {
+                    //get the internal index of slice in pie chart
+                    var clickedElementindex = activePoints[0]["_index"];
+                    // alert("clickedElementindex " + clickedElementindex);
+
+                    // //get specific label by index
+                    var label = myNewChart.data.labels[clickedElementindex];
+                    // alert("label " + label);
+                    // //get value by index
+                    var value = myNewChart.data.datasets[0].data[clickedElementindex];
+                    // alert("value " + value);
+                    /* other stuff that requires slice's label and value */
+                    SendData(getParameterByName("id"), "Efecto", label, value);
+                }
+            };
         },
     });
 });
+
+function SendData(id, index, name, value) {
+    window.location =
+        "./DetalleBusqueda/detalleBusqueda.php?id=" +
+        id +
+        "&index=" +
+        index +
+        "&name=" +
+        name +
+        "&value=" +
+        value +
+        "";
+}

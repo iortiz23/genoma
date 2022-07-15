@@ -111,6 +111,9 @@ switch ($_REQUEST['metodo']) {
     case 'getLoads':
         XML::xmlResponse(getLoads($_REQUEST['idTypeLoad']));
         break;
+    case 'getBusquedaDetalle':
+        XML::xmlResponse(getBusquedaDetalle($_POST['id'],$_POST['index'], $_POST['name'], $_POST['value']));
+        break;
 
     default:
         echo 'No se encontro el metodo';
@@ -788,6 +791,27 @@ function getLoads($_idTypeLoad)
                         DateCreate='" . utf8_encode(trim($data[$i]['DateCreate'])) . "'
                         Processedrows='" . utf8_encode(trim($data[$i]['Processedrows'])) . "' 
                         Name='" . utf8_encode(trim($data[$i]['Name'])) . "'
+                    ></registro>";
+        }
+    } else {
+        $xml = "<registro>NOEXITOSO</registro>";
+    }
+    return $xml;
+}
+function getBusquedaDetalle($_id,$_index, $_name, $_value)
+{
+    $xml = "";
+    $captura = new CapturaInformacion();
+    $data = $captura->getBusquedaDetalle($_id,$_index, $_name, $_value);
+    if (sizeof($data) > 0) {
+        for ($i = 0; $i < count($data); $i++) {
+            $xml .= "<registro                    
+                        Muestra='" . utf8_encode(trim($data[$i]['Muestra'])) . "'                    
+                        CrPosicion='" . utf8_encode(trim($data[$i]['CrPosicion'])) . "'                    
+                        Gen='" . utf8_encode(trim($data[$i]['Gen'])) . "'                                          
+                        ACMG='" . utf8_encode(trim($data[$i]['ACMG'])) . "'  
+                        Cigosidad='" . utf8_encode(trim($data[$i]['Cigosidad'])) . "'  
+                        IDdbSNP='" . utf8_encode(trim($data[$i]['IDdbSNP'])) . "'
                     ></registro>";
         }
     } else {
