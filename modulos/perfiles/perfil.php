@@ -28,7 +28,7 @@
 
         <script src="./js/perfil.js"></script>
     </head>
-    <body class="container" style="background-color: #f4f6f9;">
+    <body class="container" style="background-color: #f4f6f9;padding-top: 17px;">
         <div class="row">
             <!-- Content Wrapper. Contains page content -->
             <div class="container">

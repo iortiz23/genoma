@@ -69,3 +69,244 @@ a.brand-link {
     background-color: #E50850;
     color: #fff;
 }
+.menu-content{
+    position: fixed;
+    left: 78pt;
+    top: 86.7pt;
+    border-radius: 0 12pt 12pt 0;
+    padding: 0.5%;
+    z-index: 10000;
+    background-color: #4da5e3 !important;
+}
+.sub-menu{
+    padding: 0pt 0pt 0pt 13pt;
+}
+.sub-menu a{
+    padding: 0 !important;
+    border-bottom: 1px solid white;
+}
+.text-submenu{
+    margin: 0;
+    color: white;
+}
+.menu-content-1{
+    position: fixed;
+    left: 78pt;
+    top: 85.7pt;
+    border-radius: 0 12pt 12pt 0;
+    padding: 0.5%;
+    z-index: 10000;
+    height: 102px;
+    background-color: #4da5e3 !important;
+}
+.menu-content-3{
+    position: fixed;
+    left: 78pt;
+    top: 238.7pt;
+    border-radius: 0 12pt 12pt 0;
+    padding: 0.5%;
+    z-index: 10000;
+    height: 102px;
+    background-color: #4da5e3 !important;
+}
+
+.menu-content-4{
+    position: fixed;
+    left: 78pt;
+    top: 314.7pt;
+    border-radius: 0 12pt 12pt 0;
+    padding: 0.5%;
+    z-index: 10000;
+    height: 102px;
+    background-color: #4da5e3 !important;
+} 
+
+.menu-content-5{
+    position: fixed;
+    left: 78pt;
+    top: 392.7pt;
+    border-radius: 0 12pt 12pt 0;
+    padding: 0.5%;
+    z-index: 10000;
+    height: 102px;
+    background-color: #4da5e3 !important;
+}
+.nav-pills .nav-link{
+    height: 102px;
+}
+.nav-pills .nav-link.active .op-menu-1{
+    border-radius: 100%;
+    background-color: #cfd3ed !important; 
+}
+
+.nav-pills .nav-link.active .op-menu-2{
+    border-radius: 100%;
+    background-color: #cfd3ed !important; 
+}
+.nav-pills .nav-link.active .op-menu-3{
+    border-radius: 100%;
+    background-color: #cfd3ed !important; 
+}
+.nav-pills .nav-link.active .op-menu-4{
+    border-radius: 100%;
+    background-color: #cfd3ed !important; 
+}
+
+.nav-pills .nav-link.active .op-menu-5{
+    border-radius: 100%;
+    background-color: #cfd3ed !important; 
+}
+
+.nav-link:hover {
+    background-color: #4da5e3 !important;
+    border-radius: 12pt 12pt 12pt 12pt;
+}
+
+.submenu:hover {
+    background-color: #4da5e3 !important;
+    border-radius: 0;
+}
+.notificaciones:hover{
+    border-radius: 0;
+    background-color: transparent !important;
+}
+.usuario:hover{
+    border-radius: 0;
+    background-color: transparent !important;
+}
+.logout:hover{
+    border-radius: 0;
+    background-color: transparent !important;
+}
+a.nav-link.notificaciones {
+    margin-top: 9px;
+}
+a.nav-link.usuario {
+    margin-top: 9px;
+}
+a.nav-link.logout {
+    margin-top: 9px;
+}
+.nav-link:hover .op-menu-2  {
+    border-radius: 100%;
+    background-color: #cfd3ed !important; 
+}
+
+.nav-link:hover .op-menu-3  {
+    border-radius: 100%;
+    background-color: #cfd3ed !important; 
+}
+
+.nav-link:hover .op-menu-4  {
+    border-radius: 100%;
+    background-color: #cfd3ed !important; 
+}
+
+.nav-link:hover .op-menu-5  {
+    border-radius: 100%;
+    background-color: #cfd3ed !important; 
+}
+
+.nav-link:hover .op-menu-1{
+    border-radius: 100%;
+    background-color: #cfd3ed !important; 
+}
+.logo-menu-1{
+    width: 100%;
+}
+.logo-menu-2{
+    width: 100%;
+}
+
+.logo-menu-3{
+    width: 100%;
+}
+
+.logo-menu-4{
+    width: 100%;
+}
+
+.logo-menu-5{
+    width: 100%;
+}
+.nav-pills .nav-link.active{
+    border-radius: 12pt 0pt 0pt 12pt;
+    background-color: #4da5e3 !important;
+}
+.menu-content-2{
+    position: fixed;
+    left: 78pt;
+    top: 161.7pt;
+    border-radius: 0 12pt 12pt 0;
+    padding: 0.5%;
+    z-index: 10000;
+    height: 102px;
+    background-color: #4da5e3 !important;
+}
+img.logo-dashboard {
+    width: 100%;
+    margin-top: -36px;
+}
+.header-page{    
+    background-color: #201C42;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+.campana{
+    background-color: white !important;
+    width: 30pt;
+    height: 30pt;
+    border-radius: 100%;
+}
+.user{
+    background-color: white !important;
+    width: 30pt;
+    height: 30pt;
+    border-radius: 100%;
+}
+
+.sidebar-menu{    
+    background-color: white;
+    z-index: 10000;
+    position: absolute;
+}
+
+.body-template{
+    width: 100%;
+    padding: 0!important;
+    margin: 0 !important;
+    max-width: max-content !important;
+}
+.home-page{   
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+.menu-data-1{
+    list-style: none;
+    padding: 0;
+    margin: 0; 
+}
+.menu-data-2{
+    list-style: none;
+    padding: 0;
+    margin: 0; 
+}
+
+.menu-data-3{
+    list-style: none;
+    padding: 0;
+    margin: 0; 
+}
+
+.menu-data-4{
+    list-style: none;
+    padding: 0;
+    margin: 0; 
+}
+
+
+.menu-data-5{
+    list-style: none;
+    padding: 0;
+    margin: 0; 
+}

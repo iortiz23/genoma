@@ -33,7 +33,7 @@
   * sidebar-mini
 -->
 
-<body class="container">
+<body class="container" style="padding-top: 17px;">
     <div class="wrapper">
 
         <!-- Content Wrapper. Contains page content -->
