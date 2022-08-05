@@ -49,7 +49,7 @@ $IdProfile = $_SESSION['IdProfile'];
 </head>
 <input type="hidden" id="idPerson" value="<?php echo $IdPerson; ?>">
 
-<body class="hold-transition sidebar-mini layout-fixed" style="background: linear-gradient(to right, #D22F53, #82174A, #491845, #1F1C40);">
+<body class="hold-transition sidebar-mini layout-fixed" style="padding-top: 17px;background: linear-gradient(to right, #D22F53, #82174A, #491845, #1F1C40);">
     <section class="content">
         <div class="row">
             <div class="col-md-4">

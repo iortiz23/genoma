@@ -49,238 +49,119 @@ $IdProfile = $_SESSION['IdProfile'];
 <body class="hold-transition sidebar-mini layout-fixed">
     <input type="hidden" id="idProfile" value="<?php echo $IdProfile; ?>">
     <div class="wrapper">
-
+        
         <!-- Preloader -->
         <div class="preloader flex-column justify-content-center align-items-center">
             <img class="animation__shake" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
         </div>
+        <div class="container body-template">
+        <div class="row header-page" >
+            <div class="col-md-4">
 
-        <!-- Navbar -->
-        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-            <!-- Left navbar links -->
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-                </li>
-
-            </ul>
-
-            <!-- Right navbar links -->
-            <ul class="navbar-nav ml-auto">
-                <!-- Navbar Search -->
-                <li class="nav-item">
-                    <a class="nav-link" data-widget="navbar-search" href="#" role="button">
-                        <i class="fas fa-search"></i>
-                    </a>
-                    <div class="navbar-search-block">
-                        <form class="form-inline">
-                            <div class="input-group input-group-sm">
-                                <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-                                <div class="input-group-append">
-                                    <button class="btn btn-navbar" type="submit">
-                                        <i class="fas fa-search"></i>
-                                    </button>
-                                    <button class="btn btn-navbar" type="button" data-widget="navbar-search">
-                                        <i class="fas fa-times"></i>
-                                    </button>
-                                </div>
+            </div>
+            <div class="col-md-4">
+                <img  class="logo-dashboard" src="./dist/img/MATCHGENICA_fondo.png"/>
+            </div>
+            <div class="col-md-4 ">
+                <div class="row justify-content-end" style="margin: 0 !important;">
+                            <div class="col-7"></div>
+                            <div class="col-1">
+                                <a class="nav-link notificaciones" data-widget="control-sidebars" role="button" data-toggle="modal" data-target="#modal-default">
+                                    <div class="campana">
+                                        <img style="width: 90%;" src="./dist/img/campana.png"/>
+                                    </div>
+                                </a>
                             </div>
-                        </form>
-                    </div>
-                </li>
-
-                <!--<li class="nav-item">
-                    <a class="nav-link" data-widget="fullscreen" href="#" role="button">
-                        <i class="fas fa-expand-arrows-alt"></i>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-widget="control-sidebar" data-controlsidebar-slide="true" href="#" role="button">
-                        <i class="fas fa-th-large"></i>
-                    </a>
-                </li>-->
-                <li class="nav-item">
-                    <a class="nav-link" data-widget="control-sidebars" role="button" data-toggle="modal" data-target="#modal-default">
-                        <i class="fas fa-power-off"></i>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-        <!-- /.navbar -->
-
-        <!-- Main Sidebar Container -->
-        <aside class="main-sidebar sidebar-dark-primary elevation-4">
-            <!-- Brand Logo -->
-            <a href="index.php" class="brand-link">
-
-                <img src="dist/img/duponte-icono.png" alt="Duponte Logo" class="brand-image  elevation-3" />
-            </a>
-
-            <!-- Sidebar -->
-            <div class="sidebar">
-                <!-- Sidebar user panel (optional) -->
-                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                    <div class="image">
-                        <img src="dist/img/avatar2.png" class="img-circle elevation-2" alt="User Image">
-                    </div>
-                    <div class="info">
-                        <a href="#" class="d-block"><?php echo $Name ?></a>
-                    </div>
+                            <div class="col-1"></div>
+                            <div class="col-1">
+                                <a class="nav-link usuario" data-widget="control-sidebars" role="button" data-toggle="modal" data-target="#modal-default">
+                                <div class="user">
+                                    <img style="width: 90%;"src="./dist/img/user.png"/>
+                                </div>
+                                </a>
+                            </div>
+                            <div class="col-1"></div>
+                            <div class="col-1">
+                                <a class="nav-link logout" data-widget="control-sidebars" role="button" data-toggle="modal" data-target="#modal-default">
+                                    <i class="fas fa-power-off"></i>
+                                </a>
+                            </div>
                 </div>
-
-                <!-- SidebarSearch Form -->
-                <div class="form-inline">
-                    <div class="input-group" data-widget="sidebar-search">
-                        <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
-                        <div class="input-group-append">
-                            <button class="btn btn-sidebar">
-                                <i class="fas fa-search fa-fw"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Sidebar Menu -->
-                <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                        <!-- Add icons to the links using the .nav-icon class
-                                 with font-awesome or any other icon font library -->
-
-                        <li class="nav-item" id="li-permisos-adminUsu">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-edit"></i>
-                                <p>
-                                    Admin Usuarios
-                                    <i class="fas fa-angle-left right"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="modulos/usuarios/usuario.php" target="centerframe" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Usuarios</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="modulos/perfiles/perfil.php" target="centerframe" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Perfiles</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="modulos/tipoClientes/tipoclientes.php" class="nav-link" target="centerframe">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Tipos de Cliente</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="modulos/TipoDocumentos/tipodocumentos.php" target="centerframe" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Tipos de Documentos</p>
-                                    </a>
-                                </li>
-
-                            </ul>
-                        </li>
-
-                        <li class="nav-item" id="li-permisos-cargue">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-upload"></i>
-                                <p>
-                                    Cargue
-                                    <i class="fas fa-angle-left right"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="pages/load/load.php" class="nav-link" target="centerframe">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Cargue Variantes</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item"  id="li-permisos-cargue-relacion">
-                                    <a href="pages/load-relation/load-relation.php" class="nav-link" target="centerframe">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Cargue Relación Enfermedades</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item" id="li-permisos-cargue-medicine">
-                                    <a href="pages/load-medicine/load-medicine.php" class="nav-link" target="centerframe">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Cargue Relación Medicina</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="nav-item" id="li-permisos-busqueda">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-search"></i>
-                                <p>
-                                    Busqueda
-                                    <i class="fas fa-angle-left right"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="modulos/Busqueda/busqueda.php" class="nav-link" target="centerframe">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Consulta Informes</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="modulos/TipoEnfermedad/tipoenfermedad.php" class="nav-link" target="centerframe">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Match de Enfermedades</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="modulos/TipoMedicamento/tipomedicamento.php" class="nav-link" target="centerframe">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Match de Medicamentos</p>
-                                    </a>
-                                </li>
-
-                            </ul>
-
-                        </li>
-                    </ul>
-                </nav>
-                <!-- /.sidebar-menu -->
-            </div>
-            <!-- /.sidebar -->
-        </aside>
-
-        <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper" style="min-height: 916px;background: linear-gradient(to right, #D22F53, #82174A, #491845, #1F1C40);">
-            <!-- Content Header (Page header) -->
-            <div class="content-header">
-                <div class="container-fluid">
-                    <div class="row mb-2">
-                        <div class="col-sm-6">
-                            <!--<img src="dist/img/duponte-icono2.png" width="25%" />-->
-                        </div><!-- /.col -->
-                    </div><!-- /.row -->
-                </div><!-- /.container-fluid -->
-            </div>
-            <!-- /.content-header -->
-
-            <!-- Main content -->
-            <section class="content">
-                <div class="container-fluid">
-
-                    <iframe src="dashboard.php" name="centerframe" class="pages" frameBorder=0 style="align-content: center; height: 85%; position: absolute; width: 80%;" frameSpacing=0>
-                    </iframe>
-                </div>
-
-
-            </section>
-            <!-- /.content -->
+            
         </div>
 
-        <!-- Control Sidebar -->
-        <aside class="control-sidebar control-sidebar-dark">
-            <!-- Control sidebar content goes here -->
-        </aside>
+            
+        </div>   
+       
+
+        <!-- Main Sidebar Container -->
+        <div class="row home-page">
+            <div class="col-sm-1">
+                    <!-- Sidebar Menu -->
+                    <nav class="row ">
+                        <div class="nav nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                            <a class="nav-link" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true" ><div class="op-menu-1" ><img  class="logo-menu-1" src="./dist/img/user.png"/></div></a>
+                            <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false" ><div class="op-menu-2"><img class="logo-menu-2" src="./dist/img/flecha.png"/></div></a>
+                            <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false"><div class="op-menu-3"><img class="logo-menu-3" src="./dist/img/gen.png"/></div></a>
+                            <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false"><div class="op-menu-4"><img class="logo-menu-4" src="./dist/img/pildora.png"/></div></a>
+                            <a class="nav-link" id="v-pills-search-tab" data-toggle="pill" href="#v-pills-search" role="tab" aria-controls="v-pills-search" aria-selected="false"><div class="op-menu-5"><img class="logo-menu-5" src="./dist/img/buscar.png"/></div></a>
+                            </div>
+                            <div class="tab-content " id="v-pills-tabContent">
+                            <div class="tab-pane fade menu-content-1" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                                <ul class="menu-data-1">
+                                    <li class="sub-menu"><a  href="modulos/usuarios/usuario.php" target="centerframe" class="nav-link submenu"><p class="text-submenu" >Usuarios</p></a></li>
+                                    <li class="sub-menu"><a   href="modulos/perfiles/perfil.php" target="centerframe" class="nav-link submenu"><p class="text-submenu">Perfiles</p></a></li>
+                                    <li class="sub-menu"><a   href="modulos/tipoClientes/tipoclientes.php" class="nav-link submenu" target="centerframe"><p class="text-submenu">Tipos de clientes</p></a></li>
+                                </ul>
+                            </div>
+                            <div class="tab-pane fade menu-content-2" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">                           
+                                <ul class="menu-data-2">
+                                    <li class="sub-menu"><a  href="pages/load/load.php" class="nav-link submenu" target="centerframe"><p class="text-submenu">Cargar Variantes</p></a></li>
+                                    <li class="sub-menu"><a  href="pages/load-medicine/load-medicine.php" class="nav-link submenu" target="centerframe"><p class="text-submenu">Cargar Medicinas</p></a></li>
+                                    <li class="sub-menu"><a  href="pages/load-relation/load-relation.php" class="nav-link submenu" target="centerframe"><p class="text-submenu">Cargar Enfermedades</p></a></li>
+                                </ul>
+                            </div>
+                            <div class="tab-pane fade menu-content-3" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+                                <ul class="menu-data-3">
+                                    <li class="sub-menu"><a href="modulos/TipoEnfermedad/tipoenfermedad.php" class="nav-link submenu" target="centerframe"><p class="text-submenu">Riesgo de enfermedad</p></a></li>
+                                </ul>
+                            </div>
+                            <div class="tab-pane fade  menu-content-4" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+                                <ul class="menu-data-4">
+                                    <li class="sub-menu"><a href="modulos/TipoMedicamento/tipomedicamento.php" class="nav-link submenu" target="centerframe"><p class="text-submenu">Reacción farmacologica</p></a></li>
+                                </ul>
+                            </div>
+                            <div class="tab-pane fade menu-content-5" id="v-pills-search" role="tabpanel" aria-labelledby="v-pills-search-tab">
+                                <ul class="menu-data-5">
+                                    <li class="sub-menu"><a href="modulos/Busqueda/busqueda.php" class="nav-link submenu" target="centerframe"><p class="text-submenu">Mis Informes</p></a></li>
+                                    <li class="sub-menu"><a href="modulos/Busqueda/busqueda.php" class="nav-link submenu" target="centerframe"><p class="text-submenu">Crear Informe</p></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+                    <!-- /.sidebar-menu -->
+                </div>
+                <!-- /.sidebar -->
+            
+
+            <!-- Content Wrapper. Contains page content -->
+            <div class="col-sm-11" style="
+    padding: 0px !important;
+    width: 100%;
+">
+
+                    <!-- Main content -->
+                    <div class="col-12 body-frame"style="margin-left:0px  !important;background: linear-gradient(to right, #D22F53, #82174A, #491845, #1F1C40);height: 410pt;">
+
+                            <iframe src="dashboard.php" name="centerframe" class="pages" frameBorder=0 style="align-content: center;width: inherit;height: 405pt;" frameSpacing=0>
+                            </iframe>
+                        
+
+
+                </div>
+            </div>
+        </div>
+</div>
         <!-- /.control-sidebar -->
     </div>
     <!-- ./wrapper -->

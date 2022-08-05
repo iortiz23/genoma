@@ -33,7 +33,7 @@ if (isset($_REQUEST['id'])) {
 
         <script src="./js/FormTipoClientes.js"></script>
     </head>
-    <body class="container" style="background-color: #f4f6f9;">
+    <body class="container" style="background-color: #f4f6f9;padding-top: 17px;">
         <div class="col-md-12"> 
             <!-- general form elements disabled -->
             <div class="card card-warning">
