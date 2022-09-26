@@ -310,3 +310,137 @@ img.logo-dashboard {
     padding: 0;
     margin: 0; 
 }
+.back-menu{
+    background-color: #cfdfe9;
+}
+.options{
+    background-color: white;
+    border-radius: 60pt;
+    padding-left: 3pt;
+}
+.notification{
+    width: 19pt;
+    height: 19pt;
+    padding-left: 8pt;
+    position: fixed;
+    left: 56pt;
+    top: 87pt;
+    border-radius: 16pt;
+    color: white;
+    background-color: #ce2e52;
+}
+
+.notification-1{
+    width: 19pt;
+    height: 19pt;
+    padding-left: 8pt;
+    position: fixed;
+    left: 56pt;
+    top: 165pt;
+    border-radius: 16pt;
+    color: white;
+    background-color: #ce2e52;
+}
+
+.notification-2{
+    width: 19pt;
+    height: 19pt;
+    padding-left: 8pt;
+    position: fixed;
+    left: 56pt;
+    top: 244pt;
+    border-radius: 16pt;
+    color: white;
+    background-color: #ce2e52;
+}
+
+.notification-3{
+    width: 19pt;
+    height: 19pt;
+    padding-left: 8pt;
+    position: fixed;
+    left: 56pt;
+    top: 323pt;
+    border-radius: 16pt;
+    color: white;
+    background-color: #ce2e52;
+}
+
+.notification-4{
+    width: 19pt;
+    height: 19pt;
+    padding-left: 8pt;
+    position: fixed;
+    left: 56pt;
+    top: 403pt;
+    border-radius: 16pt;
+    color: white;
+    background-color: #ce2e52;
+}
+.comment-1{
+    position: fixed;
+    top: 18%;
+    left: 9.3%;
+    width: 27%;
+    height: 19%;
+    color: white;
+    z-index: 1000;
+    border-radius: 12pt;
+    background-color: #4da5e3;
+    padding-left: 5pt;
+    display:none;
+}
+
+.comment-2{
+    position: fixed;
+    top: 33%;
+    left: 9.3%;
+    width: 27%;
+    height: 19%;
+    color: white;
+    z-index: 1000;
+    border-radius: 12pt;
+    background-color: #4da5e3;
+    padding-left: 5pt;
+    display:none;
+}
+.comment-3{
+    position: fixed;
+    top: 48%;
+    left: 9.3%;
+    width: 27%;
+    height: 19%;
+    color: white;
+    z-index: 1000;
+    border-radius: 12pt;
+    background-color: #4da5e3;
+    padding-left: 5pt;
+    display:none;
+}
+.comment-4{
+    position: fixed;
+    top: 63%;
+    left: 9.3%;
+    width: 27%;
+    height: 19%;
+    color: white;
+    z-index: 1000;
+    border-radius: 12pt;
+    background-color: #4da5e3;
+    padding-left: 5pt;
+    display:none;
+}
+.comment-5{
+    position: fixed;
+    top: 78%;
+    left: 9.3%;
+    width: 27%;
+    height: 19%;
+    color: white;
+    z-index: 1000;
+    border-radius: 12pt;
+    background-color: #4da5e3;
+    padding-left: 5pt;
+    display:none;
+}
+
