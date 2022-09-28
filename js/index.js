@@ -25,11 +25,15 @@ $(document).ready(function() {
         });
     });
     $("#v-pills-home-tab").hover(function(){
+        $("#v-pills-home").hide();
         $(".comment-1").css( "display", "block" );
     },function(){
         $(".comment-1").css( "display", "none" ); 
     });
-
+    $("#v-pills-home-tab").click(function(){
+        $("#v-pills-home").show();
+        $(".comment-1").css( "display", "none" );
+    });
     $("#v-pills-profile-tab").hover(function(){
         $(".comment-2").css( "display", "block" );
     },function(){
