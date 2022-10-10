@@ -24,6 +24,40 @@ $(document).ready(function() {
             },
         });
     });
+    $("#v-pills-home-tab").hover(function(){
+        $("#v-pills-home").hide();
+        $(".comment-1").css( "display", "block" );
+    },function(){
+        $(".comment-1").css( "display", "none" ); 
+    });
+    $("#v-pills-home-tab").click(function(){
+        $("#v-pills-home").show();
+        $(".comment-1").css( "display", "none" );
+    });
+    $("#v-pills-profile-tab").hover(function(){
+        $(".comment-2").css( "display", "block" );
+    },function(){
+        $(".comment-2").css( "display", "none" ); 
+    });
+
+    $("#v-pills-messages-tab").hover(function(){
+        $(".comment-3").css( "display", "block" );
+    },function(){
+        $(".comment-3").css( "display", "none" ); 
+    });
+
+    $("#v-pills-settings-tab").hover(function(){
+        $(".comment-4").css( "display", "block" );
+    },function(){
+        $(".comment-4").css( "display", "none" ); 
+    });
+
+    $("#v-pills-search-tab").hover(function(){
+        $(".comment-5").css( "display", "block" );
+    },function(){
+        $(".comment-5").css( "display", "none" ); 
+    });
+
 });
 
 function permisos(idProfile) {
@@ -32,8 +66,6 @@ function permisos(idProfile) {
             $("#li-permisos-adminUsu").show();
             $("#li-permisos-cargue").show();
             $("#li-permisos-busqueda").show();
-            $("#li-permisos-cargue-relacion").show();
-            $("#li-permisos-cargue-medicine").show();
             
             
             break;
@@ -41,23 +73,17 @@ function permisos(idProfile) {
             $("#li-permisos-adminUsu").hide();
             $("#li-permisos-cargue").show();
             $("#li-permisos-busqueda").show();
-            $("#li-permisos-cargue-relacion").hide();
-            $("#li-permisos-cargue-medicine").hide();
             break;
         case '3':
             $("#li-permisos-adminUsu").hide();
             $("#li-permisos-cargue").hide();
             $("#li-permisos-busqueda").show();
-            $("#li-permisos-cargue-relacion").hide();
-            $("#li-permisos-cargue-medicine").hide();
             break;
 
         default:
             $("#li-permisos-adminUsu").hide();
             $("#li-permisos-cargue").hide();
             $("#li-permisos-busqueda").hide();
-            $("#li-permisos-cargue-relacion").hide();
-            $("#li-permisos-cargue-medicine").hide();
             break;
     }
 }
