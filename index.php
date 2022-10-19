@@ -46,7 +46,7 @@ $IdProfile = $_SESSION['IdProfile'];
     <script src="js/index.js"></script>
 </head>
 
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="hold-transition sidebar-mini layout-fixed" style="position: fixed;">
     <input type="hidden" id="idProfile" value="<?php echo $IdProfile; ?>">
     <div class="wrapper">
         
@@ -168,7 +168,7 @@ $IdProfile = $_SESSION['IdProfile'];
 ">
 
                     <!-- Main content -->
-                    <div class="col-12 body-frame"style="margin-left:0px  !important;background: linear-gradient(to right, #D22F53, #82174A, #491845, #1F1C40);height: 410pt;">
+                    <div class="col-12 body-frame"style="margin-left:0px  !important;background: linear-gradient(to right, #D22F53, #82174A, #491845, #1F1C40);height: 100%;">
 
                             <iframe src="dashboard.php" name="centerframe" class="pages" frameBorder=0 style="align-content: center;width: inherit;height: 405pt;" frameSpacing=0>
                             </iframe>

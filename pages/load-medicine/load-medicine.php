@@ -51,7 +51,7 @@ $IdProfile = $_SESSION['IdProfile'];
 
 <body class="hold-transition sidebar-mini layout-fixed" style="padding-top: 17px;background: linear-gradient(to right, #D22F53, #82174A, #491845, #1F1C40);">
     <section class="content">
-        <div class="row">
+        <div class="row" style="margin-right:0% !important">
             <div class="col-md-4">
             </div>
             <div class="col-md-4">
@@ -103,7 +103,7 @@ $IdProfile = $_SESSION['IdProfile'];
         </div>
 
 
-        <div class="row">
+        <div class="row" style="margin-right:0% !important">
             <div class="col-md-1">
             </div>
             <div class="col-md-10">
