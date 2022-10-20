@@ -423,11 +423,11 @@ img.logo-dashboard {
 }
 
 .comment-1 {
-    position: fixed;
-    top: 18%;
-    left: 9.3%;
-    width: 27%;
-    height: 19%;
+    position: absolute;
+    top: 0px;
+    left: 127px;
+    width: 305px;
+    height: 172px;
     color: white;
     z-index: 1000;
     border-radius: 12pt;
@@ -437,11 +437,11 @@ img.logo-dashboard {
 }
 
 .comment-2 {
-    position: fixed;
-    top: 33%;
-    left: 9.3%;
-    width: 27%;
-    height: 19%;
+    position: absolute;
+    top: 104px;
+    left: 127px;
+    width: 289px;
+    height: 123px;
     color: white;
     z-index: 1000;
     border-radius: 12pt;
@@ -451,11 +451,11 @@ img.logo-dashboard {
 }
 
 .comment-3 {
-    position: fixed;
-    top: 48%;
-    left: 9.3%;
-    width: 27%;
-    height: 19%;
+    position: absolute;
+    top: 204px;
+    left: 127px;
+    width: 232px;
+    height: 114px;
     color: white;
     z-index: 1000;
     border-radius: 12pt;
@@ -465,11 +465,11 @@ img.logo-dashboard {
 }
 
 .comment-4 {
-    position: fixed;
-    top: 63%;
-    left: 9.3%;
-    width: 27%;
-    height: 19%;
+    position: absolute;
+    top: 307px;
+    left: 127px;
+    width: 249px;
+    height: 125px;
     color: white;
     z-index: 1000;
     border-radius: 12pt;
@@ -479,11 +479,11 @@ img.logo-dashboard {
 }
 
 .comment-5 {
-    position: fixed;
-    top: 78%;
-    left: 9.3%;
-    width: 27%;
-    height: 19%;
+    position: absolute;
+    top: 409px;
+    left: 127px;
+    width: 245px;
+    height: 105px;
     color: white;
     z-index: 1000;
     border-radius: 12pt;

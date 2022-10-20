@@ -133,6 +133,9 @@ if(isset($_REQUEST['id'])){
                                 <div class="form-check">
                                     <input name="status" id="status" class="form-check-input" type="checkbox" data-req="requerido" <?php echo isset($result[0]['State'])?'Checked':''; ?>>
                                     <label   class="form-check-label" >Status</label>
+                                    &nbsp;&nbsp;&nbsp;
+                                    <input name="tratamiento" id="tratamiento" class="form-check-input" type="checkbox"  >
+                                    <a   class="form-check-label" href="https://www.duponteadn.com/copia-de-aviso-legal" >politica de tratamiento datos </a>
                                 </div>
 
                             </div>

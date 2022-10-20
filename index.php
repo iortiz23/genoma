@@ -140,10 +140,10 @@ $IdProfile = $_SESSION['IdProfile'];
                                 </ul>
                             </div>
                             <div class="comment-1" >
-                                <p>Completa aqui tu perfil de usuario para poder  acceder a todas las funcionalidades, tus datos seran tratados bajo nuestra politica de tratamiento la cual puedes consultar aqui: https://www.duponteadn.com/copia-de-aviso-legal</p>
+                                <p>Completa aqui tu perfil de usuario para poder  acceder a todas las funcionalidades, tus datos seran tratados bajo nuestra politica de tratamiento la cual puedes  al  registrar cada usuario </p>
                             </div>
                             <div class="comment-2" >
-                                <p>Carga aqui tus archivos en formato excel, por paciente, tu archivo debe seguir la estructura de la plantilla: <a href="modulos/Busqueda/busqueda.php" class="nav-link submenu" target="centerframe">Descargar Plantilla</a></p>
+                                <p>Carga aqui tus archivos en formato excel, por paciente, tu archivo debe seguir la estructura de la plantilla la cual se encuentra en cada opcion de menu</p>
                             </div>
                             <div class="comment-3" >
                                 <p>Haz clic para constrastar tus bases genomicas cargadas para conocer el riesgo de enfermedad de tus pacientes.</p>
