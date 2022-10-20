@@ -91,6 +91,9 @@ $IdProfile = $_SESSION['IdProfile'];
                         <div class="card-footer">
                             <div class="input-group">
                                 <button type="button" id="btnUpload" class="btn card-color">Cargar</button>
+                                &nbsp;&nbsp;&nbsp;
+                                <a  id="btnDownload" class="btn card-color" href="./template/template.xlsx" download="plantilla_medicina.xlsx">Descargue Plantilla </a>
+                                
                                 <div class="input-group" id="divloading" style="display: none;">
                                     <img src="../../dist/img/loader.gif" style="width: 30px;" />&nbsp&nbsp
                                     <label style="color: #201C42;">Cargando la informaci&oacute;n...</label>
