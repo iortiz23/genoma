@@ -58,34 +58,30 @@ $IdProfile = $_SESSION['IdProfile'];
         <div class="row header-page" >
             <div class="col-md-4">
 
-            </div>
-            <div class="col-md-4">
-                <img  class="logo-dashboard" src="./dist/img/MATCHGENICA_fondo.png"/>
-            </div>
+             </div>
+                       <div class="col-md-4">
+                              <a href="index.php"><img  class="logo-dashboard" src="./dist/img/MATCHGENICA_fondo.png"/></a>
+                </div>
             <div class="col-md-4 ">
                 <div class="row justify-content-end" style="margin: 0 !important;">
-                            <div class="col-7"></div>
-                            <div class="col-1">
-                                <a class="nav-link notificaciones" data-widget="control-sidebars" role="button" data-toggle="modal" data-target="#modal-default">
-                                    <div class="campana">
-                                        <img style="width: 90%;padding-left: 4px;padding-top: 4px;" src="./dist/img/campana.png"/>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-1"></div>
-                            <div class="col-1">
-                                <a class="nav-link usuario" data-widget="control-sidebars" role="button" data-toggle="modal" data-target="#modal-default">
-                                <div class="user">
-                                    <img style="width: 90%;padding-left: 4px;padding-top: 4px;"src="./dist/img/user.png"/>
-                                </div>
-                                </a>
-                            </div>
-                            <div class="col-1"></div>
-                            <div class="col-1">
-                                <a class="nav-link logout" data-widget="control-sidebars" role="button" data-toggle="modal" data-target="#modal-default">
-                                    <i class="fas fa-power-off"></i>
-                                </a>
-                            </div>
+                <div class="col-3 ml-auto text-right py-4">
+            <div class="btn-group" style="
+    right: 40%;
+    top: 50%;
+    postion:absolute">
+                <button type="button" class="btn btn-danger">Welcome, <strong>
+                    <?php echo $_SESSION['Name']; ?>
+                </strong></button>
+                <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="sr-only">Toggle</span>
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="./modulos/usuarios/FormUsuarios.php">Profile</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="nav-link logout" data-widget="control-sidebars" role="button" data-toggle="modal" data-target="#modal-default">Logout</a>
+                </div>
+            </div>
+        </div>
                 </div>
             
         </div>
@@ -95,45 +91,45 @@ $IdProfile = $_SESSION['IdProfile'];
        
 
         <!-- Main Sidebar Container -->
-        <div class="row home-page">
-            <div class="col-sm-1" style="
-    background-color: #cfdfe9;
+        <div class="row home-page" style="height:100%;">
+            <div class="col-md-1" style="
+    background-color: #cfdfe9;  padding-left 0px;;
 ">
                     <!-- Sidebar Menu -->
-                    <nav class="row ">
+                    <nav class="row " style="height:105%; weight:110%">
                         <div class="nav nav-pills back-menu" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                            <a class="nav-link" id="v-pills-home-tab" data-toggle="pill" id="li-permisos-adminUsu" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true" ><div class="op-menu-1 options" ><div class="notification" ><p>!</p></div><img  class="logo-menu-1" src="./dist/img/user.png"/></div></a>
-                            <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" id="li-permisos-cargue" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false" ><div class="op-menu-2 options"><div class="notification-1" ><p>!</p></div><img class="logo-menu-2" src="./dist/img/flecha.png"/></div></a>
-                            <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" id="li-permisos-busqueda" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false"><div class="op-menu-3 options"><div class="notification-2" ><p>!</p></div><img class="logo-menu-3" src="./dist/img/gen.png"/></div></a>
-                            <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" id="li-permisos-busqueda" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false"><div class="op-menu-4 options"><div class="notification-3" ><p>!</p></div><img class="logo-menu-4" src="./dist/img/pildora.png"/></div></a>
-                            <a class="nav-link" id="v-pills-search-tab" data-toggle="pill" id="li-permisos-busqueda" href="#v-pills-search" role="tab" aria-controls="v-pills-search" aria-selected="false"><div class="op-menu-5 options"><div class="notification-4" ><p>!</p></div><img class="logo-menu-5" src="./dist/img/buscar.png"/></div></a>
+                            <a class="nav-link" id="v-pills-home-tab" data-toggle="pill" id="li-permisos-adminUsu" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true" ><div class="op-menu-1 options" ><img  class="logo-menu-1" src="./dist/img/user.png"/></div><!--<div class="notification" ><p>!</p></div>--></a>
+                            <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" id="li-permisos-cargue" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false" ><div class="op-menu-2 options"><img class="logo-menu-2" src="./dist/img/flecha.png"/></div><!--<div class="notification-1"><p>!</p></div>--></a>
+                            <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" id="li-permisos-busqueda" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false"><div class="op-menu-3 options"><img class="logo-menu-3" src="./dist/img/gen.png"/></div><!--<div class="notification-2" ><p>!</p></div>--></a>
+                            <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" id="li-permisos-busqueda" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false"><div class="op-menu-4 options"><img class="logo-menu-4" src="./dist/img/pildora.png"/></div></a><!--<div class="notification-3" ><p>!</p></div>-->
+                            <a class="nav-link" id="v-pills-search-tab" data-toggle="pill" id="li-permisos-busqueda" href="#v-pills-search" role="tab" aria-controls="v-pills-search" aria-selected="false"><div class="op-menu-5 options"><img class="logo-menu-5" src="./dist/img/buscar.png"/></div></a><!--<div class="notification-4" ><p>!</p></div>-->
                             </div>
                             <div class="tab-content " id="v-pills-tabContent">
-                            <div class="tab-pane fade menu-content-1" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                            <div class="tab-pane fade menu-content-1" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab" style="display: block;top: 0%;padding-left: 0px;left: 100%;">
                                 <ul class="menu-data-1">
                                     <li class="sub-menu"><a  href="modulos/usuarios/usuario.php" target="centerframe" class="nav-link submenu"><p class="text-submenu" >Usuarios</p></a></li>
                                     <li class="sub-menu"><a   href="modulos/perfiles/perfil.php" target="centerframe" class="nav-link submenu"><p class="text-submenu">Perfiles</p></a></li>
                                     <li class="sub-menu"><a   href="modulos/tipoClientes/tipoclientes.php" class="nav-link submenu" target="centerframe"><p class="text-submenu">Tipos de clientes</p></a></li>
                                 </ul>
                             </div>
-                            <div class="tab-pane fade menu-content-2" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">                           
+                            <div class="tab-pane fade menu-content-2" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab" style="display: block;top: 20.5%;padding-left: 0px;left: 100%;">                           
                                 <ul class="menu-data-2">
                                     <li class="sub-menu"><a  href="pages/load/load.php" class="nav-link submenu" target="centerframe"><p class="text-submenu">Cargar Variantes</p></a></li>
                                     <li class="sub-menu"><a  href="pages/load-medicine/load-medicine.php" class="nav-link submenu" target="centerframe"><p class="text-submenu">Cargar Medicinas</p></a></li>
                                     <li class="sub-menu"><a  href="pages/load-relation/load-relation.php" class="nav-link submenu" target="centerframe"><p class="text-submenu">Cargar Enfermedades</p></a></li>
                                 </ul>
                             </div>
-                            <div class="tab-pane fade menu-content-3" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+                            <div class="tab-pane fade menu-content-3" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab" style="display: block;top: 41%;padding-left: 0px;left: 100%;">
                                 <ul class="menu-data-3">
                                     <li class="sub-menu"><a href="modulos/TipoEnfermedad/tipoenfermedad.php" class="nav-link submenu" target="centerframe"><p class="text-submenu">Riesgo de enfermedad</p></a></li>
                                 </ul>
                             </div>
-                            <div class="tab-pane fade  menu-content-4" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+                            <div class="tab-pane fade  menu-content-4" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab" style="display: block;top: 61.5%;padding-left: 0px;left: 100%;">
                                 <ul class="menu-data-4">
                                     <li class="sub-menu"><a href="modulos/TipoMedicamento/tipomedicamento.php" class="nav-link submenu" target="centerframe"><p class="text-submenu">Reacción farmacologica</p></a></li>
                                 </ul>
                             </div>
-                            <div class="tab-pane fade menu-content-5" id="v-pills-search" role="tabpanel" aria-labelledby="v-pills-search-tab">
+                            <div class="tab-pane fade menu-content-5" id="v-pills-search" role="tabpanel" aria-labelledby="v-pills-search-tab" style="display: block;top: 82%;padding-left: 0px;left: 100%;">
                                 <ul class="menu-data-5">
                                     <li class="sub-menu"><a href="modulos/Busqueda/busqueda.php" class="nav-link submenu" target="centerframe"><p class="text-submenu">Mis Informes</p></a></li>
                                     <li class="sub-menu"><a href="modulos/Busqueda/busqueda.php" class="nav-link submenu" target="centerframe"><p class="text-submenu">Crear Informe</p></a></li>
@@ -142,7 +138,7 @@ $IdProfile = $_SESSION['IdProfile'];
                             <div class="comment-1" >
                                 <p>Completa aqui tu perfil de usuario para poder  acceder a todas las funcionalidades, tus datos seran tratados bajo nuestra politica de tratamiento la cual puedes  al  registrar cada usuario </p>
                             </div>
-                            <div class="comment-2" >
+                            <div class="comment-2">
                                 <p>Carga aqui tus archivos en formato excel, por paciente, tu archivo debe seguir la estructura de la plantilla la cual se encuentra en cada opcion de menu</p>
                             </div>
                             <div class="comment-3" >
@@ -151,7 +147,7 @@ $IdProfile = $_SESSION['IdProfile'];
                             <div class="comment-4" >
                                 <p>Haz clic aqui para contrastar tus bases genomicas cargadas y conocer la efectividad del tratamiento farmacologico en tus pacientes.</p>
                             </div>
-                            <div class="comment-5" >
+                            <div class="comment-5">
                                 <p>Con este boton  puedes consultar informes antiguos o actualizados y hacer versiones y descargarlos en formato de excel o PDF</p>
                             </div>
                         </div>
@@ -168,9 +164,9 @@ $IdProfile = $_SESSION['IdProfile'];
 ">
 
                     <!-- Main content -->
-                    <div class="col-12 body-frame"style="margin-left:0px  !important;background: linear-gradient(to right, #D22F53, #82174A, #491845, #1F1C40);height: 100%;">
+                    <div class="col-12 body-frame"style="margin-left:0px  !important;background: linear-gradient(to right, #D22F53, #82174A, #491845, #1F1C40);height: 105%;">
 
-                            <iframe src="dashboard.php" name="centerframe" class="pages" frameBorder=0 style="align-content: center;width: inherit;height: 405pt;" frameSpacing=0>
+                            <iframe src="dashboard.php" name="centerframe" class="pages" frameBorder=0 style="align-content: center;width: inherit;height: 95%;" frameSpacing=0>
                             </iframe>
                         
 

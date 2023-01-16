@@ -75,3 +75,14 @@ body.container {
     background-color: #201C42;
     border-color: #201C42;
 }
+
+img.logo-dashboard {
+    width: 10%;
+    margin-top: -36px;
+}
+
+.header-page {
+    background-color: #201C42;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}

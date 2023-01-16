@@ -209,12 +209,12 @@ a.brand-link {
 
 .usuario:hover {
     border-radius: 0;
-    background-color: #dc3545 !important;
+    background-color: transparent !important;
 }
 
 .logout:hover {
     border-radius: 0;
-    background-color: #dc3545 !important;
+    background-color: transparent !important;
 }
 
 a.nav-link.notificaciones {
@@ -226,13 +226,12 @@ a.nav-link.usuario {
 }
 
 a.nav-link.logout {
-    background-color: #cfd3ed  !important;
     margin-top: 9px;
 }
 
 .nav-link:hover .op-menu-2 {
     border-radius: 100%;
-    background-color: #cfd3ed  !important;
+    background-color: #cfd3ed !important;
 }
 
 .nav-link:hover .op-menu-3 {
@@ -425,75 +424,70 @@ img.logo-dashboard {
 
 .comment-1 {
     position: absolute;
-    top: 0%;
-    left: 100%;
-    width: 250%;
-    height: 20.5%;
+    padding-top: 0%;
+    left: 127px;
+    width: 305px;
+    height: 172px;
     color: white;
     z-index: 1000;
     border-radius: 12pt;
     background-color: #7a82ec;
-    padding-top: 12%;
-    padding-left: 8%;
+    padding-left: 5pt;
     display: none;
 }
 
 .comment-2 {
     position: absolute;
-    top: 20.5%;
-    left: 100%;
-    width: 250%;
-    height: 20.5%;
+    padding-top: 20%;
+    left: 127px;
+    width: 289px;
+    height: 123px;
     color: white;
     z-index: 1000;
     border-radius: 12pt;
     background-color: #7a82ec;
-    padding-top: 12%;
-    padding-left: 8%;
+    padding-left: 5pt;
     display: none;
 }
 
 .comment-3 {
     position: absolute;
-    top: 41%;
-    left: 100%;
-    width: 250%;
-    height: 20.5%;
+    padding-top: 40%;
+    left: 127px;
+    width: 232px;
+    height: 114px;
     color: white;
     z-index: 1000;
     border-radius: 12pt;
     background-color: #7a82ec;
-    padding-top: 12%;
-    padding-left: 8%;
+    padding-left: 5pt;
     display: none;
 }
 
 .comment-4 {
     position: absolute;
-    top: 61.5%;
-    left: 100%;
-    width: 250%;
-    height: 20.5%;
+    padding-top:60%;
+    left: 127px;
+    width: 249px;
+    height: 125px;
     color: white;
     z-index: 1000;
     border-radius: 12pt;
     background-color: #7a82ec;
-    padding-top: 12%;
-    padding-left: 8%;
+    padding-left: 5pt;
     display: none;
 }
 
 .comment-5 {
-    position: absolute;
-    top: 82%;
-    left: 100%;
-    width: 250%;
-    height: 20.5%;
+    position: relative;
+    padding-top: 80%;
+    left: 127px;
+    width: 245px;
+    height: 105px;
     color: white;
     z-index: 1000;
     border-radius: 12pt;
     background-color: #7a82ec;
-    padding-top: 12%;
-    padding-left: 8%;
+    padding-left: 5pt;
     display: none;
 }

@@ -44,7 +44,18 @@ if(isset($_REQUEST['id'])){
         <script src="./js/FormUsuarios.js"></script>
     </head>
     <body class="container" style="background-color: #f4f6f9;padding-top: 17px;">
+    <div class="row header-page" >
+            <div class="col-md-4">
+
+             </div>
+                       <div class="col-md-4">
+                              <a href="../../index.php"><img  class="logo-dashboard" src="../../dist/img/MATCHGENICA_fondo.png" style="position:center; width:110%" /></a>
+                </div>
+
+            
+        </div>
         <div class="col-md-12"> 
+            
             <!-- general form elements disabled -->
             <div class="card card-warning">
                 <div class="card-header">

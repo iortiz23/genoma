@@ -68,10 +68,25 @@ $IdProfile = $_SESSION['IdProfile'];
                             <div class="form-group">
                                 <label for="inputName">Nombre del documento</label>
                                 <input type="text" class="form-control" id="inputName" placeholder="Nombre del documento">
+                                <label for="inputName">Edad del paciente</label>
+                                <input type="number" class="form-control" id="typeNumber" placeholder="Edad del paciente">
+                                <label>Gender</label>
+                                    <!-- Default radio -->
+<div class="form-check">
+  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"/>
+  <label class="form-check-label" for="flexRadioDefault1">Hombre </label>
+</div>
+
+<!-- Default checked radio -->
+<div class="form-check">
+  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked/>
+  <label class="form-check-label" for="flexRadioDefault2"> Mujer </label>
+</div>
                                 <!--<label id="p_validaName" style="color: #E50850; display: none;">Nombre del documento</label>-->
                                 <p for="inputName" id="p_validaName" style="color: #E50850; display: none;"></p>
                             </div>
                             <div class="form-group">
+
                                 <label for="inputObservation">Observaci&oacute;n</label>
                                 <input type="text" class="form-control" id="inputObservation" placeholder="Observaci&oacute;n">
                             </div>

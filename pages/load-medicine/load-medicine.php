@@ -68,6 +68,7 @@ $IdProfile = $_SESSION['IdProfile'];
                             <div class="form-group">
                                 <label for="inputName">Nombre del documento</label>
                                 <input type="text" class="form-control" id="inputName" placeholder="Nombre del documento">
+
                                 <!--<label id="p_validaName" style="color: #E50850; display: none;">Nombre del documento</label>-->
                                 <p for="inputName" id="p_validaName" style="color: #E50850; display: none;"></p>
                             </div>

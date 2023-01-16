@@ -28,13 +28,13 @@
   * sidebar-mini
 -->
 
-<body class="container" style="max-width:600pt !important;background: linear-gradient(to right, #D22F53, #82174A, #491845, #1F1C40) !important;">
-    <div class="wrapper">
+<body class="container" style="max-width:80% !important;background: linear-gradient(to right, #D22F53, #82174A, #491845, #1F1C40) !important;">
+    <div class="container" style="padding-left:15%">
         
         <!-- Content Wrapper. Contains page content -->
-        <div class="container">
+        <div class="wrapper" style="position:relative">
            <div class="row">
-            <div class="col-lg-12 otros">
+            <div class="col-lg-8 otros">
                 <img  class="logo-dashboard" src="./dist/img/MATCHGENICA_fondo.png"/>
             </div>
            </div>

@@ -41,7 +41,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="card">
+                            <div class="card" style="width:120%">
                                 <div class="card-header">
                                     <div class="row">
                                         <div class="col-md-10">
