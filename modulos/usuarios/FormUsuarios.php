@@ -1,3 +1,4 @@
+
 <?php
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -6,7 +7,13 @@
  */
 include '../../class/CapturaInformacion.class.php';
 session_start();
+if (!isset($_SESSION['IdPerson']) || !isset($_SESSION['Name']) || !isset($_SESSION['IdProfile'])) {
+    header("Location: ../../login\login.php");
+}
 
+$IdPerson = $_SESSION['IdPerson'];
+$Name = $_SESSION['Name'];
+$IdProfile = $_SESSION['IdProfile'];
 
 $result=null;
 $html_typeclient=null;

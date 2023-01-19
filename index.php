@@ -65,24 +65,21 @@ $IdProfile = $_SESSION['IdProfile'];
             <div class="col-md-4 ">
                 <div class="row justify-content-end" style="margin: 0 !important;">
                 <div class="col-3 ml-auto text-right py-4">
-            <div class="btn-group" style="
-    right: 40%;
-    top: 50%;
-    postion:absolute">
-                <button type="button" class="btn btn-danger">Welcome, <strong>
-                    <?php echo $_SESSION['Name']; ?>
-                </strong></button>
-                <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="sr-only">Toggle</span>
-                </button>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" href="./modulos/usuarios/FormUsuarios.php">Profile</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="nav-link logout" data-widget="control-sidebars" role="button" data-toggle="modal" data-target="#modal-default">Logout</a>
+
+            <div class="btn-group" style="right: 40%;top: 50%;postion:absolute">
+                    <button type="button" class="btn btn-danger">Welcome, <strong>
+                        <?php echo $_SESSION['Name']; ?></strong></button>
+                        <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="sr-only">Toggle</span>
+                        </button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="./modulos/usuarios/FormUsuarios.php">Profile</a>
+                            <div class="dropdown-divider"></div>
+                                <a class="nav-link logout" data-widget="control-sidebars" role="button" data-toggle="modal" data-target="#modal-default" style="color:black">Logout</a>
+                    </div>
+            </div>
                 </div>
             </div>
-        </div>
-                </div>
             
         </div>
 
@@ -105,32 +102,33 @@ $IdProfile = $_SESSION['IdProfile'];
                             <a class="nav-link" id="v-pills-search-tab" data-toggle="pill" id="li-permisos-busqueda" href="#v-pills-search" role="tab" aria-controls="v-pills-search" aria-selected="false"><div class="op-menu-5 options"><img class="logo-menu-5" src="./dist/img/buscar.png"/></div></a><!--<div class="notification-4" ><p>!</p></div>-->
                             </div>
                             <div class="tab-content " id="v-pills-tabContent">
-                            <div class="tab-pane fade menu-content-1" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab" style="display: block;top: 0%;padding-left: 0px;left: 100%;">
-                                <ul class="menu-data-1">
+                            <div class="tab-pane fade menu-content-1" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab" style="display: block;top: 0;padding-left: 0px;left: 100%;">
+                                <ul class="menu-data-1" style="padding-top: 3%;">
                                     <li class="sub-menu"><a  href="modulos/usuarios/usuario.php" target="centerframe" class="nav-link submenu"><p class="text-submenu" >Usuarios</p></a></li>
                                     <li class="sub-menu"><a   href="modulos/perfiles/perfil.php" target="centerframe" class="nav-link submenu"><p class="text-submenu">Perfiles</p></a></li>
                                     <li class="sub-menu"><a   href="modulos/tipoClientes/tipoclientes.php" class="nav-link submenu" target="centerframe"><p class="text-submenu">Tipos de clientes</p></a></li>
                                 </ul>
                             </div>
                             <div class="tab-pane fade menu-content-2" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab" style="display: block;top: 20.5%;padding-left: 0px;left: 100%;">                           
-                                <ul class="menu-data-2">
+                                <ul class="menu-data-2" style="padding-top: 5%;">
+                               
                                     <li class="sub-menu"><a  href="pages/load/load.php" class="nav-link submenu" target="centerframe"><p class="text-submenu">Cargar Variantes</p></a></li>
                                     <li class="sub-menu"><a  href="pages/load-medicine/load-medicine.php" class="nav-link submenu" target="centerframe"><p class="text-submenu">Cargar Medicinas</p></a></li>
                                     <li class="sub-menu"><a  href="pages/load-relation/load-relation.php" class="nav-link submenu" target="centerframe"><p class="text-submenu">Cargar Enfermedades</p></a></li>
                                 </ul>
                             </div>
                             <div class="tab-pane fade menu-content-3" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab" style="display: block;top: 41%;padding-left: 0px;left: 100%;">
-                                <ul class="menu-data-3">
+                                <ul class="menu-data-3" style="padding-top: 5%;">
                                     <li class="sub-menu"><a href="modulos/TipoEnfermedad/tipoenfermedad.php" class="nav-link submenu" target="centerframe"><p class="text-submenu">Riesgo de enfermedad</p></a></li>
                                 </ul>
                             </div>
                             <div class="tab-pane fade  menu-content-4" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab" style="display: block;top: 61.5%;padding-left: 0px;left: 100%;">
-                                <ul class="menu-data-4">
+                                <ul class="menu-data-4" style="padding-top: 5%;">
                                     <li class="sub-menu"><a href="modulos/TipoMedicamento/tipomedicamento.php" class="nav-link submenu" target="centerframe"><p class="text-submenu">Reacción farmacologica</p></a></li>
                                 </ul>
                             </div>
                             <div class="tab-pane fade menu-content-5" id="v-pills-search" role="tabpanel" aria-labelledby="v-pills-search-tab" style="display: block;top: 82%;padding-left: 0px;left: 100%;">
-                                <ul class="menu-data-5">
+                                <ul class="menu-data-5" style="padding-top: 5%;">
                                     <li class="sub-menu"><a href="modulos/Busqueda/busqueda.php" class="nav-link submenu" target="centerframe"><p class="text-submenu">Mis Informes</p></a></li>
                                     <li class="sub-menu"><a href="modulos/Busqueda/busqueda.php" class="nav-link submenu" target="centerframe"><p class="text-submenu">Crear Informe</p></a></li>
                                 </ul>
@@ -164,7 +162,7 @@ $IdProfile = $_SESSION['IdProfile'];
 ">
 
                     <!-- Main content -->
-                    <div class="col-12 body-frame"style="margin-left:0px  !important;background: linear-gradient(to right, #D22F53, #82174A, #491845, #1F1C40);height: 105%;">
+                    <div class="col-12 body-frame"style="margin-left:0px; padding-left:0px;  !important;background: linear-gradient(to right, #D22F53, #82174A, #491845, #1F1C40);height: 105%;">
 
                             <iframe src="dashboard.php" name="centerframe" class="pages" frameBorder=0 style="align-content: center;width: inherit;height: 95%;" frameSpacing=0>
                             </iframe>

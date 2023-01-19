@@ -82,7 +82,8 @@ img.logo-dashboard {
 }
 
 .header-page {
+    border-radius: 12pt 12pt 12pt 12pt;
     background-color: #201C42;
-    margin-left: 0 !important;
+    margin-left: 5pt !important;
     margin-right: 0 !important;
 }

@@ -222,11 +222,12 @@ a.nav-link.notificaciones {
 }
 
 a.nav-link.usuario {
+    background-color: #cfd3ed;
     margin-top: 9px;
 }
 
 a.nav-link.logout {
-    background-color: #cfd3ed  !important;
+    background-color: #ffffff  !important;
     margin-top: 9px;
 }
 
@@ -325,7 +326,7 @@ img.logo-dashboard {
 
 .menu-data-1 {
     list-style: none;
-    padding: 0;
+    padding: 5pt 0pt 0pt 0pt;
     margin: 0;
 }
 
