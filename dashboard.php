@@ -28,7 +28,7 @@
   * sidebar-mini
 -->
 
-<body class="container" style="max-width:80% !important;background: linear-gradient(to right, #D22F53, #82174A, #491845, #1F1C40) !important;">
+<body class="container" style="max-width:80% !important;background: linear-gradient(to right, #F1EEFF, #8983ad, #483f81, #282155) !important;">
     <div class="container" style="padding-left:15%">
         
         <!-- Content Wrapper. Contains page content -->

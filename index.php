@@ -48,7 +48,7 @@ $IdProfile = $_SESSION['IdProfile'];
 
 <body class="hold-transition sidebar-mini layout-fixed" style="position: fixed;">
     <input type="hidden" id="idProfile" value="<?php echo $IdProfile; ?>">
-    <div class="wrapper">
+    <div class="wrapper" >
         
         <!-- Preloader -->
         <div class="preloader flex-column justify-content-center align-items-center">
@@ -93,7 +93,7 @@ $IdProfile = $_SESSION['IdProfile'];
     background-color: #cfdfe9;  padding-left 0px;;
 ">
                     <!-- Sidebar Menu -->
-                    <nav class="row " style="height:105%; weight:110%">
+                    <nav class="row " style="height:105%; weight:110%" >
                         <div class="nav nav-pills back-menu" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                             <a class="nav-link" id="v-pills-home-tab" data-toggle="pill" id="li-permisos-adminUsu" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true" ><div class="op-menu-1 options" ><img  class="logo-menu-1" src="./dist/img/user.png"/></div><!--<div class="notification" ><p>!</p></div>--></a>
                             <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" id="li-permisos-cargue" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false" ><div class="op-menu-2 options"><img class="logo-menu-2" src="./dist/img/flecha.png"/></div><!--<div class="notification-1"><p>!</p></div>--></a>
@@ -162,7 +162,7 @@ $IdProfile = $_SESSION['IdProfile'];
 ">
 
                     <!-- Main content -->
-                    <div class="col-12 body-frame"style="margin-left:0px; padding-left:0px;  !important;background: linear-gradient(to right, #D22F53, #82174A, #491845, #1F1C40);height: 105%;">
+                    <div class="col-12 body-frame"style="margin-left:0px; padding-left:0px;  !important;background: linear-gradient(to right, #F1EEFF, #8983ad, #483f81, #282155);height: 105%;">
 
                             <iframe src="dashboard.php" name="centerframe" class="pages" frameBorder=0 style="align-content: center;width: inherit;height: 95%;" frameSpacing=0>
                             </iframe>
