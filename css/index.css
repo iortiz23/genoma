@@ -282,12 +282,12 @@ a.nav-link.logout {
 }
 
 img.logo-dashboard {
-    width: 100%;
+    width: 85%;
     margin-top: -36px;
 }
 
 .header-page {
-    background-color: #201C42;
+    background-color: #ffffff;
     margin-left: 0 !important;
     margin-right: 0 !important;
 }
@@ -355,7 +355,7 @@ img.logo-dashboard {
 }
 
 .back-menu {
-    background-color: #cfdfe9;
+    background-color: #F1EEFF;
 }
 
 .options {

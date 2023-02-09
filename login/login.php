@@ -28,10 +28,14 @@ if ($_POST) {
         <link rel="stylesheet" href="../dist/css/adminlte.min.css">
         <link rel="stylesheet" href="css/login.css">
     </head>
-    <body class="hold-transition login-page" style="color: #C3E4E5">
+    <body class="hold-transition login-page" style="background-color: #282155;" style="background-image: url(../dist/img/DUPONTEfondo-11.png); background-size: cover;
+    height: 100%;
+    padding: 0;
+    margin:0;"> 
         <div class="login-box">
+        
             <div class="login-logo">
-                <img src="../dist/img/duponte-icono.png" class="w-75 h-75"/>
+                <img src="../dist/img/DUPONTE11.png" class="w-75 h-75"/>
             </div>    
             <!-- /.login-logo -->
             <div class="card">
@@ -59,14 +63,14 @@ if ($_POST) {
 
                             <!-- /.col -->
                             <div class="col-4">
-                                <button type="submit" class="btn btn-primary btn-block">Ingresar</button>
+                                <button type="submit" style="background-color: #282155; border-color:  #282155;" class="btn btn-primary btn-block">Ingresar</button>
                             </div>
                             <!-- /.col -->
                         </div>
                     </form>
                     <p class="login-box-msg"><?php echo $result; ?></p>
                     <p class="mb-1">
-                        <a href="forgot-password.php">Olvidé mi contraseña</a>
+                        <a href="forgot-password.php" style="color: white">Olvidé mi contraseña</a>
                     </p>
                 </div>
                 <!-- /.login-card-body -->

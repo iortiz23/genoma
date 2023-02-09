@@ -1,5 +1,5 @@
 body{
-    background: linear-gradient(to right, #D22F53, #82174A, #491845, #1F1C40) !important;
+    background-color: #F1EEFF;
 }
 
 .card-body.login-card-body {
@@ -9,8 +9,8 @@ body{
 
 .btn-primary {
     color: #fff;
-    background-color: #D22F53;
-    border-color: #D22F53;
+    background-color: #282155;
+    border-color: #282155;
     box-shadow: none;
 }
 

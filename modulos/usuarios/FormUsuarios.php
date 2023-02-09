@@ -50,13 +50,14 @@ if(isset($_REQUEST['id'])){
 
         <script src="./js/FormUsuarios.js"></script>
     </head>
-    <body class="container" style="background-color: #f4f6f9;padding-top: 17px;">
+    <body class="container" style="background: linear-gradient(to right, #F1EEFF, #8983ad, #483f81, #282155) !important;
+};padding-top: 17px;">
     <div class="row header-page" >
             <div class="col-md-4">
 
              </div>
                        <div class="col-md-4">
-                              <a href="../../index.php"><img  class="logo-dashboard" src="../../dist/img/MATCHGENICA_fondo.png" style="position:center; width:110%" /></a>
+                              <a href="../../index.php"><img  class="logo-dashboard" src="../../dist/img/DUPONTE11.png" style="position:center; width:110%; margin-top: 10%" /></a>
                 </div>
 
             

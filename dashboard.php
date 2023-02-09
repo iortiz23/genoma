@@ -28,14 +28,20 @@
   * sidebar-mini
 -->
 
-<body class="container" style="max-width:80% !important;background: linear-gradient(to right, #F1EEFF, #8983ad, #483f81, #282155) !important;">
+<body class="container" style="max-width:80% !important;background-color: #F1EEFF; !important;">
     <div class="container" style="padding-left:15%">
         
         <!-- Content Wrapper. Contains page content -->
         <div class="wrapper" style="position:relative">
            <div class="row">
-            <div class="col-lg-8 otros">
-                <img  class="logo-dashboard" src="./dist/img/MATCHGENICA_fondo.png"/>
+            <div class="col-lg-8 otros" style="background-image: url(../dist/img/burbujas.gif); background-size: cover;
+    height: 100%;
+    padding: 0;
+    margin:0;">
+                <img  class="logo-dashboard" src="./dist/img/DUPONTENew-11.png" style="
+    width: 282%;
+    margin-top: 0%;
+    margin-left: -512px; "/>
             </div>
            </div>
         </div>
